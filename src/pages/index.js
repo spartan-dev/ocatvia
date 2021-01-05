@@ -3,7 +3,7 @@ import * as React from "react"
 const Index = () => {
   return (
     <main>
-      <p>Octavia ecommerce</p>
+      <p> Octavia ecommerce</p>
     </main>
   )
 }
