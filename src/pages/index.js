@@ -1,10 +1,11 @@
-import * as React from "react"
+import React from "react"
+import Layout from '../components/layout'
 
 const Index = () => {
   return (
-    <main>
-      <p> Octavia ecommerce</p>
-    </main>
+    <div>
+      <Layout />
+    </div>
   )
 }
 

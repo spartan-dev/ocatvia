@@ -7,8 +7,9 @@ module.exports = {
     extend: {
       colors: {
         white: "#FFFFFF",
-        smoke: "#FEFEFD",
+        ivory: "#FEFEFD",
         beige: "#EDE8DC",
+        smoke: "rgba(0,0,0,0.5)",
         black: "#000000",
         navbar: "#121212",
         text: "#333433",
@@ -26,6 +27,6 @@ module.exports = {
     backgroundColor: ["responsive", "hover", "focus", "active"]
   },
   plugins: [
-    // plugin(require('./src/tailwind-plugins/typography'))
+    plugin(require('./src/tailwind-plugins/containers'))
   ],
 };
