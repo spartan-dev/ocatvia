@@ -1,5 +1,11 @@
 import React, { useState } from "react"
 
+import Logo from "../../images/svg/logo.svg"
+import Menu from "../../images/svg/menu.svg"
+import Search from "../../images/svg/search.svg"
+import Shop from "../../images/svg/shop.svg"
+import User from "../../images/svg/user.svg"
+
 const menu = [{
   name: "vinos",
   categories: ["tequila1", "ron", "crema", "grappa", "vodka", "gin", "whisky"]
@@ -26,11 +32,11 @@ const Navbar = () => {
       setActiveTab(null)
     }}>
       <div className="relative bg-yellow uppercase font-medium">
-        <div className="container flex items-center">
+        <div className="container flex items-center h-16">
           <ul className="w-1/3 hidden lg:flex">
             {menu.map((item, index) => (
               <li key={index}>
-                <a className={`block py-6 lg:px-3 xl:px-5 hover:bg-smoke ${index === activeTab && "bg-smoke"}`}
+                <a className={`block py-5 lg:px-3 xl:px-5 hover:bg-smoke ${index === activeTab && "bg-smoke"}`}
                   onMouseOver={() => {
                     setActiveNav(true)
                     setSubmenu(item.categories)
@@ -42,14 +48,21 @@ const Navbar = () => {
             ))}
           </ul>
           <div className="flex w-1/3 lg:hidden">
-            hamburguesa
-        </div>
+            <Menu className="w-7" />
+          </div>
           <div className="flex justify-center w-1/3">
-            OCTAVIA
-        </div>
-          <div className="flex justify-end pr-5 w-1/3 py-6">
-            iconos
-        </div>
+            <Logo />
+          </div>
+          <div className="hidden lg:flex justify-end w-1/3">
+            <div className="flex items-center my-2 border-r border-white">
+              <User />
+              <Shop className="ml-8 mr-6" />
+            </div>
+            <div className="flex items-center">
+              <span className="inline-block mx-3">BUSCAR</span>
+              <Search className="w-6" />
+            </div>
+          </div>
         </div>
       </div>
       {

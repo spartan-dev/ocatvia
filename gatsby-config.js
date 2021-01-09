@@ -15,6 +15,14 @@ module.exports = {
     "gatsby-plugin-offline",
     "gatsby-transformer-sharp",
     {
+      resolve: `gatsby-plugin-react-svg`,
+      options: {
+        rule: {
+          include: /svg/,
+        },
+      },
+    },
+    {
       resolve: `gatsby-plugin-postcss`,
       options: {
         postCssPlugins: [require("tailwindcss"), require("autoprefixer")],
@@ -31,7 +39,7 @@ module.exports = {
     {
       resolve: "gatsby-plugin-manifest",
       options: {
-        icon: "src/images/favicon.png",
+        icon: "src/images/assets/favicon.png",
       },
     },
     {
