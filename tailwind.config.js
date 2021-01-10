@@ -12,7 +12,7 @@ module.exports = {
         smoke: "rgba(0,0,0,0.5)",
         black: "#000000",
         navbar: "#121212",
-        text: "#333433",
+        product: "#333433",
         red: "#E85633",
         yellow: "#ECAB2F",
         "yellow-light": "#EDE8DC4D",
@@ -27,6 +27,8 @@ module.exports = {
     backgroundColor: ["responsive", "hover", "focus", "active"]
   },
   plugins: [
-    plugin(require('./src/tailwind-plugins/containers'))
+    plugin(require('./src/tailwind-plugins/containers')),
+    plugin(require('./src/tailwind-plugins/typography')),
+    plugin(require('./src/tailwind-plugins/buttons'))
   ],
 };

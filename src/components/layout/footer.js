@@ -20,7 +20,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="bg-black text-white">
-        <div className="container md:h-56 mx-auto flex flex-row justify-evenly items-start lg:items-center py-8 md:py-6 lg:py-0 ">
+        <div className="container md:h-56 mx-auto flex flex-row justify-evenly sm:justify-start items-start lg:items-center py-8 md:py-6 lg:py-0 ">
           <div className="sm:w-1/4 md:w-1/5 lg:w-1/6">
             <p className="tracking-widest text-yellow font-bold mb-5 text-sm lg:text-base">
               CATEGORÍAS
