@@ -26,7 +26,7 @@ const Navbar = () => {
   const [activeTab, setActiveTab] = useState(null)
 
   return (
-    <section role="button" tabIndex={0} onMouseLeave={() => {
+    <nav aria-hidden="true" onMouseLeave={() => {
       setActiveNav(false)
       setSubmenu([])
       setActiveTab(null)
@@ -96,7 +96,7 @@ const Navbar = () => {
           </div>
         </div>
       }
-    </section >
+    </nav >
   )
 }
 

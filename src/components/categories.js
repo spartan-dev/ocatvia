@@ -27,7 +27,7 @@ const Categories = () => {
       <p className="title">CATEGORÍAS</p>
       <div className="flex flex-wrap mt-6 -mx-2">
         {categories.map((categorie, index) => (
-          <div key={index} className="sm:w-1/2 p-4">
+          <div key={index} className="sm:w-1/2 py-4 sm:p-4">
             <img
               src={categorie.img}
               alt={categorie.name}

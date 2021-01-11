@@ -31,12 +31,11 @@ const products = [{
   name: "Peter Brum Vino Noire",
   mililiters: "750ml",
   price: "$15.68 USD"
-}
-]
+}]
 
 const Selection = () => {
   return (
-    <section className="container mt-64 mb-14 sm:my-14">
+    <section className="container mt-72 mb-14 sm:my-14">
       <p className="title">SELECCIÓN</p>
       <div className="flex justify-between mt-6">
         {products.map((product, index) => (

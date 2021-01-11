@@ -13,11 +13,21 @@ module.exports = function ({ theme, addUtilities }) {
     },
     '.btn-shop': {
       position: 'absolute',
-      marginLeft: '176px',
       padding: '4px',
-      marginTop: '-8px',
       borderRadius: '9999px',
-      border: `2px solid ${theme('colors')['yellow']}`
+      border: `2px solid ${theme('colors')['yellow']}`,
+      '@media (min-width: 1280px)': {
+        marginTop: '-8px',
+        marginLeft: '176px'
+      },
+      '@media (min-width: 1024px) and (max-width: 1279px)': {
+        marginTop: '-8px',
+        marginLeft: '142px'
+      },
+      '@media (min-width: 768px) and (max-width: 1023px)': {
+        marginTop: '-8px',
+        marginLeft: '78px'
+      }
     }
   });
 };
