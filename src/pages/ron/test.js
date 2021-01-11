@@ -24,24 +24,6 @@ const arr = [{
 }, {
   name: "Ron Abuelo Añejo 7 Años",
   img: ron4
-}, {
-  name: "Barceló Imperial Premium Blend",
-  img: ron5
-}, {
-  name: "Ron Barceló Imperial Onyx",
-  img: ron1
-}, {
-  name: "Ron Barceló Dorado Añejado",
-  img: ron2
-}, {
-  name: "Ron Barceló Gran Añejo",
-  img: ron3
-}, {
-  name: "Ron Abuelo Añejo 7 Años",
-  img: ron4
-}, {
-  name: "Barceló Imperial Premium Blend",
-  img: ron5
 }]
 
 const categories = [{
@@ -56,23 +38,30 @@ const Ron = () => {
   return (
     <Layout>
       <div className="container">
-        <p className="small py-10">Inicio &gt; Licores &gt; Ron </p>
-        <p className="title">RON</p>
-        <div className="flex justify-between items-center mt-2 mb-28">
-          <p className="price">
-            {arr.length}
-            <span className="inline-block ml-1 currency">productos</span>
-          </p>
-          <div className="font-gotham-medium flex">
-            <p className="px-6 flex items-center h-12 border-r border-yellow">
-              FILTRAR
+        <p className="small py-10">
+          Inicio &gt; Licores &gt; Ron &gt; Ron Barceló Imperial Premium Blend
+        </p>
+        <div className="flex items-center justify-around">
+          <img src={ron5} className="w-96" />
+          <div className="w-1/3">
+            <p className="detail-title">
+              Ron Barceló <br /> Imperial <br /> Premium Blend
             </p>
-            <p className="px-4 flex items-center">
-              ORDENAR POR
+            <p className="font-gotham-book opacity-50 text-body my-6 leading-9">
+              Ron premium<br />Tamaño: 750 ml <br />País de origen: República Dominicana
             </p>
+            <p className="font-gotham-medium text-2xl tracking-widest">
+              $76.49 <span className="text-base tracking-widest">USD</span>
+            </p>
+            <div className="my-9 h-14 border-2 border-beige py-1 px-4">
+              <p className="small opacity-50">Cantidad</p>
+              <p className="font-gotham-book">1 pieza</p>
+            </div>
+            <button className="btn-red">Agregar a bolsa</button>
           </div>
         </div>
-        <div className="flex flex-wrap">
+        <p className="title mt-16">RELACIONADOS</p>
+        <div className="flex mt-10">
           {arr.map((product, index) => (
             <ProductCard
               key={index}
@@ -84,9 +73,8 @@ const Ron = () => {
             />
           ))}
         </div>
-        <button className="btn-red focus:outline-none block mx-auto">Ver más</button>
         <div className="my-14">
-          <p className="title">CATEGORÍAS RELACIONADAS</p>
+          <p className="title">OTROS LICORES</p>
           <div className="flex flex-wrap mt-6 -mx-2">
             {categories.map((categorie, index) => (
               <div key={index} className="sm:w-1/2 py-4 sm:p-4">
@@ -102,6 +90,7 @@ const Ron = () => {
         </div>
       </div>
     </Layout>
+
   )
 }
 

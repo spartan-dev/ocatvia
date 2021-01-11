@@ -19,7 +19,7 @@ const Hero = () => {
             <p className="name mb-4">
               BELUGA GOLD LINE
             </p>
-            <div className="text-xs">
+            <div className="small">
               <p>Transparente y límpido.</p>
               <p className="leading-5 my-2">
                 Mezcla de notas de malta y recuerdos florales.

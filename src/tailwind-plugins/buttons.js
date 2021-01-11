@@ -1,11 +1,11 @@
 module.exports = function ({ theme, addUtilities }) {
   addUtilities({
     '.btn-red': {
+      fontFamily: theme('fontFamily')['gotham-book'],
       color: theme('colors')['red'],
       height: '48px',
       width: '220px',
       fontSize: '18px',
-      fontWeight: '300px',
       letterSpacing: '0',
       lineHeight: '24px',
       textAlign: 'center',

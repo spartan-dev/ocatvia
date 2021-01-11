@@ -1,3 +1,34 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: "MADE Bon Voyage Regular";
+  src: url("../fonts/made-bon-voyage-regular.otf") format("opentype");
+  font-style: normal;
+  font-weight: normal;
+}
+@font-face {
+  font-family: "Gotham Book";
+  src: url("../fonts/gotham-book.otf") format("opentype");
+  font-style: normal;
+  font-weight: normal;
+}
+@font-face {
+  font-family: "Gotham Medium";
+  src: url("../fonts/gotham-medium.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}
+@font-face {
+  font-family: "Gotham Bold";
+  src: url("../fonts/gotham-bold.otf") format("opentype");
+  font-style: normal;
+  font-weight: normal;
+}
+@font-face {
+  font-family: "Gotham Black";
+  src: url("../fonts/gotham-black.otf") format("opentype");
+  font-style: normal;
+  font-weight: normal;
+}

@@ -1,8 +1,8 @@
 module.exports = function ({ theme, addUtilities }) {
   addUtilities({
     '.header': {
+      fontFamily: theme('fontFamily')['gotham-black'],
       color: theme('colors')['beige'],
-      fontWeight: '900',
       '@media (min-width: 768px)': {
         fontSize: '48px',
         letterSpacing: '11px',
@@ -20,31 +20,52 @@ module.exports = function ({ theme, addUtilities }) {
       },
     },
     '.name': {
-      color: theme('colors')['product'],
+      fontFamily: theme('fontFamily')['bon-voyage'],
+      color: theme('colors')['body'],
       fontSize: '18px',
       letterSpacing: '1.8px',
-      lineHeight: '20px'
+      lineHeight: '20px',
     },
     '.mililiters': {
-      color: theme('colors')['product'],
+      fontFamily: theme('fontFamily')['gotham-book'],
+      color: theme('colors')['body'],
       opacity: '0.5',
       fontSize: '12px',
-      fontWeight: '300',
       letterSpacing: '1.2px'
     },
-    '.price': {
-      color: theme('colors')['product'],
+    '.currency': {
+      fontFamily: theme('fontFamily')['gotham-medium'],
+      color: theme('colors')['body'],
       fontSize: '12px',
-      fontWeight: '500',
+      letterSpacing: '1.2px',
+      lineHeight: '17px'
+    },
+    '.price': {
+      fontFamily: theme('fontFamily')['gotham-medium'],
+      color: theme('colors')['body'],
+      fontSize: '16px',
       letterSpacing: '1.6px',
       lineHeight: '17px'
     },
     '.title': {
+      fontFamily: theme('fontFamily')['gotham-bold'],
       color: theme('colors')['yellow'],
       fontSize: '28px',
-      fontWeight: 'bold',
       letterSpacing: '5px',
       lineHeight: '28px'
+    },
+    '.small': {
+      fontFamily: theme('fontFamily')['gotham-book'],
+      color: theme('colors')['body'],
+      fontSize: '12px',
+      lineHeight: '20px'
+    },
+    '.detail-title': {
+      fontFamily: theme('fontFamily')['bon-voyage'],
+      color: theme('colors')['body'],
+      fontSize: '40px',
+      lineHeight: '48px',
+      letterSpacing: '4px'
     }
   });
 };
