@@ -15,18 +15,25 @@ module.exports = function ({ theme, addUtilities }) {
       position: 'absolute',
       padding: '4px',
       borderRadius: '9999px',
+      marginTop: '-8px',
       border: `2px solid ${theme('colors')['yellow']}`,
       '@media (min-width: 1280px)': {
-        marginTop: '-8px',
-        marginLeft: '176px'
+        marginLeft: '174px'
       },
       '@media (min-width: 1024px) and (max-width: 1279px)': {
-        marginTop: '-8px',
         marginLeft: '142px'
       },
       '@media (min-width: 768px) and (max-width: 1023px)': {
-        marginTop: '-8px',
-        marginLeft: '78px'
+        marginLeft: '126px'
+      },
+      '@media (min-width: 640px) and (max-width: 767px)': {
+        marginLeft: '94px'
+      },
+      '@media (min-width: 426px) (max-width: 639px)': {
+        marginLeft: 'calc(82.5% - 8px)'
+      },
+      '@media (min-width: 426px) (max-width: 639px)': {
+        marginLeft: 'calc(77% - 8px)'
       }
     }
   });

@@ -8,16 +8,16 @@ import User from "../../images/svg/user.svg"
 
 const menu = [{
   name: "VINOS",
-  categories: ["tequila1", "ron", "crema", "grappa", "vodka", "gin", "whisky"]
+  categories: ["vino tinto", "vino blanco", "espumantes"]
 }, {
   name: "LICORES",
-  categories: ["tequila2", "ron", "crema", "grappa", "vodka", "gin", "whisky"]
+  categories: ["tequila", "ron", "grappa", "crema", "gin", "vodka", "whisky"]
 }, {
   name: "GOURMET",
-  categories: ["tequila3", "ron", "crema", "grappa", "vodka", "gin", "whisky"]
+  categories: ["chocolates", "salsas", "galletas", "conservas"]
 }, {
   name: "BEBIDAS",
-  categories: ["tequila4", "ron", "crema", "grappa", "vodka", "gin", "whisky"]
+  categories: ["agua natural", "agua carbonatada"]
 }]
 
 const Navbar = () => {

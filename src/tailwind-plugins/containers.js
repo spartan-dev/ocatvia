@@ -44,11 +44,11 @@ module.exports = function ({ theme, addUtilities }) {
       border: `1px solid ${theme('colors')['beige']}`,
       '@media (min-width: 1280px)': {
         marginTop: '48px',
-        marginLeft: '320px'
+        marginLeft: '380px'
       },
       '@media (min-width: 1024px) and (max-width: 1279px)': {
         marginTop: '48px',
-        marginLeft: '224px'
+        marginLeft: '220px'
       },
       '@media (min-width: 768px) and (max-width: 1023px)': {
         marginTop: '224px',

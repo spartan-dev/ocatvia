@@ -22,9 +22,23 @@ module.exports = function ({ theme, addUtilities }) {
     '.name': {
       fontFamily: theme('fontFamily')['bon-voyage'],
       color: theme('colors')['body'],
-      fontSize: '18px',
       letterSpacing: '1.8px',
       lineHeight: '20px',
+      '@media (min-width: 1280px)': {
+        fontSize: '18px',
+      },
+      '@media (min-width: 1024px) and (max-width:1279px)': {
+        fontSize: '16px',
+      },
+      '@media (min-width: 768px) and (max-width:1024px)': {
+        fontSize: '14px',
+      },
+      '@media (min-width: 640px) and (max-width:767px)': {
+        fontSize: '16px',
+      },
+      '@media (max-width: 639px)': {
+        fontSize: '18px',
+      }
     },
     '.mililiters': {
       fontFamily: theme('fontFamily')['gotham-book'],
