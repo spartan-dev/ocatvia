@@ -14,9 +14,9 @@ module.exports = function ({ theme, addUtilities }) {
         lineHeight: '48px'
       },
       '@media (max-width: 425px)': {
-        fontSize: '32px',
+        fontSize: '36px',
         letterSpacing: '6px',
-        lineHeight: '40px'
+        lineHeight: '44px'
       },
     },
     '.name': {
