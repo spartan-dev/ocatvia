@@ -34,7 +34,7 @@ const Selection = ({ title, data, className }) => {
         dragEnabled={true}
         visibleSlides={slides}
         infinite={true}>
-        <Slider className="pb-8 md:pb-2">
+        <Slider className="mx-1 sm:mx-0 pb-8 md:pb-2">
           {data.map((item, index) => (
             <Slide key={index}>
               <ProductCard
