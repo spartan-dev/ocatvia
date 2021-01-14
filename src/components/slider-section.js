@@ -10,15 +10,13 @@ const Selection = ({ title, data, className }) => {
   const [width, setWidth] = useState(0);
 
   const handleResize = () => {
-    if (typeof window !== 'undefined') {
+    if (typeof window !== 'undefined')
       setWidth(window.innerWidth)
-    }
   }
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
+    if (typeof window !== 'undefined')
       setWidth(window.innerWidth)
-    }
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
@@ -38,16 +36,14 @@ const Selection = ({ title, data, className }) => {
         infinite={true}>
         <Slider className="pb-8 md:pb-2">
           {data.map((item, index) => (
-            <Slide>
+            <Slide key={index}>
               <ProductCard
                 index={index}
-                key={index}
                 img={item.img}
                 alt={item.alt}
                 name={item.name}
                 mililiters={item.mililiters}
-                price={item.price}
-              />
+                price={item.price} />
             </Slide>
           ))}
         </Slider>

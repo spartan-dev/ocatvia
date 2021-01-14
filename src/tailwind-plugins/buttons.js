@@ -32,7 +32,7 @@ module.exports = function ({ theme, addUtilities }) {
       '@media (min-width: 426px) (max-width: 639px)': {
         marginLeft: 'calc(82.5% - 8px)'
       },
-      '@media (min-width: 426px) (max-width: 639px)': {
+      '@media (max-width: 425px)': {
         marginLeft: 'calc(77% - 8px)'
       }
     }

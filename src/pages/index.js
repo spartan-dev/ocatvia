@@ -91,7 +91,7 @@ const Index = () => {
         <CategoriesSection
           title="CATEGORÍAS"
           data={categories}
-          className="mt-8 mb-12" />
+          className="mt-8 mb-4 lg:mb-12" />
       </Layout>
     </div>
   )
