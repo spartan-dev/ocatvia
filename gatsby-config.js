@@ -1,15 +1,20 @@
+const dotenv = require("dotenv").config({
+  path: `.env`,
+});
 module.exports = {
   siteMetadata: {
     title: "octavia",
   },
   plugins: [
-    // {
-    //   resolve: "gatsby-source-shopify",
-    //   options: {
-    //     shopName: "",
-    //     accessToken: "",
-    //   },
-    // },
+    {
+      resolve: "gatsby-source-shopify",
+      options: {
+        verbose: true,
+        paginationSize: 50,
+        shopName: process.env.SHOP_NAME,
+        accessToken: process.env.ACCESS_TOKEN,
+      },
+    },
     "gatsby-plugin-sharp",
     "gatsby-plugin-react-helmet",
     "gatsby-plugin-offline",
