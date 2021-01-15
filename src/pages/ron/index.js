@@ -61,12 +61,12 @@ const Ron = () => {
       <div className="container">
         <p className="small py-10">Inicio &gt; Licores &gt; Ron </p>
         <p className="title">RON</p>
-        <div className="flex justify-between items-center mt-2 mb-28">
+        <div className="sm:flex justify-between items-center mt-8 sm:mt-2 mb-14">
           <p className="price">
             {arr.length}
             <span className="inline-block ml-1 currency">productos</span>
           </p>
-          <div className="font-gotham-medium flex w-96">
+          <div className="font-gotham-medium flex md:w-96">
             <div className="flex items-center h-12 border-r-2 border-yellow">
               <span>FILTRAR</span>
               <Filter className="ml-2 mr-6" />
