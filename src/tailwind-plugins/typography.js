@@ -14,17 +14,16 @@ module.exports = function ({ theme, addUtilities }) {
         lineHeight: '48px'
       },
       '@media (max-width: 425px)': {
-        fontSize: '32px',
+        fontSize: '36px',
         letterSpacing: '6px',
-        lineHeight: '40px'
+        lineHeight: '44px'
       },
     },
     '.name': {
       fontFamily: theme('fontFamily')['bon-voyage'],
       color: theme('colors')['body'],
-      fontSize: '18px',
       letterSpacing: '1.8px',
-      lineHeight: '20px',
+      lineHeight: '20px'
     },
     '.mililiters': {
       fontFamily: theme('fontFamily')['gotham-book'],

@@ -2,8 +2,6 @@ import React from "react"
 
 import Facebook from "../../images/svg/facebook.svg"
 import Instagram from "../../images/svg/instagram.svg"
-import Twitter from "../../images/svg/twitter.svg"
-import Youtube from "../../images/svg/youtube.svg"
 
 const categories = ["vinos", "licor", "gourmet", "bebidas"]
 const subcategories = ["vinos", "ron", "tequila", "espumantes", "grappa", "cremas", "gin", "vodka", "whisky", "conservas", "galletas", "salsas", "chocolates", "agua natural", "agua carbonatada"]
@@ -12,11 +10,15 @@ const Footer = () => {
   return (
     <section>
       <div className="flex justify-center">
-        <div className="h-24 w-44 flex justify-between items-center">
-          <Facebook />
-          <Instagram />
-          <Twitter />
-          <Youtube />
+        <div className="h-24 w-20 flex justify-between items-center">
+          <a target="_blank" rel="noreferrer"
+            href="https://www.facebook.com/Octavia-Mundo-Gourmet-101731011808480">
+            <Facebook />
+          </a>
+          <a target="_blank" rel="noreferrer"
+            href="https://www.instagram.com/octaviamundogourmet/">
+            <Instagram />
+          </a>
         </div>
       </div>
       <div className="bg-black text-white">

@@ -1,8 +1,8 @@
 import React from "react"
 
+import Anchor from "../../components/anchor"
 import Layout from "../../components/layout"
 import ProductCard from "../../components/product-card.js"
-import Anchor from "../../components/anchor"
 
 import ron1 from "../../images/assets/ron1.jpg"
 import ron2 from "../../images/assets/ron2.jpg"

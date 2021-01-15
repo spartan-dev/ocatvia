@@ -1,8 +1,11 @@
 import React from "react"
 
-import Layout from "../../components/layout"
-import ProductCard from "../../components/product-card.js"
 import Anchor from "../../components/anchor"
+import Layout from "../../components/layout"
+import ProductCard from "../../components/product-card"
+
+import Chevron from "../../images/svg/chevron.svg"
+import Filter from "../../images/svg/filter.svg"
 
 import ron1 from "../../images/assets/ron1.jpg"
 import ron2 from "../../images/assets/ron2.jpg"
@@ -58,21 +61,23 @@ const Ron = () => {
       <div className="container">
         <p className="small py-10">Inicio &gt; Licores &gt; Ron </p>
         <p className="title">RON</p>
-        <div className="flex justify-between items-center mt-2 mb-28">
+        <div className="sm:flex justify-between items-center mt-8 sm:mt-2 mb-14">
           <p className="price">
             {arr.length}
             <span className="inline-block ml-1 currency">productos</span>
           </p>
-          <div className="font-gotham-medium flex">
-            <p className="px-6 flex items-center h-12 border-r border-yellow">
-              FILTRAR
-            </p>
-            <p className="px-4 flex items-center">
-              ORDENAR POR
-            </p>
+          <div className="font-gotham-medium flex md:w-96">
+            <div className="flex items-center h-12 border-r-2 border-yellow">
+              <span>FILTRAR</span>
+              <Filter className="ml-2 mr-6" />
+            </div>
+            <div className="flex items-center">
+              <span className="inline-block ml-4 mr-2">ORDENAR POR</span>
+              <Chevron />
+            </div>
           </div>
         </div>
-        <div className="flex flex-wrap">
+        <div className="flex flex-wrap -mr-7">
           {arr.map((product, index) => (
             <ProductCard
               key={index}
@@ -81,7 +86,7 @@ const Ron = () => {
               name={product.name}
               mililiters="750"
               price="12.45"
-            />
+              className="product-card mr-7" />
           ))}
         </div>
         <button className="btn-red focus:outline-none block mx-auto">Ver más</button>

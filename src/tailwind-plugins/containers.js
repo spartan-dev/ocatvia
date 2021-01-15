@@ -44,11 +44,11 @@ module.exports = function ({ theme, addUtilities }) {
       border: `1px solid ${theme('colors')['beige']}`,
       '@media (min-width: 1280px)': {
         marginTop: '48px',
-        marginLeft: '320px'
+        marginLeft: '380px'
       },
       '@media (min-width: 1024px) and (max-width: 1279px)': {
         marginTop: '48px',
-        marginLeft: '224px'
+        marginLeft: '220px'
       },
       '@media (min-width: 768px) and (max-width: 1023px)': {
         marginTop: '224px',
@@ -60,6 +60,23 @@ module.exports = function ({ theme, addUtilities }) {
       },
       '@media (max-width: 639px)': {
         marginTop: '80px'
+      }
+    },
+    '.product-card': {
+      '@media (min-width: 1280px)': {
+        width: "360px"
+      },
+      '@media (min-width: 1024px) and (max-width: 1279px)': {
+        width: "304px"
+      },
+      '@media (min-width: 768px) and (max-width: 1023px)': {
+        width: "320px"
+      },
+      '@media (min-width: 640px) and (max-width: 767px)': {
+        width: "270px"
+      },
+      '@media (max-width: 639px)': {
+        width: "358px"
       }
     }
   });

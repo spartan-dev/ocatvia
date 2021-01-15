@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>CLOSE</title>
+    <g id="CLOSE" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <polyline id="Path-Copy" stroke="#E85633" stroke-width="2" points="21.0173217 5 13.0104011 13.1160463 5 5.06039791"></polyline>
+        <polyline id="Path-Copy-2" stroke="#E85633" stroke-width="2" transform="translate(12.008661, 16.058023) rotate(180.000000) translate(-12.008661, -16.058023) " points="20.0173217 12 12.0104011 20.1160463 4 12.0603979"></polyline>
+    </g>
+</svg>
