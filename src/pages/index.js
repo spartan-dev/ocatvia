@@ -1,9 +1,9 @@
 import React from "react"
 
+import CategoriesSection from "../components/categories-section"
 import Hero from "../components/hero"
 import Layout from '../components/layout'
 import SliderSection from "../components/slider-section"
-import CategoriesSection from "../components/categories-section"
 
 import prod1 from "../images/assets/product-1.jpg"
 import prod2 from "../images/assets/product-2.jpg"

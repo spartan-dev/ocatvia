@@ -51,7 +51,7 @@ const Navbar = () => {
       aria-hidden="true"
       onMouseLeave={() => navActions([], null)}>
       {showModal &&
-        <Modal onClick={() => setShowModal(false)} >
+        <Modal onClick={() => setShowModal(false)} className="top-0 bg-smoke">
           <Sidebar data={menu} />
         </Modal>}
       <div className="relative bg-yellow">

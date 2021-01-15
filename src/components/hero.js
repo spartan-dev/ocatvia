@@ -16,7 +16,7 @@ const Hero = () => {
         </div>
         <div className="main-card">
           <div className="absolute w-80 h-64 border-4 border-beige mt-3 ml-3 py-7 px-5">
-            <p className="name mb-4">
+            <p className="name text-lg mb-4">
               BELUGA GOLD LINE
             </p>
             <div className="small">

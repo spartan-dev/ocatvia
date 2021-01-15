@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react"
-import { CarouselProvider, Slider, Slide, ButtonNext }
+import { ButtonNext, CarouselProvider, Slider, Slide, }
   from 'pure-react-carousel';
-import 'pure-react-carousel/dist/react-carousel.es.css';
 
 import ProductCard from "./product-card"
+
 import Arrow from "../images/svg/arrow.svg"
 
 const Selection = ({ title, data, className }) => {
@@ -43,7 +43,9 @@ const Selection = ({ title, data, className }) => {
                 alt={item.alt}
                 name={item.name}
                 mililiters={item.mililiters}
-                price={item.price} />
+                price={item.price}
+                btnClassName="btn-shop-slider"
+                className="w-full sm:w-44 md:w-52 lg:w-56 xl:w-64 sm:mx-2" />
             </Slide>
           ))}
         </Slider>

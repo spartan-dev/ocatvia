@@ -9,7 +9,7 @@ const Sidebar = ({ data }) => {
 
   return (
     <div>
-      <Logo />
+      <a href="/"><Logo /></a>
       <ul className="mt-8 font-gotham-medium text-navbar">
         {data.map((item, index) => (
           <li key={index}

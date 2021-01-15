@@ -61,6 +61,23 @@ module.exports = function ({ theme, addUtilities }) {
       '@media (max-width: 639px)': {
         marginTop: '80px'
       }
+    },
+    '.product-card': {
+      '@media (min-width: 1280px)': {
+        width: "360px"
+      },
+      '@media (min-width: 1024px) and (max-width: 1279px)': {
+        width: "304px"
+      },
+      '@media (min-width: 768px) and (max-width: 1023px)': {
+        width: "360px"
+      },
+      '@media (min-width: 640px) and (max-width: 767px)': {
+        width: "360px"
+      },
+      '@media (max-width: 639px)': {
+        width: "360px"
+      }
     }
   });
 };
