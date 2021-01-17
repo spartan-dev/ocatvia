@@ -1,19 +1,19 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 
-import Anchor from "../../components/anchor"
-import Layout from "../../components/layout"
-import ProductCard from "../../components/product-card"
+import Anchor from "../../../components/anchor"
+import Layout from "../../../components/layout"
+import ProductCard from "../../../components/product-card"
 
-import Chevron from "../../images/svg/chevron.svg"
-import Filter from "../../images/svg/filter.svg"
+import Chevron from "../../../images/svg/chevron.svg"
+import Filter from "../../../images/svg/filter.svg"
 
-import ron1 from "../../images/assets/ron1.jpg"
-import ron2 from "../../images/assets/ron2.jpg"
-import ron3 from "../../images/assets/ron3.jpg"
-import ron4 from "../../images/assets/ron4.jpg"
-import ron5 from "../../images/assets/ron5.jpg"
-import img1 from "../../images/assets/licores.png"
-import img2 from "../../images/assets/vodka.png"
+import ron1 from "../../../images/assets/ron1.jpg"
+import ron2 from "../../../images/assets/ron2.jpg"
+import ron3 from "../../../images/assets/ron3.jpg"
+import ron4 from "../../../images/assets/ron4.jpg"
+import ron5 from "../../../images/assets/ron5.jpg"
+import img1 from "../../../images/assets/licores.png"
+import img2 from "../../../images/assets/vodka.png"
 
 const arr = [{
   name: "Ron Barceló Imperial Onyx",
@@ -56,10 +56,21 @@ const categories = [{
 }]
 
 const Ron = () => {
+  const [route, setRoute] = useState("")
+
+  useEffect(() => {
+    let newRoute
+    if (typeof window !== 'undefined')
+      newRoute = `Inicio${window.location.pathname
+        .replace(/\//g, ' > ')
+        .replace(/\s(.)/g, function ($1) { return $1.toUpperCase(); })}`
+    setRoute(newRoute)
+  }, []);
+
   return (
     <Layout>
       <div className="container">
-        <p className="small py-10">Inicio &gt; Licores &gt; Ron </p>
+        <p className="small py-10">{route}</p>
         <p className="title">RON</p>
         <div className="sm:flex justify-between items-center mt-8 sm:mt-2 mb-14">
           <p className="price">

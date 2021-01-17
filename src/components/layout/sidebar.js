@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import { Link } from "gatsby"
 
 import Chevron from "../../images/svg/chevron.svg"
 import Logo from "../../images/svg/logo.svg"
@@ -9,7 +10,7 @@ const Sidebar = ({ data }) => {
 
   return (
     <div>
-      <a href="/"><Logo /></a>
+      <Link to="/"><Logo /></Link>
       <ul className="mt-8 font-gotham-medium text-navbar">
         {data.map((item, index) => (
           <li key={index}

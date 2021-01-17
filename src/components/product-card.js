@@ -1,4 +1,5 @@
 import React from "react"
+import { Link } from "gatsby"
 
 import Shop from "../images/svg/btn-shop.svg"
 
@@ -13,10 +14,10 @@ const ProductCard = ({ img, alt, name, mililiters, price, className, btnClassNam
           </button>
         </div>
         <div className="flex flex-col items-start">
-          <a href="/ron/test"
+          <Link to="/ron/test"
             className="name text-lg sm:text-base md:text-sm lg:text-base xl:text-lg mt-4 ">
             {name}
-          </a>
+          </Link>
           <p className="mililiters my-1">{mililiters}ml</p>
           <p className="price">
             {price}
