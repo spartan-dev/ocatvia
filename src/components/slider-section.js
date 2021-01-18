@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { ButtonNext, CarouselProvider, Slider, Slide, }
   from 'pure-react-carousel';
+import 'pure-react-carousel/dist/react-carousel.es.css';
 
 import ProductCard from "./product-card"
 
