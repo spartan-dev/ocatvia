@@ -15,24 +15,29 @@ const Sidebar = ({ data }) => {
         {data.map((item, index) => (
           <li key={index}
             className={`pl-2 border-b border-beige text-lg
-        ${(toggle && toggleIndex === index) ? "pt-6 pb-2" : "py-6"}`}>
+        ${(toggle && toggleIndex === item.name) ? "pt-6 pb-2" : "py-6"}`}>
             <div className="flex justify-between items-center">
-              <a className="focus:outline-none">{item.name}</a>
+              <Link to={item.name} className="focus:outline-none uppercase">
+                {item.name.replace(/-/g, " ")}
+              </Link>
               <button className="focus:outline-none"
                 onClick={() => {
-                  setToggle((toggle && toggleIndex === index) ?
+                  setToggle((toggle && toggleIndex === item.name) ?
                     false : true)
-                  setToggleIndex(index)
+                  setToggleIndex(item.name)
                 }}>
                 <Chevron
-                  className={(toggle && toggleIndex === index) && "transform rotate-180"} />
+                  className={(toggle && toggleIndex === item.name) && "transform rotate-180"} />
               </button>
             </div>
-            {(toggle && toggleIndex === index) &&
+            {(toggle && toggleIndex === item.name) &&
               <ul className="mt-4">
                 {item.categories.map((item, index) => (
                   <li className="py-4 text-base" key={index}>
-                    <a className="focus:text-yellow focus:outline-none">{item}</a>
+                    <Link to={`/${toggleIndex}/${item}`}
+                      className="focus:text-yellow focus:outline-none uppercase">
+                      {item.replace(/-/g, " ")}
+                    </Link>
                   </li>
                 ))}
               </ul>}
