@@ -11,12 +11,9 @@ module.exports = function ({ theme, addUtilities }) {
       textAlign: 'center',
       border: `2px solid ${theme('colors')['red']}`
     },
-    '.btn-shop': {
+    '.btn-shop-slider': {
       position: 'absolute',
-      padding: '4px',
-      borderRadius: '9999px',
       marginTop: '-8px',
-      border: `2px solid ${theme('colors')['yellow']}`,
       '@media (min-width: 1280px)': {
         marginLeft: '174px'
       },

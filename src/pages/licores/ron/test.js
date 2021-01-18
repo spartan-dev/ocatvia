@@ -1,16 +1,16 @@
 import React from "react"
 
-import Layout from "../../components/layout"
-import ProductCard from "../../components/product-card.js"
-import Anchor from "../../components/anchor"
+import Anchor from "../../../components/anchor"
+import Layout from "../../../components/layout"
+import ProductCard from "../../../components/product-card.js"
 
-import ron1 from "../../images/assets/ron1.jpg"
-import ron2 from "../../images/assets/ron2.jpg"
-import ron3 from "../../images/assets/ron3.jpg"
-import ron4 from "../../images/assets/ron4.jpg"
-import ron5 from "../../images/assets/ron5.jpg"
-import img1 from "../../images/assets/licores.png"
-import img2 from "../../images/assets/vodka.png"
+import ron1 from "../../../images/assets/ron1.jpg"
+import ron2 from "../../../images/assets/ron2.jpg"
+import ron3 from "../../../images/assets/ron3.jpg"
+import ron4 from "../../../images/assets/ron4.jpg"
+import ron5 from "../../../images/assets/ron5.jpg"
+import img1 from "../../../images/assets/licores.png"
+import img2 from "../../../images/assets/vodka.png"
 
 const arr = [{
   name: "Ron Barceló Imperial Onyx",

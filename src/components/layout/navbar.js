@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react"
+import { Link } from "gatsby"
 
 import Modal from "../modal"
 import Sidebar from "./sidebar"
@@ -10,17 +11,17 @@ import Shop from "../../images/svg/shop.svg"
 import User from "../../images/svg/user.svg"
 
 const menu = [{
-  name: "VINOS",
-  categories: ["VINO TINTO", "VINO BLANCO", "ESPUMANTES"]
+  name: "vinos",
+  categories: ["vino-tinto", "vino-blanco", "espumantes"]
 }, {
-  name: "LICORES",
-  categories: ["TEQUILA", "RON", "GRAPPA", "CREMA", "GIN", "VODKA", "WHISKY"]
+  name: "licores",
+  categories: ["tequila", "ron", "grappa", "crema", "gin", "vodka", "whisky"]
 }, {
-  name: "GOURMET",
-  categories: ["CHOCOLATES", "SALSAS", "GALLETAS", "CONSERVAS"]
+  name: "gourmet",
+  categories: ["chocolates", "salsas", "galletas", "conservas"]
 }, {
-  name: "BEBIDAS",
-  categories: ["AGUA NATURAL", "AGUA CARBONATADA"]
+  name: "bebidas",
+  categories: ["agua-natural", "agua-carbonatada"]
 }]
 
 const Navbar = () => {
@@ -51,7 +52,7 @@ const Navbar = () => {
       aria-hidden="true"
       onMouseLeave={() => navActions([], null)}>
       {showModal &&
-        <Modal onClick={() => setShowModal(false)} >
+        <Modal onClick={() => setShowModal(false)} className="top-0 bg-smoke">
           <Sidebar data={menu} />
         </Modal>}
       <div className="relative bg-yellow">
@@ -61,9 +62,9 @@ const Navbar = () => {
               {menu.map((item, index) => (
                 <li key={index}>
                   <button className={`block py-5 lg:px-3 xl:px-5 hover:bg-smoke 
-                  focus:outline-none ${index === activeTab && "bg-smoke"}`}
-                    onMouseOver={() => navActions(item.categories, index, true)}
-                    onFocus={() => navActions(item.categories, index, true)}>
+                  focus:outline-none uppercase ${index === activeTab && "bg-smoke"}`}
+                    onMouseOver={() => navActions(item.categories, item.name, true)}
+                    onFocus={() => navActions(item.categories, item.name, true)}>
                     {item.name}
                   </button>
                 </li>
@@ -76,10 +77,10 @@ const Navbar = () => {
               <Menu className="w-7 h-7" />
             </button>
           </div>
-          <a href="/"
+          <Link to="/"
             className="hidden ml-12 sm:ml-0 lg:ml-5 sm:flex justify-center sm:w-1/3">
             <Logo />
-          </a>
+          </Link>
           <div className="h-full flex justify-end w-1/3">
             <div className="flex items-center my-2 lg:border-r border-white">
               <User />
@@ -98,10 +99,10 @@ const Navbar = () => {
             <ul className="-ml-5 flex">
               {submenu.map((item, index) => (
                 <li key={index}>
-                  <a href={`/${item}`}
-                    className="block py-6 lg:px-3 xl:px-5 hover:text-yellow focus:text-yellow">
-                    {item}
-                  </a>
+                  <Link to={`/${activeTab}/${item}`}
+                    className="block py-6 lg:px-3 xl:px-5 hover:text-yellow focus:text-yellow uppercase">
+                    {item.replace(/-/g, " ")}
+                  </Link>
                 </li>
               ))}
             </ul>
