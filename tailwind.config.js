@@ -34,8 +34,8 @@ module.exports = {
     backgroundColor: ["responsive", "hover", "focus", "active"]
   },
   plugins: [
-    plugin(require('./src/tailwind-plugins/containers')),
-    plugin(require('./src/tailwind-plugins/typography')),
-    plugin(require('./src/tailwind-plugins/buttons'))
+    plugin(require('./src/styles/tailwind-plugins/containers')),
+    plugin(require('./src/styles/tailwind-plugins/typography')),
+    plugin(require('./src/styles/tailwind-plugins/buttons'))
   ],
 };
