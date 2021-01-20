@@ -10,7 +10,7 @@ const Hero = () => {
           <p className="header text-center sm:text-left">
             Línea de oro <br /> de calidad <br /> excepcional
           </p>
-          <button className="btn-red mt-8 focus:outline-none">
+          <button className="btn-red mt-8">
             Agregar a la bolsa
           </button>
         </div>

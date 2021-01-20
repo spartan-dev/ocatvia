@@ -50,8 +50,8 @@ const Selection = ({ title, data, className }) => {
             </Slide>
           ))}
         </Slider>
-        <ButtonNext className="absolute focus:outline-none
-          -right-4 sm:-right-3 md:-right-3 lg:-right-2 xl:right-3 
+        <ButtonNext
+          className="absolute -right-4 sm:-right-3 md:-right-3 lg:-right-2 xl:right-3 
           top-1/2 sm:top-44 md:top-48 lg:top-52 xl:top-56">
           <Arrow />
         </ButtonNext>

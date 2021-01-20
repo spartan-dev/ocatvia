@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react"
 
 import Anchor from "../../../components/anchor"
+import Filters from "../../../components/filters"
 import Layout from "../../../components/layout"
+import Modal from "../../../components/modal"
 import ProductCard from "../../../components/product-card"
 
 import Chevron from "../../../images/svg/chevron.svg"
@@ -57,6 +59,18 @@ const categories = [{
 
 const Ron = () => {
   const [route, setRoute] = useState("")
+  const [showModal, setShowModal] = useState(false)
+  const [body, setBody] = useState(null);
+
+  useEffect(() => {
+    if (typeof window !== "undefined")
+      setBody(document.getElementsByTagName("body")[0]);
+  }, []);
+
+  useEffect(() => {
+    if (body !== null)
+      body.style.overflow = showModal ? "hidden" : "auto";
+  }, [body, showModal]);
 
   useEffect(() => {
     let newRoute
@@ -69,6 +83,10 @@ const Ron = () => {
 
   return (
     <Layout>
+      {showModal &&
+        <Modal onClick={() => setShowModal(false)} className="shadow-yellow">
+          <Filters />
+        </Modal>}
       <div className="container">
         <p className="small py-10">{route}</p>
         <p className="title">RON</p>
@@ -80,7 +98,9 @@ const Ron = () => {
           <div className="font-gotham-medium flex md:w-96">
             <div className="flex items-center h-12 border-r-2 border-yellow">
               <span>FILTRAR</span>
-              <Filter className="ml-2 mr-6" />
+              <button onClick={() => setShowModal(true)}>
+                <Filter className="ml-2 mr-6" />
+              </button>
             </div>
             <div className="flex items-center">
               <span className="inline-block ml-4 mr-2">ORDENAR POR</span>
@@ -88,7 +108,7 @@ const Ron = () => {
             </div>
           </div>
         </div>
-        <div className="flex flex-wrap -mr-7">
+        <div className="flex flex-wrap sm:-mr-7">
           {arr.map((product, index) => (
             <ProductCard
               key={index}
@@ -97,10 +117,10 @@ const Ron = () => {
               name={product.name}
               mililiters="750"
               price="12.45"
-              className="product-card mr-7" />
+              className="product-card sm:mr-7" />
           ))}
         </div>
-        <button className="btn-red focus:outline-none block mx-auto">Ver más</button>
+        <button className="btn-red block mx-auto">Ver más</button>
         <div className="my-14">
           <p className="title">CATEGORÍAS RELACIONADAS</p>
           <div className="flex flex-wrap mt-6 -mx-2">

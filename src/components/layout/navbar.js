@@ -52,7 +52,7 @@ const Navbar = () => {
       aria-hidden="true"
       onMouseLeave={() => navActions([], null)}>
       {showModal &&
-        <Modal onClick={() => setShowModal(false)} className="top-0 bg-smoke">
+        <Modal onClick={() => setShowModal(false)} top>
           <Sidebar data={menu} />
         </Modal>}
       <div className="relative bg-yellow">
@@ -62,7 +62,7 @@ const Navbar = () => {
               {menu.map((item, index) => (
                 <li key={index}>
                   <button className={`block py-5 lg:px-3 xl:px-5 hover:bg-smoke 
-                  focus:outline-none uppercase ${index === activeTab && "bg-smoke"}`}
+                    uppercase ${index === activeTab && "bg-smoke"}`}
                     onMouseOver={() => navActions(item.categories, item.name, true)}
                     onFocus={() => navActions(item.categories, item.name, true)}>
                     {item.name}
@@ -72,8 +72,7 @@ const Navbar = () => {
             </ul>
           </div>
           <div className="block w-1/3 lg:hidden">
-            <button className="focus:outline-none"
-              onClick={() => setShowModal(true)}>
+            <button onClick={() => setShowModal(true)}>
               <Menu className="w-7 h-7" />
             </button>
           </div>
