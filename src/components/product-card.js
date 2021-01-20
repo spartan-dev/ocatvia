@@ -9,7 +9,7 @@ const ProductCard = ({ img, alt, name, mililiters, price, className, btnClassNam
       <div className="bg-white mb-16">
         <div className="p-9 border border-beige">
           <img src={img} alt={alt} title={alt} className="relative" />
-          <button className={`${btnClassName} focus:outline-none`}>
+          <button className={btnClassName}>
             <Shop />
           </button>
         </div>

@@ -21,12 +21,21 @@ module.exports = {
       backgroundColor: theme => ({
         ...theme('colors'),
       }),
+      backgroundImage: {
+        checkmark: "url('../images/assets/checkmark.png')"
+      },
+      width: {
+        106: "26.5rem"
+      },
       fontFamily: {
         "bon-voyage": ["MADE Bon Voyage Regular"],
         "gotham-book": ["Gotham Book"],
         "gotham-medium": ["Gotham Medium"],
         "gotham-bold": ["Gotham Bold"],
         "gotham-black": ["Gotham Black"]
+      },
+      boxShadow: {
+        yellow: "3px 0 16px 0 rgba(236,171,47,0.75)"
       }
     },
   },

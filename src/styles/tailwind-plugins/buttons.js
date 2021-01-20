@@ -32,6 +32,19 @@ module.exports = function ({ theme, addUtilities }) {
       '@media (max-width: 425px)': {
         marginLeft: 'calc(77% - 8px)'
       }
+    },
+    '.checkbox': {
+      appearance: 'none',
+      width: '16px',
+      height: '16px',
+      backgroundColor: theme('colors')['beige'],
+      border: `1px solid ${theme('colors')['smoke']}`,
+      position: 'relative',
+      '&:checked': {
+        backgroundImage: theme('backgroundImage')['checkmark'],
+        border: `1px solid ${theme('colors')['yellow']}`,
+        backgroundSize: 'contain',
+      }
     }
   });
 };

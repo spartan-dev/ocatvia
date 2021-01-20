@@ -17,15 +17,14 @@ const Sidebar = ({ data }) => {
             className={`pl-2 border-b border-beige text-lg
         ${(toggle && toggleIndex === item.name) ? "pt-6 pb-2" : "py-6"}`}>
             <div className="flex justify-between items-center">
-              <Link to={item.name} className="focus:outline-none uppercase">
+              <Link to={item.name} className="uppercase">
                 {item.name.replace(/-/g, " ")}
               </Link>
-              <button className="focus:outline-none"
-                onClick={() => {
-                  setToggle((toggle && toggleIndex === item.name) ?
-                    false : true)
-                  setToggleIndex(item.name)
-                }}>
+              <button onClick={() => {
+                setToggle((toggle && toggleIndex === item.name) ?
+                  false : true)
+                setToggleIndex(item.name)
+              }}>
                 <Chevron
                   className={(toggle && toggleIndex === item.name) && "transform rotate-180"} />
               </button>
@@ -35,7 +34,7 @@ const Sidebar = ({ data }) => {
                 {item.categories.map((item, index) => (
                   <li className="py-4 text-base" key={index}>
                     <Link to={`/${toggleIndex}/${item}`}
-                      className="focus:text-yellow focus:outline-none uppercase">
+                      className="focus:text-yellow uppercase">
                       {item.replace(/-/g, " ")}
                     </Link>
                   </li>
