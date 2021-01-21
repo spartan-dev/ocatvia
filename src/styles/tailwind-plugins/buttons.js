@@ -1,4 +1,4 @@
-module.exports = function ({ theme, addUtilities }) {
+module.exports = ({ theme, addUtilities }) => {
   addUtilities({
     '.btn-red': {
       fontFamily: theme('fontFamily')['gotham-book'],
@@ -45,6 +45,20 @@ module.exports = function ({ theme, addUtilities }) {
         border: `1px solid ${theme('colors')['yellow']}`,
         backgroundSize: 'contain',
       }
+    },
+    '.filter-badge': {
+      fontFamily: theme('fontFamily')['gotham-book'],
+      color: theme('colors')['smoke'],
+      height: '40px',
+      width: 'auto',
+      fontSize: '12px',
+      letterSpacing: '1.2px',
+      lineHeight: '12px',
+      border: `1px solid ${theme('colors')['pink']}`,
+      borderRadius: '9999px',
+      marginRight: '20px',
+      padding: '0 12px 0 14px',
+      backgroundColor: theme('colors')['white']
     }
   });
 };

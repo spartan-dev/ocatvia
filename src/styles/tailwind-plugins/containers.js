@@ -1,4 +1,4 @@
-module.exports = function ({ theme, addUtilities }) {
+module.exports = ({ theme, addUtilities }) => {
   addUtilities({
     '.container': {
       marginLeft: "auto",

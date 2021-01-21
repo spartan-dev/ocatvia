@@ -7,6 +7,7 @@ import Modal from "../../../components/modal"
 import ProductCard from "../../../components/product-card"
 
 import Chevron from "../../../images/svg/chevron.svg"
+import Close from "../../../images/svg/close.svg"
 import Filter from "../../../images/svg/filter.svg"
 
 import ron1 from "../../../images/assets/ron1.jpg"
@@ -60,37 +61,35 @@ const categories = [{
 const Ron = () => {
   const [route, setRoute] = useState("")
   const [showModal, setShowModal] = useState(false)
-  const [body, setBody] = useState(null);
-
-  useEffect(() => {
-    if (typeof window !== "undefined")
-      setBody(document.getElementsByTagName("body")[0]);
-  }, []);
-
-  useEffect(() => {
-    if (body !== null)
-      body.style.overflow = showModal ? "hidden" : "auto";
-  }, [body, showModal]);
+  const [filters, setFilters] = useState([])
 
   useEffect(() => {
     let newRoute
     if (typeof window !== 'undefined')
       newRoute = `Inicio${window.location.pathname
         .replace(/\//g, ' > ')
-        .replace(/\s(.)/g, function ($1) { return $1.toUpperCase(); })}`
+        .replace(/\s(.)/g, ($1) => { return $1.toUpperCase(); })}`
     setRoute(newRoute)
   }, []);
+
+  const onChange = ({ name, checked }) => {
+    if (checked) {
+      setFilters(prevstate => [name, ...prevstate])
+    } else {
+      setFilters(filters.filter(item => item !== name))
+    }
+  }
 
   return (
     <Layout>
       {showModal &&
-        <Modal onClick={() => setShowModal(false)} className="shadow-yellow">
-          <Filters />
+        <Modal onClick={() => setShowModal(false)} className="shadow-yellow fixed">
+          <Filters onChange={onChange} />
         </Modal>}
       <div className="container">
         <p className="small py-10">{route}</p>
         <p className="title">RON</p>
-        <div className="sm:flex justify-between items-center mt-8 sm:mt-2 mb-14">
+        <div className="sm:flex justify-between items-center mb-2 mt-8 sm:mt-2">
           <p className="price">
             {arr.length}
             <span className="inline-block ml-1 currency">productos</span>
@@ -108,7 +107,28 @@ const Ron = () => {
             </div>
           </div>
         </div>
-        <div className="flex flex-wrap sm:-mr-7">
+        {filters.length !== 0 &&
+          <div className="bg-pink-light sm:mr-8 py-5 px-6 flex justify-end items-center">
+            <ul className="flex flex-row-reverse">
+              {filters.map((item, index) => (
+                <li key={index}
+                  className="flex items-center justify-between filter-badge">
+                  <span>{item}</span>
+                  <button className="ml-1"
+                    onClick={() =>
+                      setFilters(filters.filter(element => item !== element))
+                    }>
+                    <Close className="w-4 h-4" />
+                  </button>
+                </li>
+              ))}
+            </ul>
+            <button className="font-gotham-book text-red"
+              onClick={() => setFilters([])}>
+              Limpiar filtros
+            </button>
+          </div>}
+        <div className="flex flex-wrap mt-10 sm:-mr-7">
           {arr.map((product, index) => (
             <ProductCard
               key={index}

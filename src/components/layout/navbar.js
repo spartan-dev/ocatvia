@@ -52,9 +52,11 @@ const Navbar = () => {
       aria-hidden="true"
       onMouseLeave={() => navActions([], null)}>
       {showModal &&
-        <Modal onClick={() => setShowModal(false)} top>
-          <Sidebar data={menu} />
-        </Modal>}
+        <div className="z-20 absolute w-screen h-screen top-0 bg-smoke">
+          <Modal onClick={() => setShowModal(false)} top>
+            <Sidebar data={menu} />
+          </Modal>
+        </div>}
       <div className="relative bg-yellow">
         <div className="container flex justify-between sm:justify-start items-center h-16">
           <div className="-ml-5 w-1/3 hidden lg:block">

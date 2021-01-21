@@ -42,7 +42,7 @@ const Ron = () => {
           Inicio &gt; Licores &gt; Ron &gt; Ron Barceló Imperial Premium Blend
         </p>
         <div className="flex items-center justify-around">
-          <img src={ron5} className="w-96" />
+          <img src={ron5} className="w-96" alt="name" />
           <div className="w-1/3">
             <p className="detail-title">
               Ron Barceló <br /> Imperial <br /> Premium Blend
