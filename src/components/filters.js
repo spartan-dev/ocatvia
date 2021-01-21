@@ -10,7 +10,7 @@ const data = [{
 
 const Filters = () => {
   return (
-    <div className="text-navbar px-5">
+    <div className="text-navbar px-5 mb-16">
       <p className="title">FILTROS</p>
       {data.map((element, index) => (
         <div className="uppercase mt-8" key={index}>

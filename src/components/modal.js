@@ -9,7 +9,7 @@ const Modal = ({ children, onClick, className, top }) => {
         <button onClick={() => onClick()}>
           <Close />
         </button>
-        <div className="w-full overflow-y-scroll">
+        <div className="w-full h-full overflow-y-scroll">
           {children}
         </div>
       </div>

@@ -48,7 +48,7 @@ const Navbar = () => {
   }
 
   return (
-    <nav className="font-gotham-medium text-navbar fixed w-full top-0 z-10"
+    <nav className="font-gotham-medium text-navbar fixed w-full top-0 z-30"
       aria-hidden="true"
       onMouseLeave={() => navActions([], null)}>
       {showModal &&
