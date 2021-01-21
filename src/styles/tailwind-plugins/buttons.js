@@ -49,7 +49,7 @@ module.exports = ({ theme, addUtilities }) => {
     '.filter-badge': {
       fontFamily: theme('fontFamily')['gotham-book'],
       color: theme('colors')['smoke'],
-      height: '40px',
+      height: '32px',
       width: 'auto',
       fontSize: '12px',
       letterSpacing: '1.2px',
@@ -57,7 +57,7 @@ module.exports = ({ theme, addUtilities }) => {
       border: `1px solid ${theme('colors')['pink']}`,
       borderRadius: '9999px',
       marginRight: '20px',
-      padding: '0 12px 0 14px',
+      padding: '0 10px 0 12px',
       backgroundColor: theme('colors')['white']
     }
   });

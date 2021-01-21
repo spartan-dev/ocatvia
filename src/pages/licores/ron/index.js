@@ -108,11 +108,11 @@ const Ron = () => {
           </div>
         </div>
         {filters.length !== 0 &&
-          <div className="bg-pink-light sm:mr-8 py-5 px-6 flex justify-end items-center">
-            <ul className="flex flex-row-reverse">
+          <div className="bg-pink-light lg:mr-8 pt-5 px-6 flex flex-col lg:flex-row justify-end items-center">
+            <ul className="flex flex-row-reverse flex-wrap">
               {filters.map((item, index) => (
                 <li key={index}
-                  className="flex items-center justify-between filter-badge">
+                  className="flex items-center justify-between mb-5 filter-badge">
                   <span>{item}</span>
                   <button className="ml-1"
                     onClick={() =>
@@ -123,7 +123,7 @@ const Ron = () => {
                 </li>
               ))}
             </ul>
-            <button className="font-gotham-book text-red"
+            <button className="font-gotham-book text-red w-auto mb-5"
               onClick={() => setFilters([])}>
               Limpiar filtros
             </button>
