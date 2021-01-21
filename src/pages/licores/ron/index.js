@@ -84,7 +84,7 @@ const Ron = () => {
     <Layout>
       {showModal &&
         <Modal onClick={() => setShowModal(false)} className="shadow-yellow fixed">
-          <Filters onChange={onChange} />
+          <Filters onChange={onChange} arr={filters} />
         </Modal>}
       <div className="container">
         <p className="small py-10">{route}</p>
