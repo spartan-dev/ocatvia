@@ -14,8 +14,8 @@ const ProductCard = ({ img, alt, name, mililiters, price, className, btnClassNam
           </button>
         </div>
         <div className="flex flex-col items-start">
-          <Link to="/ron/test"
-            className="name text-lg sm:text-base md:text-sm lg:text-base xl:text-lg mt-4 ">
+          <Link to="/licores/ron/test"
+            className="name text-lg sm:text-base md:text-sm lg:text-base xl:text-lg mt-4 pointer">
             {name}
           </Link>
           <p className="mililiters my-1">{mililiters}ml</p>

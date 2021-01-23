@@ -76,7 +76,7 @@ module.exports = ({ theme, addUtilities }) => {
         width: "270px"
       },
       '@media (max-width: 639px)': {
-        width: "358px"
+        width: "100%"
       }
     }
   });

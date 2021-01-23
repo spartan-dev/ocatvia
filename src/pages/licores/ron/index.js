@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 
-import Anchor from "../../../components/anchor"
+import CategoriesSection from "../../../components/categories-section"
 import Filters from "../../../components/filters"
 import Layout from "../../../components/layout"
 import Modal from "../../../components/modal"
@@ -86,7 +86,7 @@ const Ron = () => {
         <Modal onClick={() => setShowModal(false)} className="shadow-yellow fixed">
           <Filters onChange={onChange} arr={filters} />
         </Modal>}
-      <div className="container">
+      <section className="container relative">
         <p className="small py-10">{route}</p>
         <p className="title">RON</p>
         <div className="sm:flex justify-between items-center mb-2 mt-8 sm:mt-2">
@@ -137,26 +137,16 @@ const Ron = () => {
               name={product.name}
               mililiters="750"
               price="12.45"
-              className="product-card sm:mr-7" />
+              className="product-card sm:mr-7"
+              btnClassName="btn-shop" />
           ))}
         </div>
         <button className="btn-red block mx-auto">Ver más</button>
-        <div className="my-14">
-          <p className="title">CATEGORÍAS RELACIONADAS</p>
-          <div className="flex flex-wrap mt-6 -mx-2">
-            {categories.map((categorie, index) => (
-              <div key={index} className="sm:w-1/2 py-4 sm:p-4">
-                <img
-                  src={categorie.img}
-                  alt={categorie.name}
-                  title={categorie.name}
-                  className="w-full" />
-                <Anchor text={categorie.name} />
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
+      </section>
+      <CategoriesSection
+        title="CATEGORÍAS RELACIONADAS"
+        data={categories}
+        className="my-14" />
     </Layout>
   )
 }
