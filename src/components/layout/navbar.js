@@ -30,8 +30,7 @@ const menu = [
 ];
 
 const Navbar = () => {
-  const { addProductToCart, isCartOpen } = useContext(StoreContext);
-
+  const { addProductToCart, isCartOpen, client } = useContext(StoreContext);
   const [activeNav, setActiveNav] = useState(false);
   const [submenu, setSubmenu] = useState([]);
   const [activeTab, setActiveTab] = useState(null);

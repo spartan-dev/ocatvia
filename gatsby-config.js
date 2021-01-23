@@ -18,10 +18,11 @@ module.exports = {
         accessToken: process.env.ACCESS_TOKEN,
       },
     },
+    "gatsby-transformer-sharp",
     "gatsby-plugin-sharp",
     "gatsby-plugin-react-helmet",
     "gatsby-plugin-offline",
-    "gatsby-transformer-sharp",
+
     {
       resolve: `gatsby-plugin-react-svg`,
       options: {

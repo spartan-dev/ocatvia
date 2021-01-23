@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-
+import { graphql } from "gatsby";
 import Anchor from "../../components/anchor";
 import Filters from "../../components/filters";
 import Layout from "../../components/layout";
@@ -71,7 +71,10 @@ const categories = [
   },
 ];
 
-const Licores = () => {
+const Licores = ({ data }) => {
+  const {
+    shopifyCollection: { products },
+  } = data;
   const [route, setRoute] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [body, setBody] = useState(null);
@@ -108,7 +111,7 @@ const Licores = () => {
         <p className="title">RON</p>
         <div className="sm:flex justify-between items-center mt-8 sm:mt-2 mb-14">
           <p className="price">
-            {arr.length}
+            {products.length}
             <span className="inline-block ml-1 currency">productos</span>
           </p>
           <div className="font-gotham-medium flex md:w-96">
@@ -125,7 +128,21 @@ const Licores = () => {
           </div>
         </div>
         <div className="flex flex-wrap sm:-mr-7">
-          {arr.map((product, index) => (
+          {products.map((item, index) => {
+            console.log(item);
+            return (
+              <ProductCard
+                key={index}
+                img={item.images}
+                alt={item.title}
+                name={item.title}
+                mililiters={item.variants[0].weight}
+                price={item.variants[0].price}
+                className="product-card sm:mr-7"
+              />
+            );
+          })}
+          {/*  {arr.map((product, index) => (
             <ProductCard
               key={index}
               img={product.img}
@@ -135,7 +152,7 @@ const Licores = () => {
               price="12.45"
               className="product-card sm:mr-7"
             />
-          ))}
+          ))} */}
         </div>
         <button className="btn-red block mx-auto">Ver más</button>
         <div className="my-14">
@@ -160,3 +177,29 @@ const Licores = () => {
 };
 
 export default Licores;
+export const productosLicores = graphql`
+  query {
+    shopifyCollection(handle: { eq: "licores" }) {
+      products {
+        variants {
+          price
+          weightUnit
+          weight
+        }
+        title
+        shopifyId
+        description
+        images {
+          localFile {
+            childImageSharp {
+              fluid {
+                ...GatsbyImageSharpFluid
+                originalName
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;

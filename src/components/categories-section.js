@@ -3,9 +3,6 @@ import Img from "gatsby-image";
 import Anchor from "./anchor";
 
 const Categories = ({ title, data, className, edges }) => {
-  edges.map((item) => {
-    console.log(item.node);
-  });
   return (
     <section className={`container ${className}`}>
       <p className="title mb-4">{title}</p>
@@ -20,10 +17,9 @@ const Categories = ({ title, data, className, edges }) => {
             /> */}
             <Img
               className="w-full"
-              // style={{ height: "80%", width: "80%" }}
-              /*  imgStyle={{
-                objectFit: "cover",
-              }} */
+              title={
+                item.node.image.localFile.childImageSharp.fluid.originalName
+              }
               fluid={item.node.image.localFile.childImageSharp.fluid}
               alt={item.node.image.localFile.childImageSharp.fluid.originalName}
             />
