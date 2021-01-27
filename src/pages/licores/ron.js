@@ -1,65 +1,79 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState } from "react";
 
-import Anchor from "../../../components/anchor"
-import Filters from "../../../components/filters"
-import Layout from "../../../components/layout"
-import Modal from "../../../components/modal"
-import ProductCard from "../../../components/product-card"
+import Anchor from "../../components/anchor";
+import Filters from "../../components/filters";
+import Layout from "../../components/layout";
+import Modal from "../../components/modal";
+import ProductCard from "../../components/product-card";
 
-import Chevron from "../../../images/svg/chevron.svg"
-import Filter from "../../../images/svg/filter.svg"
+import Chevron from "../../images/svg/chevron.svg";
+import Filter from "../../images/svg/filter.svg";
 
-import ron1 from "../../../images/assets/ron1.jpg"
-import ron2 from "../../../images/assets/ron2.jpg"
-import ron3 from "../../../images/assets/ron3.jpg"
-import ron4 from "../../../images/assets/ron4.jpg"
-import ron5 from "../../../images/assets/ron5.jpg"
-import img1 from "../../../images/assets/licores.png"
-import img2 from "../../../images/assets/vodka.png"
+import ron1 from "../../images/assets/ron1.jpg";
+import ron2 from "../../images/assets/ron2.jpg";
+import ron3 from "../../images/assets/ron3.jpg";
+import ron4 from "../../images/assets/ron4.jpg";
+import ron5 from "../../images/assets/ron5.jpg";
+import img1 from "../../images/assets/licores.png";
+import img2 from "../../images/assets/vodka.png";
 
-const arr = [{
-  name: "Ron Barceló Imperial Onyx",
-  img: ron1
-}, {
-  name: "Ron Barceló Dorado Añejado",
-  img: ron2
-}, {
-  name: "Ron Barceló Gran Añejo",
-  img: ron3
-}, {
-  name: "Ron Abuelo Añejo 7 Años",
-  img: ron4
-}, {
-  name: "Barceló Imperial Premium Blend",
-  img: ron5
-}, {
-  name: "Ron Barceló Imperial Onyx",
-  img: ron1
-}, {
-  name: "Ron Barceló Dorado Añejado",
-  img: ron2
-}, {
-  name: "Ron Barceló Gran Añejo",
-  img: ron3
-}, {
-  name: "Ron Abuelo Añejo 7 Años",
-  img: ron4
-}, {
-  name: "Barceló Imperial Premium Blend",
-  img: ron5
-}]
+const arr = [
+  {
+    name: "Ron Barceló Imperial Onyx",
+    img: ron1,
+  },
+  {
+    name: "Ron Barceló Dorado Añejado",
+    img: ron2,
+  },
+  {
+    name: "Ron Barceló Gran Añejo",
+    img: ron3,
+  },
+  {
+    name: "Ron Abuelo Añejo 7 Años",
+    img: ron4,
+  },
+  {
+    name: "Barceló Imperial Premium Blend",
+    img: ron5,
+  },
+  {
+    name: "Ron Barceló Imperial Onyx",
+    img: ron1,
+  },
+  {
+    name: "Ron Barceló Dorado Añejado",
+    img: ron2,
+  },
+  {
+    name: "Ron Barceló Gran Añejo",
+    img: ron3,
+  },
+  {
+    name: "Ron Abuelo Añejo 7 Años",
+    img: ron4,
+  },
+  {
+    name: "Barceló Imperial Premium Blend",
+    img: ron5,
+  },
+];
 
-const categories = [{
-  img: img1,
-  name: "TEQUILA"
-}, {
-  img: img2,
-  name: "VODKA"
-}]
+const categories = [
+  {
+    img: img1,
+    name: "TEQUILA",
+  },
+  {
+    img: img2,
+    name: "VODKA",
+  },
+];
 
 const Ron = () => {
-  const [route, setRoute] = useState("")
-  const [showModal, setShowModal] = useState(false)
+  const [route, setRoute] = useState("");
+  const [showModal, setShowModal] = useState(false);
   const [body, setBody] = useState(null);
 
   useEffect(() => {
@@ -68,25 +82,27 @@ const Ron = () => {
   }, []);
 
   useEffect(() => {
-    if (body !== null)
-      body.style.overflow = showModal ? "hidden" : "auto";
+    if (body !== null) body.style.overflow = showModal ? "hidden" : "auto";
   }, [body, showModal]);
 
   useEffect(() => {
-    let newRoute
-    if (typeof window !== 'undefined')
+    let newRoute;
+    if (typeof window !== "undefined")
       newRoute = `Inicio${window.location.pathname
-        .replace(/\//g, ' > ')
-        .replace(/\s(.)/g, function ($1) { return $1.toUpperCase(); })}`
-    setRoute(newRoute)
+        .replace(/\//g, " > ")
+        .replace(/\s(.)/g, function ($1) {
+          return $1.toUpperCase();
+        })}`;
+    setRoute(newRoute);
   }, []);
 
   return (
     <Layout>
-      {showModal &&
+      {showModal && (
         <Modal onClick={() => setShowModal(false)} className="shadow-yellow">
           <Filters />
-        </Modal>}
+        </Modal>
+      )}
       <div className="container">
         <p className="small py-10">{route}</p>
         <p className="title">RON</p>
@@ -117,7 +133,8 @@ const Ron = () => {
               name={product.name}
               mililiters="750"
               price="12.45"
-              className="product-card sm:mr-7" />
+              className="product-card sm:mr-7"
+            />
           ))}
         </div>
         <button className="btn-red block mx-auto">Ver más</button>
@@ -130,7 +147,8 @@ const Ron = () => {
                   src={categorie.img}
                   alt={categorie.name}
                   title={categorie.name}
-                  className="w-full" />
+                  className="w-full"
+                />
                 <Anchor text={categorie.name} />
               </div>
             ))}
@@ -138,7 +156,7 @@ const Ron = () => {
         </div>
       </div>
     </Layout>
-  )
-}
+  );
+};
 
-export default Ron
+export default Ron;

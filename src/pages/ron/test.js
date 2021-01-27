@@ -1,38 +1,46 @@
-import React from "react"
+import React from "react";
 
-import Anchor from "../../../components/anchor"
-import Layout from "../../../components/layout"
-import ProductCard from "../../../components/product-card.js"
+import Anchor from "../../components/anchor";
+import Layout from "../../components/layout";
+import ProductCard from "../../components/product-card.js";
 
-import ron1 from "../../../images/assets/ron1.jpg"
-import ron2 from "../../../images/assets/ron2.jpg"
-import ron3 from "../../../images/assets/ron3.jpg"
-import ron4 from "../../../images/assets/ron4.jpg"
-import ron5 from "../../../images/assets/ron5.jpg"
-import img1 from "../../../images/assets/licores.png"
-import img2 from "../../../images/assets/vodka.png"
+import ron1 from "../../images/assets/ron1.jpg";
+import ron2 from "../../images/assets/ron2.jpg";
+import ron3 from "../../images/assets/ron3.jpg";
+import ron4 from "../../images/assets/ron4.jpg";
+import ron5 from "../../images/assets/ron5.jpg";
+import img1 from "../../images/assets/licores.png";
+import img2 from "../../images/assets/vodka.png";
 
-const arr = [{
-  name: "Ron Barceló Imperial Onyx",
-  img: ron1
-}, {
-  name: "Ron Barceló Dorado Añejado",
-  img: ron2
-}, {
-  name: "Ron Barceló Gran Añejo",
-  img: ron3
-}, {
-  name: "Ron Abuelo Añejo 7 Años",
-  img: ron4
-}]
+const arr = [
+  {
+    name: "Ron Barceló Imperial Onyx",
+    img: ron1,
+  },
+  {
+    name: "Ron Barceló Dorado Añejado",
+    img: ron2,
+  },
+  {
+    name: "Ron Barceló Gran Añejo",
+    img: ron3,
+  },
+  {
+    name: "Ron Abuelo Añejo 7 Años",
+    img: ron4,
+  },
+];
 
-const categories = [{
-  img: img1,
-  name: "TEQUILA"
-}, {
-  img: img2,
-  name: "VODKA"
-}]
+const categories = [
+  {
+    img: img1,
+    name: "TEQUILA",
+  },
+  {
+    img: img2,
+    name: "VODKA",
+  },
+];
 
 const Ron = () => {
   return (
@@ -48,7 +56,10 @@ const Ron = () => {
               Ron Barceló <br /> Imperial <br /> Premium Blend
             </p>
             <p className="font-gotham-book opacity-50 text-body my-6 leading-9">
-              Ron premium<br />Tamaño: 750 ml <br />País de origen: República Dominicana
+              Ron premium
+              <br />
+              Tamaño: 750 ml <br />
+              País de origen: República Dominicana
             </p>
             <p className="font-gotham-medium text-2xl tracking-widest">
               $76.49 <span className="text-base tracking-widest">USD</span>
@@ -82,7 +93,8 @@ const Ron = () => {
                   src={categorie.img}
                   alt={categorie.name}
                   title={categorie.name}
-                  className="w-full" />
+                  className="w-full"
+                />
                 <Anchor text={categorie.name} />
               </div>
             ))}
@@ -90,8 +102,7 @@ const Ron = () => {
         </div>
       </div>
     </Layout>
+  );
+};
 
-  )
-}
-
-export default Ron
+export default Ron;

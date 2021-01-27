@@ -129,7 +129,6 @@ const Licores = ({ data }) => {
         </div>
         <div className="flex flex-wrap sm:-mr-7">
           {products.map((item, index) => {
-            console.log(item);
             return (
               <ProductCard
                 key={index}
@@ -142,17 +141,6 @@ const Licores = ({ data }) => {
               />
             );
           })}
-          {/*  {arr.map((product, index) => (
-            <ProductCard
-              key={index}
-              img={product.img}
-              alt={product.name}
-              name={product.name}
-              mililiters="750"
-              price="12.45"
-              className="product-card sm:mr-7"
-            />
-          ))} */}
         </div>
         <button className="btn-red block mx-auto">Ver más</button>
         <div className="my-14">

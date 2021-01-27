@@ -13,16 +13,15 @@ const ProductCard = ({
   btnClassName,
 }) => {
   //cambia imagenes a undefined mienmtras carga
-  console.log(img[0].localFile.childImageSharp);
   return (
     <article className={className}>
       <div className="bg-white mb-16">
         <div className="p-9 border border-beige">
-          <Img
+          {/*  <Img
             fluid={img[0].localFile.childImageSharp.fluid}
             alt={alt}
             title={alt}
-          />
+          /> */}
 
           {/*  <img src={img} alt={alt} title={alt} className="relative" /> */}
           <button className={btnClassName}>

@@ -108,7 +108,6 @@ const Index = ({ data }) => {
         />
         <CategoriesSection
           title="CATEGORÍAS"
-          data={categories}
           edges={edges}
           className="mt-8 mb-4 lg:mb-12"
         />
