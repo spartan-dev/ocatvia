@@ -9,7 +9,7 @@ import ProductCard from "../../components/product-card";
 import Chevron from "../../images/svg/chevron.svg";
 import Filter from "../../images/svg/filter.svg";
 
-const Gourmet = ({ data }) => {
+const Bebidas = ({ data }) => {
   const {
     shopifyCollection: { products },
   } = data;
@@ -46,7 +46,7 @@ const Gourmet = ({ data }) => {
       )}
       <div className="container">
         <p className="small py-10">{route}</p>
-        <p className="title">GOURMET</p>
+        <p className="title">BEBIDAS</p>
         <div className="sm:flex justify-between items-center mt-8 sm:mt-2 mb-14">
           <p className="price">
             {products.length}
@@ -84,28 +84,29 @@ const Gourmet = ({ data }) => {
         <div className="my-14">
           <p className="title">CATEGORÍAS RELACIONADAS</p>
           {/*   <div className="flex flex-wrap mt-6 -mx-2">
-          {categories.map((categorie, index) => (
-            <div key={index} className="sm:w-1/2 py-4 sm:p-4">
-              <img
-                src={categorie.img}
-                alt={categorie.name}
-                title={categorie.name}
-                className="w-full"
-              />
-              <Anchor text={categorie.name} />
-            </div>
-          ))}
-        </div> */}
+        {categories.map((categorie, index) => (
+          <div key={index} className="sm:w-1/2 py-4 sm:p-4">
+            <img
+              src={categorie.img}
+              alt={categorie.name}
+              title={categorie.name}
+              className="w-full"
+            />
+            <Anchor text={categorie.name} />
+          </div>
+        ))}
+      </div> */}
         </div>
       </div>
     </Layout>
   );
 };
 
-export default Gourmet;
-export const productosLicores = graphql`
+export default Bebidas;
+
+export const productosBebidas = graphql`
   query {
-    shopifyCollection(handle: { eq: "gourmet" }) {
+    shopifyCollection(handle: { eq: "bebidas" }) {
       products {
         variants {
           price

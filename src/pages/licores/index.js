@@ -108,7 +108,7 @@ const Licores = ({ data }) => {
       )}
       <div className="container">
         <p className="small py-10">{route}</p>
-        <p className="title">RON</p>
+        <p className="title">LICORES</p>
         <div className="sm:flex justify-between items-center mt-8 sm:mt-2 mb-14">
           <p className="price">
             {products.length}

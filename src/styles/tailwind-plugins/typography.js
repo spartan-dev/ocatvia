@@ -1,4 +1,4 @@
-module.exports = function ({ theme, addUtilities }) {
+module.exports = ({ theme, addUtilities }) => {
   addUtilities({
     '.header': {
       fontFamily: theme('fontFamily')['gotham-black'],
@@ -64,7 +64,12 @@ module.exports = function ({ theme, addUtilities }) {
       color: theme('colors')['body'],
       fontSize: '40px',
       lineHeight: '48px',
-      letterSpacing: '4px'
+      letterSpacing: '4px',
+      '@media (max-width: 767px)': {
+        fontSize: '32px',
+        letterSpacing: '3px',
+        lineHeight: '40px'
+      },
     }
   });
 };

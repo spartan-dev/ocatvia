@@ -5,9 +5,11 @@ import Filters from "../../components/filters";
 import Layout from "../../components/layout";
 import Modal from "../../components/modal";
 import ProductCard from "../../components/product-card";
+import CategoriesSection from "../../components/categories-section";
 
 import Chevron from "../../images/svg/chevron.svg";
 import Filter from "../../images/svg/filter.svg";
+import Close from "../../images/svg/close.svg";
 
 import ron1 from "../../images/assets/ron1.jpg";
 import ron2 from "../../images/assets/ron2.jpg";
@@ -74,39 +76,41 @@ const categories = [
 const Ron = () => {
   const [route, setRoute] = useState("");
   const [showModal, setShowModal] = useState(false);
-  const [body, setBody] = useState(null);
-
-  useEffect(() => {
-    if (typeof window !== "undefined")
-      setBody(document.getElementsByTagName("body")[0]);
-  }, []);
-
-  useEffect(() => {
-    if (body !== null) body.style.overflow = showModal ? "hidden" : "auto";
-  }, [body, showModal]);
+  const [filters, setFilters] = useState([]);
 
   useEffect(() => {
     let newRoute;
     if (typeof window !== "undefined")
       newRoute = `Inicio${window.location.pathname
         .replace(/\//g, " > ")
-        .replace(/\s(.)/g, function ($1) {
+        .replace(/\s(.)/g, ($1) => {
           return $1.toUpperCase();
         })}`;
     setRoute(newRoute);
   }, []);
 
+  const onChange = ({ name, checked }) => {
+    if (checked) {
+      setFilters((prevstate) => [name, ...prevstate]);
+    } else {
+      setFilters(filters.filter((item) => item !== name));
+    }
+  };
+
   return (
     <Layout>
       {showModal && (
-        <Modal onClick={() => setShowModal(false)} className="shadow-yellow">
-          <Filters />
+        <Modal
+          onClick={() => setShowModal(false)}
+          className="shadow-yellow fixed"
+        >
+          <Filters onChange={onChange} arr={filters} />
         </Modal>
       )}
-      <div className="container">
+      <section className="container relative">
         <p className="small py-10">{route}</p>
         <p className="title">RON</p>
-        <div className="sm:flex justify-between items-center mt-8 sm:mt-2 mb-14">
+        <div className="sm:flex justify-between items-center mb-2 mt-8 sm:mt-2">
           <p className="price">
             {arr.length}
             <span className="inline-block ml-1 currency">productos</span>
@@ -124,7 +128,35 @@ const Ron = () => {
             </div>
           </div>
         </div>
-        <div className="flex flex-wrap sm:-mr-7">
+        {filters.length !== 0 && (
+          <div className="bg-pink-light lg:mr-8 pt-5 px-6 flex flex-col lg:flex-row justify-end items-center">
+            <ul className="flex flex-row-reverse flex-wrap">
+              {filters.map((item, index) => (
+                <li
+                  key={index}
+                  className="flex items-center justify-between mb-5 filter-badge"
+                >
+                  <span>{item}</span>
+                  <button
+                    className="ml-1"
+                    onClick={() =>
+                      setFilters(filters.filter((element) => item !== element))
+                    }
+                  >
+                    <Close className="w-4 h-4" />
+                  </button>
+                </li>
+              ))}
+            </ul>
+            <button
+              className="font-gotham-book text-red w-auto mb-5"
+              onClick={() => setFilters([])}
+            >
+              Limpiar filtros
+            </button>
+          </div>
+        )}
+        <div className="flex flex-wrap mt-10 sm:-mr-7">
           {arr.map((product, index) => (
             <ProductCard
               key={index}
@@ -134,27 +166,17 @@ const Ron = () => {
               mililiters="750"
               price="12.45"
               className="product-card sm:mr-7"
+              btnClassName="btn-shop"
             />
           ))}
         </div>
         <button className="btn-red block mx-auto">Ver más</button>
-        <div className="my-14">
-          <p className="title">CATEGORÍAS RELACIONADAS</p>
-          <div className="flex flex-wrap mt-6 -mx-2">
-            {categories.map((categorie, index) => (
-              <div key={index} className="sm:w-1/2 py-4 sm:p-4">
-                <img
-                  src={categorie.img}
-                  alt={categorie.name}
-                  title={categorie.name}
-                  className="w-full"
-                />
-                <Anchor text={categorie.name} />
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
+      </section>
+      {/*  <CategoriesSection
+        title="CATEGORÍAS RELACIONADAS"
+        data={categories}
+        className="my-14"
+      /> */}
     </Layout>
   );
 };

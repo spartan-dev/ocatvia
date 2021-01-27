@@ -53,32 +53,38 @@ const Navbar = () => {
 
   return (
     <nav
-      className="font-gotham-medium text-navbar fixed w-full top-0 z-10"
+      className="font-gotham-medium text-navbar fixed w-full top-0 z-30"
       aria-hidden="true"
       onMouseLeave={() => navActions([], null)}
     >
       {showModal && (
-        <Modal onClick={() => setShowModal(false)} top>
-          <Sidebar data={menu} />
-        </Modal>
+        <div className="z-20 absolute w-screen h-screen top-0 bg-smoke">
+          <Modal onClick={() => setShowModal(false)} top>
+            <Sidebar data={menu} />
+          </Modal>
+        </div>
       )}
       <div className="relative bg-yellow">
         <div className="container flex justify-between sm:justify-start items-center h-16">
           <div className="-ml-5 w-1/3 hidden lg:block">
             <ul className="flex">
               {menu.map((item, index) => (
-                <li key={index}>
-                  <button
-                    className={`block py-5 lg:px-3 xl:px-5 hover:bg-smoke 
+                <Link to={`/${item.name}`}>
+                  <li key={index}>
+                    <button
+                      className={`block py-5 lg:px-3 xl:px-5 hover:bg-smoke 
                     uppercase ${index === activeTab && "bg-smoke"}`}
-                    onMouseOver={() =>
-                      navActions(item.categories, item.name, true)
-                    }
-                    onFocus={() => navActions(item.categories, item.name, true)}
-                  >
-                    {item.name}
-                  </button>
-                </li>
+                      onMouseOver={() =>
+                        navActions(item.categories, item.name, true)
+                      }
+                      onFocus={() =>
+                        navActions(item.categories, item.name, true)
+                      }
+                    >
+                      {item.name}
+                    </button>
+                  </li>
+                </Link>
               ))}
             </ul>
           </div>
@@ -112,7 +118,7 @@ const Navbar = () => {
               {submenu.map((item, index) => (
                 <li key={index}>
                   <Link
-                    to={`/${activeTab}/${item}`}
+                    to={`/${activeTab}/${item.replace(/-/g, "")}`}
                     className="block py-6 lg:px-3 xl:px-5 hover:text-yellow focus:text-yellow uppercase"
                   >
                     {item.replace(/-/g, " ")}

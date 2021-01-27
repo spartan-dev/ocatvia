@@ -1,4 +1,4 @@
-module.exports = function ({ theme, addUtilities }) {
+module.exports = ({ theme, addUtilities }) => {
   addUtilities({
     '.btn-red': {
       fontFamily: theme('fontFamily')['gotham-book'],
@@ -26,7 +26,29 @@ module.exports = function ({ theme, addUtilities }) {
       '@media (min-width: 640px) and (max-width: 767px)': {
         marginLeft: '94px'
       },
-      '@media (min-width: 426px) (max-width: 639px)': {
+      '@media (min-width: 426px) and (max-width: 639px)': {
+        marginLeft: 'calc(82.5% - 8px)'
+      },
+      '@media (max-width: 425px)': {
+        marginLeft: 'calc(77% - 8px)'
+      }
+    },
+    '.btn-shop': {
+      position: 'absolute',
+      marginTop: '-8px',
+      '@media (min-width: 1280px)': {
+        marginLeft: '280px'
+      },
+      '@media (min-width: 1024px) and (max-width: 1279px)': {
+        marginLeft: '224px'
+      },
+      '@media (min-width: 768px) and (max-width: 1023px)': {
+        marginLeft: '240px'
+      },
+      '@media (min-width: 640px) and (max-width: 767px)': {
+        marginLeft: '188px'
+      },
+      '@media (min-width: 426px) and (max-width: 639px)': {
         marginLeft: 'calc(82.5% - 8px)'
       },
       '@media (max-width: 425px)': {
@@ -45,6 +67,20 @@ module.exports = function ({ theme, addUtilities }) {
         border: `1px solid ${theme('colors')['yellow']}`,
         backgroundSize: 'contain',
       }
+    },
+    '.filter-badge': {
+      fontFamily: theme('fontFamily')['gotham-book'],
+      color: theme('colors')['smoke'],
+      height: '32px',
+      width: 'auto',
+      fontSize: '12px',
+      letterSpacing: '1.2px',
+      lineHeight: '12px',
+      border: `1px solid ${theme('colors')['pink']}`,
+      borderRadius: '9999px',
+      marginRight: '20px',
+      padding: '0 10px 0 12px',
+      backgroundColor: theme('colors')['white']
     }
   });
 };

@@ -1,4 +1,4 @@
-module.exports = function ({ theme, addUtilities }) {
+module.exports = ({ theme, addUtilities }) => {
   addUtilities({
     '.container': {
       marginLeft: "auto",
@@ -76,7 +76,7 @@ module.exports = function ({ theme, addUtilities }) {
         width: "270px"
       },
       '@media (max-width: 639px)': {
-        width: "358px"
+        width: "100%"
       }
     }
   });
