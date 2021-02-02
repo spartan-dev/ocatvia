@@ -101,11 +101,11 @@ const Index = ({ data }) => {
     <div>
       <Layout>
         <Hero />
-        <SliderSection
+        {/*   <SliderSection
           title="SELECCIÓN"
           data={selection}
           className="mt-72 mb-14 sm:my-14"
-        />
+        /> */}
         <CategoriesSection
           title="CATEGORÍAS"
           edges={edges}

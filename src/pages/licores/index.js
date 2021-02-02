@@ -137,6 +137,7 @@ const Licores = ({ data }) => {
                 name={item.title}
                 mililiters={item.variants[0].weight}
                 price={item.variants[0].price}
+                variantId={item.variants[0].shopifyId}
                 className="product-card sm:mr-7"
               />
             );
@@ -173,6 +174,7 @@ export const productosLicores = graphql`
           price
           weightUnit
           weight
+          shopifyId
         }
         title
         shopifyId

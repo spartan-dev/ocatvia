@@ -3,7 +3,8 @@ import { Link } from "gatsby";
 import { StoreContext } from "../../context/StoreContext";
 import Modal from "../modal";
 import Sidebar from "./sidebar";
-
+import Cart from "../Cart/Cart";
+import { useTransition } from "react-spring";
 import Logo from "../../images/svg/logo.svg";
 import Menu from "../../images/svg/menu.svg";
 import Search from "../../images/svg/search.svg";
@@ -30,12 +31,20 @@ const menu = [
 ];
 
 const Navbar = () => {
-  const { addProductToCart, isCartOpen, client } = useContext(StoreContext);
+  const { isCartOpen, toggleCartOpen, checkout } = useContext(StoreContext);
   const [activeNav, setActiveNav] = useState(false);
   const [submenu, setSubmenu] = useState([]);
   const [activeTab, setActiveTab] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [body, setBody] = useState(null);
+  const transitions = useTransition(isCartOpen, null, {
+    from: { transform: "translate3d(100%,0,0)" },
+    enter: { transform: "translate3d(0,0,0)" },
+    leave: { transform: "translate3d(100%,0,0)" },
+  });
+  const qty = checkout.lineItems.reduce((total, item) => {
+    return total + item.quantity;
+  }, 0);
   useEffect(() => {
     if (typeof window !== "undefined")
       setBody(document.getElementsByTagName("body")[0]);
@@ -102,7 +111,21 @@ const Navbar = () => {
           <div className="h-full flex justify-end w-1/3">
             <div className="flex items-center my-2 lg:border-r border-white">
               <User />
-              <Shop className="ml-8 lg:mr-6" onClick={addProductToCart} />
+              <button
+                className="flex flex-row-reverse mr-6 relative"
+                onClick={toggleCartOpen}
+              >
+                {qty > 0 && (
+                  <div className=" text-white absolute bg-black text-center rounded-full leading-8 h-7 w-7 -top-4 -right-4">
+                    {qty}
+                  </div>
+                )}
+                <Shop className="ml-8 lg:mr-2" />
+              </button>
+              {transitions.map(
+                ({ item, key, props }) =>
+                  item && <Cart key={key} style={props} />
+              )}
             </div>
             <div className="hidden lg:flex items-center">
               <span className="inline-block mx-3">BUSCAR</span>

@@ -5,17 +5,16 @@ module.exports = {
   siteMetadata: {
     title: "octavia",
   },
-  flags: {
+  /*  flags: {
     DEV_SSR: true,
-  },
+  }, */
   plugins: [
     {
       resolve: "gatsby-source-shopify",
       options: {
-        verbose: true,
-        paginationSize: 50,
         shopName: process.env.SHOP_NAME,
         accessToken: process.env.ACCESS_TOKEN,
+        paginationSize: 70,
       },
     },
     "gatsby-transformer-sharp",

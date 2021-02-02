@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "gatsby";
 import Img from "gatsby-image";
-import Shop from "../images/svg/btn-shop.svg";
+import AddToCart from "./AddToCart";
 
 const ProductCard = ({
   img,
@@ -11,6 +11,7 @@ const ProductCard = ({
   price,
   className,
   btnClassName,
+  variantId,
 }) => {
   //cambia imagenes a undefined mienmtras carga
   return (
@@ -24,9 +25,8 @@ const ProductCard = ({
           /> */}
 
           {/*  <img src={img} alt={alt} title={alt} className="relative" /> */}
-          <button className={btnClassName}>
-            <Shop />
-          </button>
+
+          <AddToCart className={btnClassName} variantId={variantId} />
         </div>
         <div className="flex flex-col items-start">
           <Link

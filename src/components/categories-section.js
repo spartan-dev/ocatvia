@@ -9,14 +9,14 @@ const Categories = ({ title, className, edges }) => {
       <div className="flex flex-wrap sm:-mx-2">
         {edges.map((item, index) => (
           <div key={index} className="w-full sm:w-1/2 py-4 sm:p-4">
-            <Img
+            {/*  <Img
               className="w-full"
               title={
                 item.node.image.localFile.childImageSharp.fluid.originalName
               }
               fluid={item.node.image.localFile.childImageSharp.fluid}
               alt={item.node.image.localFile.childImageSharp.fluid.originalName}
-            />
+            /> */}
             <Anchor
               text={item.node.title}
               linkTo={`/${item.node.title.toLowerCase()}`}
