@@ -1,6 +1,8 @@
 import React from "react";
 import ron5 from "../images/assets/ron5.jpg";
 const ProductDetail = ({ product }) => {
+  //Todo poner los datos dinamicos de el productos
+  console.log(product);
   return (
     <div className="container">
       <p className="small py-10">

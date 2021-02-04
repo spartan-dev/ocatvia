@@ -10,12 +10,8 @@ import Chevron from "../images/svg/chevron.svg";
 import Filter from "../images/svg/filter.svg";
 
 const CategoryPageTemplate = ({ data }) => {
-  /*  const {
-    shopifyCollection: { products },
-  } = data; */
-  console.log(data);
   const {
-    shopifyCollection: { products },
+    shopifyCollection: { products, title },
   } = data;
   const [route, setRoute] = useState("");
   const [showModal, setShowModal] = useState(false);
@@ -49,7 +45,7 @@ const CategoryPageTemplate = ({ data }) => {
       )}
       <div className="container">
         <p className="small py-10">{route}</p>
-        <p className="title">VINOS</p>
+        <p className="title">{title}</p>
         <div className="sm:flex justify-between items-center mt-8 sm:mt-2 mb-14">
           <p className="price">
             {products.length}
@@ -73,11 +69,12 @@ const CategoryPageTemplate = ({ data }) => {
             return (
               <ProductCard
                 key={index}
-                img={item.images}
+                img={item.variants[0].image}
                 alt={item.title}
-                name={item.title}
+                name={item.handle}
                 mililiters={item.variants[0].weight}
                 price={item.variants[0].price}
+                variantId={item.variants[0].shopifyId}
                 className="product-card sm:mr-7"
               />
             );
@@ -110,8 +107,31 @@ export const query = graphql`
   query($handle: String!) {
     shopifyCollection(handle: { eq: $handle }) {
       id
+      shopifyId
       title
       handle
+      products {
+        title
+        handle
+        variants {
+          price
+          weightUnit
+          weight
+          shopifyId
+          priceNumber
+          id
+          image {
+            localFile {
+              childImageSharp {
+                fluid {
+                  ...GatsbyImageSharpFluid
+                  originalName
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 `;

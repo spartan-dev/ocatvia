@@ -19,7 +19,7 @@ const Categories = ({ title, className, edges }) => {
             /> */}
             <Anchor
               text={item.node.title}
-              linkTo={`/${item.node.title.toLowerCase()}`}
+              linkTo={`/${item.node.handle.toLowerCase()}`}
             />
           </div>
         ))}

@@ -141,7 +141,7 @@ const Navbar = () => {
               {submenu.map((item, index) => (
                 <li key={index}>
                   <Link
-                    to={`/${activeTab}/${item.replace(/-/g, "")}`}
+                    to={`/${item}`}
                     className="block py-6 lg:px-3 xl:px-5 hover:text-yellow focus:text-yellow uppercase"
                   >
                     {item.replace(/-/g, " ")}

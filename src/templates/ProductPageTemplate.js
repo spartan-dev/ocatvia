@@ -14,8 +14,28 @@ export default ProductPageTemplate;
 export const query = graphql`
   query ProductQuery($handle: String!) {
     shopifyProduct(handle: { eq: $handle }) {
-      id
       title
+      handle
+      id
+      description
+      productType
+      shopifyId
+      tags
+      variants {
+        price
+        title
+        weight
+        weightUnit
+        image {
+          localFile {
+            childImageSharp {
+              fluid {
+                originalName
+              }
+            }
+          }
+        }
+      }
     }
   }
 `;

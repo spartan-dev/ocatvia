@@ -108,7 +108,7 @@ const Index = ({ data }) => {
         /> */}
         <CategoriesSection
           title="CATEGORÍAS"
-          edges={edges}
+          edges={edges.slice(1, 4)}
           className="mt-8 mb-4 lg:mb-12"
         />
       </Layout>
@@ -124,6 +124,7 @@ export const collections = graphql`
       edges {
         node {
           title
+          handle
           image {
             localFile {
               childImageSharp {

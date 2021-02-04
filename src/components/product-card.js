@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "gatsby";
+import { Link, useStaticQuery, graphql } from "gatsby";
 import Img from "gatsby-image";
 import AddToCart from "./AddToCart";
 
@@ -14,15 +14,44 @@ const ProductCard = ({
   variantId,
 }) => {
   //cambia imagenes a undefined mienmtras carga
+  const data = useStaticQuery(graphql`
+    {
+      allFile(filter: { absolutePath: { regex: "/images/assets/hero.jpg/" } }) {
+        edges {
+          node {
+            relativePath
+            childImageSharp {
+              fluid {
+                ...GatsbyImageSharpFluid
+                originalImg
+              }
+            }
+          }
+        }
+      }
+    }
+  `);
+  console.log(img);
+
   return (
     <article className={className}>
       <div className="bg-white mb-16">
         <div className="p-9 border border-beige">
-          {/*  <Img
-            fluid={img[0].localFile.childImageSharp.fluid}
-            alt={alt}
-            title={alt}
-          /> */}
+          {img === null || img === undefined ? (
+            <Img
+              fluid={data.allFile.edges[0].node.childImageSharp.fluid}
+              alt={alt}
+              title={alt}
+              className="relative"
+            />
+          ) : (
+            <Img
+              fluid={img.localFile.childImageSharp.fluid}
+              alt={alt}
+              title={alt}
+              className="relative"
+            />
+          )}
 
           {/*  <img src={img} alt={alt} title={alt} className="relative" /> */}
 
@@ -30,10 +59,10 @@ const ProductCard = ({
         </div>
         <div className="flex flex-col items-start">
           <Link
-            to="/"
+            to={`/products/${name}`}
             className="name text-lg sm:text-base md:text-sm lg:text-base xl:text-lg mt-4 "
           >
-            {name}
+            {alt}
           </Link>
           <p className="mililiters my-1">{mililiters}ml</p>
           <p className="price">
