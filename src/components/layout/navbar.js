@@ -5,7 +5,7 @@ import { Link } from "gatsby";
 import { StoreContext } from "../../context/StoreContext";
 import Modal from "../modal";
 import Sidebar from "./sidebar";
-import ShopSidebar from "../shop-sidebar";
+import CartSidebar from "../cart-sidebar";
 
 import Logo from "../../images/svg/logo.svg";
 import Menu from "../../images/svg/menu.svg";
@@ -139,7 +139,7 @@ const Navbar = () => {
                     btnClass="pt-6 pr-6"
                     className="shadow-yellow right-0 top-16 fixed"
                     onClick={toggleCartOpen}>
-                    <ShopSidebar />
+                    <CartSidebar />
                   </Modal>
               )}
             </div>
