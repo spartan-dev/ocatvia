@@ -7,6 +7,7 @@ import Modal from "../components/modal";
 import ProductCard from "../components/product-card";
 
 import Chevron from "../images/svg/chevron.svg";
+import Close from '../images/svg/close.svg'
 import Filter from "../images/svg/filter.svg";
 
 const CategoryPageTemplate = ({ data }) => {
@@ -15,16 +16,7 @@ const CategoryPageTemplate = ({ data }) => {
   } = data;
   const [route, setRoute] = useState("");
   const [showModal, setShowModal] = useState(false);
-  const [body, setBody] = useState(null);
-
-  useEffect(() => {
-    if (typeof window !== "undefined")
-      setBody(document.getElementsByTagName("body")[0]);
-  }, []);
-
-  useEffect(() => {
-    if (body !== null) body.style.overflow = showModal ? "hidden" : "auto";
-  }, [body, showModal]);
+  const [filters, setFilters] = useState([])
 
   useEffect(() => {
     let newRoute;
@@ -36,11 +28,20 @@ const CategoryPageTemplate = ({ data }) => {
         })}`;
     setRoute(newRoute);
   }, []);
+
+  const onChange = ({ name, checked }) => {
+    if (checked) {
+      setFilters(prevstate => [name, ...prevstate])
+    } else {
+      setFilters(filters.filter(item => item !== name))
+    }
+  }
+
   return (
     <Layout>
       {showModal && (
-        <Modal onClick={() => setShowModal(false)} className="shadow-yellow">
-          <Filters />
+        <Modal onClick={() => setShowModal(false)} className="shadow-yellow fixed">
+          <Filters onChange={onChange} arr={filters} />
         </Modal>
       )}
       <div className="container">
@@ -64,6 +65,27 @@ const CategoryPageTemplate = ({ data }) => {
             </div>
           </div>
         </div>
+        {filters.length !== 0 &&
+          <div className="bg-pink-light lg:mr-8 pt-5 px-6 flex flex-col lg:flex-row justify-end items-center">
+            <ul className="flex flex-row-reverse flex-wrap">
+              {filters.map((item, index) => (
+                <li key={index}
+                  className="flex items-center justify-between mb-5 filter-badge">
+                  <span>{item}</span>
+                  <button className="ml-1"
+                    onClick={() =>
+                      setFilters(filters.filter(element => item !== element))
+                    }>
+                    <Close className="w-4 h-4" />
+                  </button>
+                </li>
+              ))}
+            </ul>
+            <button className="font-gotham-book text-red w-auto mb-5"
+              onClick={() => setFilters([])}>
+              Limpiar filtros
+            </button>
+          </div>}
         <div className="flex flex-wrap sm:-mr-7">
           {products.map((item, index) => {
             return (

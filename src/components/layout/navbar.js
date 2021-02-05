@@ -68,7 +68,7 @@ const Navbar = () => {
     >
       {showModal && (
         <div className="z-20 absolute w-screen h-screen top-0 bg-smoke">
-          <Modal onClick={() => setShowModal(false)} top>
+          <Modal onClick={() => setShowModal(false)}>
             <Sidebar data={menu} />
           </Modal>
         </div>
