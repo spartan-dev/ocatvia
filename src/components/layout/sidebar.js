@@ -15,14 +15,13 @@ const Sidebar = ({ data }) => {
         {data.map((item, index) => (
           <li key={index}
             className={`pl-2 border-b border-beige text-lg
-        ${(toggle && toggleIndex === item.name) ? "pt-6 pb-2" : "py-6"}`}>
+              ${(toggle && toggleIndex === item.name) ? "pt-6 pb-2" : "py-6"}`}>
             <div className="flex justify-between items-center">
               <Link to={item.name} className="uppercase">
                 {item.name.replace(/-/g, " ")}
               </Link>
               <button onClick={() => {
-                setToggle((toggle && toggleIndex === item.name) ?
-                  false : true)
+                setToggle((toggle && toggleIndex === item.name) ? false : true)
                 setToggleIndex(item.name)
               }}>
                 <Chevron

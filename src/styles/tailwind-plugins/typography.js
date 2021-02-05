@@ -51,7 +51,8 @@ module.exports = ({ theme, addUtilities }) => {
       color: theme('colors')['yellow'],
       fontSize: '28px',
       letterSpacing: '5px',
-      lineHeight: '28px'
+      lineHeight: '28px',
+      textTransform: 'uppercase'
     },
     '.small': {
       fontFamily: theme('fontFamily')['gotham-book'],

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useTransition } from "react-spring";
 import { graphql } from "gatsby";
 import Anchor from "../components/anchor";
 import Filters from "../components/filters";
@@ -17,6 +18,12 @@ const CategoryPageTemplate = ({ data }) => {
   const [route, setRoute] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [filters, setFilters] = useState([])
+
+  const transitions = useTransition(showModal, null, {
+    from: { transform: "translate3d(-100%,0,0)" },
+    enter: { transform: "translate3d(0,0,0)" },
+    leave: { transform: "translate3d(-100%,0,0)" },
+  });
 
   useEffect(() => {
     let newRoute;
@@ -39,10 +46,15 @@ const CategoryPageTemplate = ({ data }) => {
 
   return (
     <Layout>
-      {showModal && (
-        <Modal onClick={() => setShowModal(false)} className="shadow-yellow fixed">
-          <Filters onChange={onChange} arr={filters} />
-        </Modal>
+      {transitions.map(
+        ({ item, key, props }) =>
+          item &&
+          <Modal
+            key={key}
+            className="shadow-yellow fixed p-6"
+            style={props} onClick={() => setShowModal(!showModal)}>
+            <Filters onChange={onChange} arr={filters} />
+          </Modal>
       )}
       <div className="container">
         <p className="small py-10">{route}</p>
@@ -74,8 +86,7 @@ const CategoryPageTemplate = ({ data }) => {
                   <span>{item}</span>
                   <button className="ml-1"
                     onClick={() =>
-                      setFilters(filters.filter(element => item !== element))
-                    }>
+                      setFilters(filters.filter(element => item !== element))}>
                     <Close className="w-4 h-4" />
                   </button>
                 </li>
