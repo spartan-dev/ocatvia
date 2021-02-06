@@ -21,51 +21,51 @@ const ShopSidebar = () => {
   return (
     <Layout>
       <section className="container min-h-full font-gotham-medium">
-        <p className="title pt-24">BOLSA DE COMPRAS</p>
+        <p className="title pt-6 md:pt-24">BOLSA DE COMPRAS</p>
         {checkout.lineItems.length > 0 ?
           <>
-            <div className="mt-6 mb-9">
+            <div className="mt-6 md:mb-9">
               <span className="price">{checkout.lineItems.length}</span>
               <span className="currency inline-block ml-1">
                 {checkout.lineItems.length > 1 ? "productos" : "producto"}
               </span>
             </div>
-            <div className="flex text-smoke mb-4">
-              <p className="w-2/5">PRODUCTOS</p>
-              <p className="w-1/5">PRECIO</p>
-              <p className="w-1/5">CANTIDAD</p>
-              <p className="w-1/5">PRECIO TOTAL</p>
+            <div className="hidden md:flex text-smoke mb-4">
+              <p className="w-1/3 lg:w-2/5">PRODUCTOS</p>
+              <p className="w-2/12 xl:w-1/5">PRECIO</p>
+              <p className="w-1/3 lg:w-3/12 xl:w-1/5">CANTIDAD</p>
+              <p className="w-2/12 lg:w-2/12 xl:w-1/5">PRECIO TOTAL</p>
             </div>
-            <hr />
+            <hr className="hidden md:block" />
             {checkout.lineItems.map((item) => (
               <>
-                <div key={item.id} className="flex items-center py-8 font-gotham-book">
-                  <div className="w-2/5 flex items-center">
+                <div key={item.id} className="flex flex-col md:flex-row items-center py-8 font-gotham-book">
+                  <div className="w-full md:w-1/3 lg:w-2/5 flex flex-col lg:flex-row items-center">
                     <img
-                      className="w-20 h-28"
+                      className="w-40 md:w-20 md:h-28"
                       src={`${item.variant.image === null ? imageUrl : item.variant.image.src}`}
                       alt={item.title} />
-                    <p className="my-3 text-sm ml-4">{item.title}</p>
+                    <p className="my-3 text-sm sm:ml-4">{item.title}</p>
                   </div>
-                  <p className="w-1/5">${item.variant.price} USD</p>
-                  <div className="w-1/5">
+                  <p className="w-full md:w-2/12 xl:w-1/5">${item.variant.price} USD</p>
+                  <div className="my-4 md:my-0 w-full md:w-1/3 lg:w-3/12 xl:w-1/5">
                     <div className="relative">
                       <input
                         value={`${item.quantity} ${item.quantity > 1 ? "productos" : "producto"}`}
-                        className="w-48 h-14 border-2 border-beige px-2 pt-2 " />
+                        className="w-full md:w-48 h-14 border-2 border-beige px-2 pt-2 " />
                       <p className="absolute top-1 left-2 small opacity-50">Cantidad</p>
-                      <button className="absolute right-14 top-5">
+                      <button className="absolute right-3 md:right-14 top-5">
                         <Plus />
                       </button>
-                      <button className="absolute right-20 top-7 mr-2">
+                      <button className="absolute right-9 md:right-20 top-7 mr-2">
                         <Minus />
                       </button>
                     </div>
                   </div>
-                  <div className="w-1/5 flex justify-between">
+                  <div className="w-full md:w-2/12 lg:w-2/12 xl:w-1/5 flex md:flex-col lg:flex-row justify-between">
                     <p>${item.variant.price * item.quantity} USD</p>
                     <button
-                      className="mr-10"
+                      className="md:mr-10 md:mt-4 lg:mt-0"
                       onClick={() => removeProductFromToCart(item.id)}>
                       <Trash />
                     </button>
@@ -74,12 +74,12 @@ const ShopSidebar = () => {
                 <hr />
               </>
             ))}
-            <div className="flex flex-col items-end py-6">
-              <div className="w-2/5 flex justify-between pr-20">
+            <div className="flex flex-col items-end pt-6 md:py-6">
+              <div className="w-full md:w-2/5 flex justify-between md:pr-20">
                 <p>TOTAL</p>
                 <p>${checkout.totalPrice} USD</p>
               </div>
-              <Link to="" className="btn-red mt-8 mr-20 flex items-center justify-center">
+              <Link to="" className="btn-red mt-8 md:mr-20 flex items-center justify-center">
                 Continuar al pago
               </Link>
             </div>

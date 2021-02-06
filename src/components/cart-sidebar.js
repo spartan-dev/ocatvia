@@ -28,7 +28,7 @@ const ShopSidebar = () => {
                     className="w-20 h-28"
                     src={`${item.variant.image === null ? imageUrl : item.variant.image.src}`}
                     alt={item.title} />
-                  <div className="ml-4 font-gotham-book">
+                  <div className="mx-4 font-gotham-book w-full">
                     <p>${item.variant.price} USD</p>
                     <p className="my-3 text-sm">{item.title}</p>
                     <div className="flex justify-between">
