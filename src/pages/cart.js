@@ -20,7 +20,6 @@ const ShopSidebar = () => {
     updateProductsFromCart,
   } = useContext(StoreContext);
   const handleChange = (params) => {};
-  console.log(checkout.lineItems);
   return (
     <Layout>
       <section className="container min-h-full font-gotham-medium">
@@ -107,12 +106,12 @@ const ShopSidebar = () => {
                 <p>TOTAL</p>
                 <p>${checkout.totalPrice} USD</p>
               </div>
-              <Link
-                to=""
+              <a
+                href={checkout.webUrl}
                 className="btn-red mt-8 md:mr-20 flex items-center justify-center"
               >
                 Continuar al pago
-              </Link>
+              </a>
             </div>
           </>
         ) : (

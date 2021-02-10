@@ -28,7 +28,6 @@ export const StoreProvider = ({ children }) => {
   }, []);
 
   const initializeCheckout = async () => {
-    console.log(client);
     try {
       // Check if it's a browser
       const isBrowser = typeof window !== "undefined";
@@ -100,6 +99,12 @@ export const StoreProvider = ({ children }) => {
       console.log(error);
     }
   };
+
+  /*   const getCollection = async () => {
+    const collections = await client.collection.fetchAllWithProducts();
+    console.log(collections);
+  }; */
+
   return (
     <StoreContext.Provider
       value={{
