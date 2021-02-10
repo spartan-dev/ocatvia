@@ -108,7 +108,7 @@ const Index = ({ data }) => {
         /> */}
         <CategoriesSection
           title="CATEGORÍAS"
-          edges={edges.slice(1, 4)}
+          edges={edges.slice(edges.length - 4, edges.length)}
           className="mt-8 mb-4 lg:mb-12"
         />
       </Layout>
