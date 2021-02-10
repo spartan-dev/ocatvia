@@ -11,7 +11,7 @@ import Logo from "../../images/svg/logo.svg";
 import Menu from "../../images/svg/menu.svg";
 import Search from "../../images/svg/search.svg";
 import Shop from "../../images/svg/shop.svg";
-import Shopping from "../../images/svg/shopping.svg"
+import Shopping from "../../images/svg/shopping.svg";
 import User from "../../images/svg/user.svg";
 
 const menu = [
@@ -76,33 +76,42 @@ const Navbar = () => {
     <nav
       className="font-gotham-medium text-navbar fixed w-full top-0 z-30"
       aria-hidden="true"
-      onMouseLeave={() => navActions([], null)}>
-      {showModal &&
+      onMouseLeave={() => navActions([], null)}
+    >
+      {showModal && (
         <div className="z-20 absolute w-screen h-screen top-0 bg-smoke">
           {transitionsSidebar.map(
             ({ item, key, props }) =>
-              item &&
-              <Modal
-                key={key}
-                style={props}
-                className="p-6"
-                onClick={() => setShowModal(!showModal)}>
-                <Sidebar data={menu} />
-              </Modal>
+              item && (
+                <Modal
+                  key={key}
+                  style={props}
+                  className="p-6"
+                  onClick={() => setShowModal(!showModal)}
+                >
+                  <Sidebar data={menu} />
+                </Modal>
+              )
           )}
-        </div>}
+        </div>
+      )}
       <div className="relative bg-yellow">
         <div className="container flex justify-between sm:justify-start items-center h-16">
           <div className="-ml-5 w-1/3 hidden lg:block">
             <ul className="flex">
               {menu.map((item, index) => (
-                <Link to={`/${item.name}`}>
+                <Link key={index} to={`/${item.name}`}>
                   <li key={index}>
                     <button
                       className={`block py-5 lg:px-3 xl:px-5 hover:bg-smoke 
                         uppercase ${index === activeTab && "bg-smoke"}`}
-                      onMouseOver={() => navActions(item.categories, item.name, true)}
-                      onFocus={() => navActions(item.categories, item.name, true)}>
+                      onMouseOver={() =>
+                        navActions(item.categories, item.name, true)
+                      }
+                      onFocus={() =>
+                        navActions(item.categories, item.name, true)
+                      }
+                    >
                       {item.name}
                     </button>
                   </li>
@@ -117,7 +126,8 @@ const Navbar = () => {
           </div>
           <Link
             to="/"
-            className="hidden ml-12 sm:ml-0 lg:ml-5 sm:flex justify-center sm:w-1/3">
+            className="hidden ml-12 sm:ml-0 lg:ml-5 sm:flex justify-center sm:w-1/3"
+          >
             <Logo />
           </Link>
           <div className="h-full flex justify-end w-1/3">
@@ -125,22 +135,27 @@ const Navbar = () => {
               <User />
               <button
                 className="flex flex-row-reverse mr-6 relative"
-                onClick={toggleCartOpen}>
-                {qty > 0 ?
-                  <Shopping className="ml-8 lg:mr-2" /> :
-                  <Shop className="ml-8 lg:mr-2" />}
+                onClick={toggleCartOpen}
+              >
+                {qty > 0 ? (
+                  <Shopping className="ml-8 lg:mr-2" />
+                ) : (
+                  <Shop className="ml-8 lg:mr-2" />
+                )}
               </button>
               {transitions.map(
                 ({ item, key, props }) =>
-                  item &&
-                  <Modal
-                    key={key}
-                    style={props}
-                    btnClass="pt-6 pr-6"
-                    className="shadow-yellow right-0 top-16 fixed"
-                    onClick={toggleCartOpen}>
-                    <CartSidebar />
-                  </Modal>
+                  item && (
+                    <Modal
+                      key={key}
+                      style={props}
+                      btnClass="pt-6 pr-6"
+                      className="shadow-yellow right-0 top-16 fixed"
+                      onClick={toggleCartOpen}
+                    >
+                      <CartSidebar />
+                    </Modal>
+                  )
               )}
             </div>
             <div className="hidden lg:flex items-center">
@@ -158,7 +173,8 @@ const Navbar = () => {
                 <li key={index}>
                   <Link
                     to={`/${item}`}
-                    className="block py-6 lg:px-3 xl:px-5 hover:text-yellow focus:text-yellow uppercase">
+                    className="block py-6 lg:px-3 xl:px-5 hover:text-yellow focus:text-yellow uppercase"
+                  >
                     {item.replace(/-/g, " ")}
                   </Link>
                 </li>

@@ -31,8 +31,6 @@ const ProductCard = ({
       }
     }
   `);
-  console.log(img);
-
   return (
     <article className={className}>
       <div className="bg-white mb-16">

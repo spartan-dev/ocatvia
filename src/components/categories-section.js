@@ -3,7 +3,6 @@ import Img from "gatsby-image";
 import Anchor from "./anchor";
 
 const Categories = ({ title, className, edges }) => {
-  console.log(edges);
   return (
     <section className={`container ${className}`}>
       <p className="title mb-4">{title}</p>
@@ -16,7 +15,7 @@ const Categories = ({ title, className, edges }) => {
                 item.node.image.localFile.childImageSharp.fluid.originalName
               }
               fluid={item.node.image.localFile.childImageSharp.fluid}
-              alt={item.node.image.localFile.childImageSharp.fluid.originalName}
+              alt={item.node.title}
             />
             <Anchor
               text={item.node.title}

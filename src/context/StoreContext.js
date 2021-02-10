@@ -10,6 +10,7 @@ const defaultValues = {
   cart: [],
   addProductToCart: () => {},
   removeProductFromToCart: () => {},
+  updateProductsFromCart: () => {},
   client,
   checkout: {
     lineItems: [],
@@ -27,6 +28,7 @@ export const StoreProvider = ({ children }) => {
   }, []);
 
   const initializeCheckout = async () => {
+    console.log(client);
     try {
       // Check if it's a browser
       const isBrowser = typeof window !== "undefined";
@@ -86,6 +88,18 @@ export const StoreProvider = ({ children }) => {
       console.error(error);
     }
   };
+  const updateProductsFromCart = async (lineItemId, qty) => {
+    try {
+      const lineItemsToUpdate = [{ id: lineItemId, quantity: qty - 1 }];
+      const newCheckout = await client.checkout.updateLineItems(
+        checkout.id,
+        lineItemsToUpdate
+      );
+      setCheckout(newCheckout);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <StoreContext.Provider
       value={{
@@ -93,6 +107,7 @@ export const StoreProvider = ({ children }) => {
         checkout,
         addProductToCart,
         removeProductFromToCart,
+        updateProductsFromCart,
         toggleCartOpen,
         isCartOpen,
       }}
