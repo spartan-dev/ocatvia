@@ -7,7 +7,7 @@ module.exports = {
     extend: {
       colors: {
         white: "#FFFFFF",
-        ivory: "#FEFEFD",
+        ivory: "#EDE8DC4D",
         beige: "#EDE8DC",
         smoke: "rgba(0,0,0,0.5)",
         black: "#000000",
@@ -16,7 +16,6 @@ module.exports = {
         red: "#E85633",
         yellow: "#ECAB2F",
         pink: "#F0A3B3",
-        "yellow-light": "#EDE8DC4D",
         "pink-light": "#F0A3B31A"
       },
       backgroundColor: theme => ({
@@ -24,9 +23,6 @@ module.exports = {
       }),
       backgroundImage: {
         checkmark: "url('../images/assets/checkmark.png')"
-      },
-      width: {
-        106: "26.5rem"
       },
       fontFamily: {
         "bon-voyage": ["MADE Bon Voyage Regular"],

@@ -14,7 +14,7 @@ const ProductDetail = ({ product }) => {
           <p className="detail-title">
             Ron Barceló <br /> Imperial <br /> Premium Blend {product.title}
           </p>
-          <p className="font-gotham-book opacity-50 text-body my-6 leading-9">
+          <p className="font-gotham-book opacity-50 my-6 leading-9">
             Ron premium
             <br />
             Tamaño: 750 ml <br />

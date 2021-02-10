@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useTransition } from "react-spring";
 import { graphql } from "gatsby";
 import Anchor from "../components/anchor";
 import Filters from "../components/filters";
@@ -7,6 +8,7 @@ import Modal from "../components/modal";
 import ProductCard from "../components/product-card";
 
 import Chevron from "../images/svg/chevron.svg";
+import Close from '../images/svg/close.svg'
 import Filter from "../images/svg/filter.svg";
 
 const CategoryPageTemplate = ({ data }) => {
@@ -15,16 +17,13 @@ const CategoryPageTemplate = ({ data }) => {
   } = data;
   const [route, setRoute] = useState("");
   const [showModal, setShowModal] = useState(false);
-  const [body, setBody] = useState(null);
+  const [filters, setFilters] = useState([])
 
-  useEffect(() => {
-    if (typeof window !== "undefined")
-      setBody(document.getElementsByTagName("body")[0]);
-  }, []);
-
-  useEffect(() => {
-    if (body !== null) body.style.overflow = showModal ? "hidden" : "auto";
-  }, [body, showModal]);
+  const transitions = useTransition(showModal, null, {
+    from: { transform: "translate3d(-100%,0,0)" },
+    enter: { transform: "translate3d(0,0,0)" },
+    leave: { transform: "translate3d(-100%,0,0)" },
+  });
 
   useEffect(() => {
     let newRoute;
@@ -36,12 +35,26 @@ const CategoryPageTemplate = ({ data }) => {
         })}`;
     setRoute(newRoute);
   }, []);
+
+  const onChange = ({ name, checked }) => {
+    if (checked) {
+      setFilters(prevstate => [name, ...prevstate])
+    } else {
+      setFilters(filters.filter(item => item !== name))
+    }
+  }
+
   return (
     <Layout>
-      {showModal && (
-        <Modal onClick={() => setShowModal(false)} className="shadow-yellow">
-          <Filters />
-        </Modal>
+      {transitions.map(
+        ({ item, key, props }) =>
+          item &&
+          <Modal
+            key={key}
+            className="shadow-yellow fixed p-6"
+            style={props} onClick={() => setShowModal(!showModal)}>
+            <Filters onChange={onChange} arr={filters} />
+          </Modal>
       )}
       <div className="container">
         <p className="small py-10">{route}</p>
@@ -64,6 +77,26 @@ const CategoryPageTemplate = ({ data }) => {
             </div>
           </div>
         </div>
+        {filters.length !== 0 &&
+          <div className="bg-pink-light lg:mr-8 pt-5 px-6 flex flex-col lg:flex-row justify-end items-center">
+            <ul className="flex flex-row-reverse flex-wrap">
+              {filters.map((item, index) => (
+                <li key={index}
+                  className="flex items-center justify-between mb-5 filter-badge">
+                  <span>{item}</span>
+                  <button className="ml-1"
+                    onClick={() =>
+                      setFilters(filters.filter(element => item !== element))}>
+                    <Close className="w-4 h-4" />
+                  </button>
+                </li>
+              ))}
+            </ul>
+            <button className="font-gotham-book text-red w-auto mb-5"
+              onClick={() => setFilters([])}>
+              Limpiar filtros
+            </button>
+          </div>}
         <div className="flex flex-wrap sm:-mr-7">
           {products.map((item, index) => {
             return (

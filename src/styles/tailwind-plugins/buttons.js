@@ -11,6 +11,17 @@ module.exports = ({ theme, addUtilities }) => {
       textAlign: 'center',
       border: `2px solid ${theme('colors')['red']}`
     },
+    '.btn-black': {
+      fontFamily: theme('fontFamily')['gotham-book'],
+      color: theme('colors')['body'],
+      height: '48px',
+      width: '220px',
+      fontSize: '18px',
+      letterSpacing: '0',
+      lineHeight: '24px',
+      textAlign: 'center',
+      border: `2px solid ${theme('colors')['body']}`
+    },
     '.btn-shop-slider': {
       position: 'absolute',
       marginTop: '-8px',

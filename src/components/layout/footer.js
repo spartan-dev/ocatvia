@@ -8,7 +8,7 @@ const subcategories = ["vinos", "ron", "tequila", "espumantes", "grappa", "crema
 
 const Footer = () => {
   return (
-    <section>
+    <footer>
       <div className="flex justify-center">
         <div className="h-24 w-20 flex justify-between items-center">
           <a target="_blank" rel="noreferrer"
@@ -45,7 +45,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-    </section>
+    </footer>
   )
 }
 
