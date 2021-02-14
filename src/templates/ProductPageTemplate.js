@@ -22,6 +22,7 @@ export const query = graphql`
       shopifyId
       tags
       variants {
+        shopifyId
         price
         title
         weight
@@ -30,6 +31,7 @@ export const query = graphql`
           localFile {
             childImageSharp {
               fluid {
+                ...GatsbyImageSharpFluid
                 originalName
               }
             }

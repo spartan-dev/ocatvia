@@ -57,7 +57,7 @@ const ProductCard = ({
         </div>
         <div className="flex flex-col items-start">
           <Link
-            to={`/products/${name}`}
+            to={`/${name}`}
             className="name text-lg sm:text-base md:text-sm lg:text-base xl:text-lg mt-4 "
           >
             {alt}
