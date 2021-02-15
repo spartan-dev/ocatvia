@@ -1,6 +1,6 @@
-import React from "react";
-import Img from "gatsby-image";
-import Anchor from "./anchor";
+import React from 'react';
+import Img from 'gatsby-image';
+import Anchor from './anchor';
 
 const Categories = ({ title, className, edges }) => {
   return (

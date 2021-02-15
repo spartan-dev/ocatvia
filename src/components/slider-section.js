@@ -1,27 +1,27 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 import {
   ButtonNext,
   CarouselProvider,
   Slider,
   Slide,
-} from "pure-react-carousel";
-import "pure-react-carousel/dist/react-carousel.es.css";
+} from 'pure-react-carousel';
+import 'pure-react-carousel/dist/react-carousel.es.css';
 
-import ProductCard from "./product-card";
+import ProductCard from './product-card';
 
-import Arrow from "../images/svg/arrow.svg";
+import Arrow from '../images/svg/arrow.svg';
 
 const Selection = ({ title, data, className }) => {
   const [width, setWidth] = useState(0);
 
   const handleResize = () => {
-    if (typeof window !== "undefined") setWidth(window.innerWidth);
+    if (typeof window !== 'undefined') setWidth(window.innerWidth);
   };
 
   useEffect(() => {
-    if (typeof window !== "undefined") setWidth(window.innerWidth);
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    if (typeof window !== 'undefined') setWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   const slides = width >= 1024 ? 4 : width >= 640 ? 3 : 1;
@@ -43,12 +43,13 @@ const Selection = ({ title, data, className }) => {
             return (
               <Slide key={index}>
                 <ProductCard
-                  index={index}
-                  img={item.img}
-                  alt={item.alt}
-                  name={item.name}
-                  mililiters={item.mililiters}
-                  price={item.price}
+                  key={index}
+                  img={item.variants[0].image}
+                  name={item.title}
+                  handle={item.handle}
+                  mililiters={item.variants[0].weight}
+                  price={item.variants[0].price}
+                  variantId={item.variants[0].shopifyId}
                   btnClassName="btn-shop-slider"
                   className="w-full sm:w-44 md:w-52 lg:w-56 xl:w-64 sm:mx-2"
                 />

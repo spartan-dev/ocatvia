@@ -1,12 +1,25 @@
-import React from "react"
+import React from 'react';
 
-const data = [{
-  name: "SUBCATEGORÍA",
-  arr: ["Tequila", "Ron", "Vodka", "Crema", "Grappa", "Gin", "Whisky",]
-}, {
-  name: "TAMAÑO",
-  arr: ["1.75 L.", "1.5 L.", "1.25 L.", "1 L.", "750 ml.", "700 ml.", "500 ml.", "200 ml.", "100 ml."]
-}]
+const data = [
+  {
+    name: 'SUBCATEGORÍA',
+    arr: ['Tequila', 'Ron', 'Vodka', 'Crema', 'Grappa', 'Gin', 'Whisky'],
+  },
+  {
+    name: 'TAMAÑO',
+    arr: [
+      '1.75 L.',
+      '1.5 L.',
+      '1.25 L.',
+      '1 L.',
+      '750 ml.',
+      '700 ml.',
+      '500 ml.',
+      '200 ml.',
+      '100 ml.',
+    ],
+  },
+];
 
 const Filters = ({ onChange, arr }) => {
   return (
@@ -18,11 +31,13 @@ const Filters = ({ onChange, arr }) => {
           <ul>
             {element.arr.map((item, index) => (
               <li className="font-gotham-book my-3" key={index}>
-                <input type="checkbox"
+                <input
+                  type="checkbox"
                   name={item}
                   checked={arr.includes(item)}
                   className="checkbox mr-5"
-                  onChange={({ target }) => onChange(target)} />
+                  onChange={({ target }) => onChange(target)}
+                />
                 <span>{item}</span>
               </li>
             ))}
@@ -30,7 +45,7 @@ const Filters = ({ onChange, arr }) => {
         </div>
       ))}
     </div>
-  )
-}
+  );
+};
 
-export default Filters
+export default Filters;

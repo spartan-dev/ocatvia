@@ -1,9 +1,11 @@
-import React, { createContext, useState, useEffect } from "react";
-import Client from "shopify-buy";
+import React, { createContext, useState, useEffect } from 'react';
+import Client from 'shopify-buy';
+
 const client = Client.buildClient({
-  domain: "octavia-gourmet.myshopify.com",
-  storefrontAccessToken: "3cebf316cd47b93ca1b5997118380079",
+  domain: 'octavia-gourmet.myshopify.com',
+  storefrontAccessToken: '3cebf316cd47b93ca1b5997118380079',
 });
+
 const defaultValues = {
   isCartOpen: false,
   toggleCartOpen: () => {},
@@ -16,9 +18,10 @@ const defaultValues = {
     lineItems: [],
   },
 };
+
 export const StoreContext = createContext(defaultValues);
 // Check if it's a browser
-const isBrowser = typeof window !== "undefined";
+const isBrowser = typeof window !== 'undefined';
 
 export const StoreProvider = ({ children }) => {
   const [checkout, setCheckout] = useState(defaultValues.checkout);
@@ -28,26 +31,26 @@ export const StoreProvider = ({ children }) => {
   useEffect(() => {
     initializeCheckout();
   }, []);
+
   const getNewId = async () => {
     try {
       const newCheckout = await client.checkout.create();
       if (isBrowser) {
-        localStorage.setItem("checkout_id", newCheckout.id);
+        localStorage.setItem('checkout_id', newCheckout.id);
       }
       return newCheckout;
     } catch (error) {
       console.error(error);
     }
   };
+
   const initializeCheckout = async () => {
     try {
       // Check if id exists
       const currentCheckoutId = isBrowser
-        ? localStorage.getItem("checkout_id")
+        ? localStorage.getItem('checkout_id')
         : null;
-
       let newCheckout = null;
-
       if (currentCheckoutId) {
         // If id exists, fetch checkout from Shopify
         newCheckout = await client.checkout.fetch(currentCheckoutId);
@@ -58,7 +61,6 @@ export const StoreProvider = ({ children }) => {
         // If id does not, create new checkout
         newCheckout = await getNewId();
       }
-
       // Set checkout to state
       setCheckout(newCheckout);
     } catch (error) {
@@ -86,6 +88,7 @@ export const StoreProvider = ({ children }) => {
       console.error(error);
     }
   };
+
   const removeProductFromToCart = async (lineItemId) => {
     try {
       const newCheckout = await client.checkout.removeLineItems(checkout.id, [
@@ -96,6 +99,7 @@ export const StoreProvider = ({ children }) => {
       console.error(error);
     }
   };
+
   const updateProductsFromCart = async (lineItemId, qty) => {
     try {
       const lineItemsToUpdate = [{ id: lineItemId, quantity: qty - 1 }];

@@ -1,35 +1,38 @@
-import React, { useEffect, useState, useContext } from "react";
-import { useTransition } from "react-spring";
-import { Link } from "gatsby";
+import React, { useEffect, useState, useContext } from 'react';
+import { useTransition } from 'react-spring';
+import { Link } from 'gatsby';
 
-import { StoreContext } from "../../context/StoreContext";
-import Modal from "../modal";
-import Sidebar from "./sidebar";
-import CartSidebar from "../cart-sidebar";
+import { StoreContext } from '../../context/StoreContext';
 
-import Logo from "../../images/svg/logo.svg";
-import Menu from "../../images/svg/menu.svg";
-import Search from "../../images/svg/search.svg";
-import Shop from "../../images/svg/shop.svg";
-import Shopping from "../../images/svg/shopping.svg";
-import User from "../../images/svg/user.svg";
+import Modal from '../modal';
+import Sidebar from './sidebar';
+import CartSidebar from '../cart-sidebar';
+
+import { transitionsLeft, transitionsRight } from '../../utils';
+
+import Logo from '../../images/svg/logo.svg';
+import Menu from '../../images/svg/menu.svg';
+import Search from '../../images/svg/search.svg';
+import Shop from '../../images/svg/shop.svg';
+import Shopping from '../../images/svg/shopping.svg';
+import User from '../../images/svg/user.svg';
 
 const menu = [
   {
-    name: "vinos",
-    categories: ["vino-tinto", "vino-blanco", "espumantes"],
+    name: 'vinos',
+    categories: ['vino-tinto', 'vino-blanco', 'espumantes'],
   },
   {
-    name: "licores",
-    categories: ["tequila", "ron", "grappa", "crema", "gin", "vodka", "whisky"],
+    name: 'licores',
+    categories: ['tequila', 'ron', 'grappa', 'crema', 'gin', 'vodka', 'whisky'],
   },
   {
-    name: "gourmet",
-    categories: ["chocolates", "salsas", "galletas", "conservas"],
+    name: 'gourmet',
+    categories: ['chocolates', 'salsas', 'galletas', 'conservas'],
   },
   {
-    name: "bebidas",
-    categories: ["agua-natural", "agua-carbonatada"],
+    name: 'bebidas',
+    categories: ['agua-natural', 'agua-carbonatada'],
   },
 ];
 
@@ -41,29 +44,20 @@ const Navbar = () => {
   const [showModal, setShowModal] = useState(false);
   const [body, setBody] = useState(null);
 
-  const transitions = useTransition(isCartOpen, null, {
-    from: { transform: "translate3d(100%,0,0)" },
-    enter: { transform: "translate3d(0,0,0)" },
-    leave: { transform: "translate3d(100%,0,0)" },
-  });
-
-  const transitionsSidebar = useTransition(showModal, null, {
-    from: { transform: "translate3d(-100%,0,0)" },
-    enter: { transform: "translate3d(0,0,0)" },
-    leave: { transform: "translate3d(-100%,0,0)" },
-  });
+  const transitionLeft = useTransition(showModal, null, transitionsLeft);
+  const transitionRight = useTransition(isCartOpen, null, transitionsRight);
 
   const qty = checkout.lineItems.reduce((total, item) => {
     return total + item.quantity;
   }, 0);
 
   useEffect(() => {
-    if (typeof window !== "undefined")
-      setBody(document.getElementsByTagName("body")[0]);
+    if (typeof window !== 'undefined')
+      setBody(document.getElementsByTagName('body')[0]);
   }, []);
 
   useEffect(() => {
-    if (body !== null) body.style.overflow = showModal ? "hidden" : "auto";
+    if (body !== null) body.style.overflow = showModal ? 'hidden' : 'auto';
   }, [body, showModal]);
 
   const navActions = (categories, index, on = false) => {
@@ -80,7 +74,7 @@ const Navbar = () => {
     >
       {showModal && (
         <div className="z-20 absolute w-screen h-screen top-0 bg-smoke">
-          {transitionsSidebar.map(
+          {transitionLeft.map(
             ({ item, key, props }) =>
               item && (
                 <Modal
@@ -104,7 +98,7 @@ const Navbar = () => {
                   <li key={index}>
                     <button
                       className={`block py-5 lg:px-3 xl:px-5 hover:bg-smoke 
-                        uppercase ${index === activeTab && "bg-smoke"}`}
+                        uppercase ${index === activeTab && 'bg-smoke'}`}
                       onMouseOver={() =>
                         navActions(item.categories, item.name, true)
                       }
@@ -143,7 +137,7 @@ const Navbar = () => {
                   <Shop className="ml-8 lg:mr-2" />
                 )}
               </button>
-              {transitions.map(
+              {transitionRight.map(
                 ({ item, key, props }) =>
                   item && (
                     <Modal
@@ -175,7 +169,7 @@ const Navbar = () => {
                     to={`/${item}`}
                     className="block py-6 lg:px-3 xl:px-5 hover:text-yellow focus:text-yellow uppercase"
                   >
-                    {item.replace(/-/g, " ")}
+                    {item.replace(/-/g, ' ')}
                   </Link>
                 </li>
               ))}

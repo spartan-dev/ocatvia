@@ -1,16 +1,16 @@
-import React, { useContext } from "react";
-import { Link } from "gatsby";
+import React, { useContext } from 'react';
 
-import { StoreContext } from "../context/StoreContext";
-import Layout from "../components/layout";
+import { StoreContext } from '../context/StoreContext';
 
-import Minus from "../images/svg/minus.svg";
-import Plus from "../images/svg/plus.svg";
-import Trash from "../images/svg/trash.svg";
+import Layout from '../components/layout';
 
-import empty from "../images/assets/empty.png";
+import Minus from '../images/svg/minus.svg';
+import Plus from '../images/svg/plus.svg';
+import Trash from '../images/svg/trash.svg';
 
-const imageUrl = "/static/5df342808b1d5e1d503c0789a39cc00d/14b42/IMG_8624.jpg";
+import empty from '../images/assets/empty.png';
+
+const imageUrl = '/static/5df342808b1d5e1d503c0789a39cc00d/14b42/IMG_8624.jpg';
 
 const ShopSidebar = () => {
   const {
@@ -19,7 +19,9 @@ const ShopSidebar = () => {
     addProductToCart,
     updateProductsFromCart,
   } = useContext(StoreContext);
+
   const handleChange = (params) => {};
+
   return (
     <Layout>
       <section className="container min-h-full font-gotham-medium">
@@ -29,7 +31,7 @@ const ShopSidebar = () => {
             <div className="mt-6 md:mb-9">
               <span className="price">{checkout.lineItems.length}</span>
               <span className="currency inline-block ml-1">
-                {checkout.lineItems.length > 1 ? "productos" : "producto"}
+                {checkout.lineItems.length > 1 ? 'productos' : 'producto'}
               </span>
             </div>
             <div className="hidden md:flex text-smoke mb-4">
@@ -65,7 +67,7 @@ const ShopSidebar = () => {
                       <input
                         onChange={handleChange}
                         value={`${item.quantity} ${
-                          item.quantity > 1 ? "productos" : "producto"
+                          item.quantity > 1 ? 'productos' : 'producto'
                         }`}
                         className="w-full md:w-48 h-14 border-2 border-beige px-2 pt-2 "
                       />
@@ -118,7 +120,6 @@ const ShopSidebar = () => {
           <div className="flex flex-col items-center my-20">
             <img src={empty} alt="" title="" className="w-1/2 mb-12" />
             <p className="text-2xl">Tu bolsa de compras está vacía</p>
-            <p className="font-gotham-book">Añade algo para hacerme feliz </p>
           </div>
         )}
       </section>

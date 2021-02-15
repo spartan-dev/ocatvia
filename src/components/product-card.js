@@ -1,22 +1,29 @@
-import React from "react";
-import { Link, useStaticQuery, graphql } from "gatsby";
-import Img from "gatsby-image";
-import AddToCart from "./AddToCart";
+import React, { useContext } from 'react';
+import { Link, useStaticQuery, graphql } from 'gatsby';
+import Img from 'gatsby-image';
+
+import { StoreContext } from '../context/StoreContext';
+
+import Shop from '../images/svg/btn-shop.svg';
 
 const ProductCard = ({
   img,
-  alt,
   name,
+  handle,
   mililiters,
   price,
   className,
   btnClassName,
   variantId,
 }) => {
+  const { addProductToCart } = useContext(StoreContext);
+
   //cambia imagenes a undefined mienmtras carga
   const data = useStaticQuery(graphql`
     {
-      allFile(filter: { absolutePath: { regex: "/images/assets/hero.jpg/" } }) {
+      allFile(
+        filter: { absolutePath: { regex: "/images/assets/product-3.jpg/" } }
+      ) {
         edges {
           node {
             relativePath
@@ -31,6 +38,7 @@ const ProductCard = ({
       }
     }
   `);
+
   return (
     <article className={className}>
       <div className="bg-white mb-16">
@@ -38,29 +46,31 @@ const ProductCard = ({
           {img === null || img === undefined ? (
             <Img
               fluid={data.allFile.edges[0].node.childImageSharp.fluid}
-              alt={alt}
-              title={alt}
+              alt={name}
+              title={name}
               className="relative"
             />
           ) : (
             <Img
               fluid={img.localFile.childImageSharp.fluid}
-              alt={alt}
-              title={alt}
+              alt={name}
+              title={name}
               className="relative"
             />
           )}
-
-          {/*  <img src={img} alt={alt} title={alt} className="relative" /> */}
-
-          <AddToCart className={btnClassName} variantId={variantId} />
+          <button
+            className={btnClassName}
+            onClick={() => addProductToCart(variantId)}
+          >
+            <Shop />
+          </button>
         </div>
         <div className="flex flex-col items-start">
           <Link
-            to={`/${name}`}
+            to={`/${handle}`}
             className="name text-lg sm:text-base md:text-sm lg:text-base xl:text-lg mt-4 "
           >
-            {alt}
+            {name}
           </Link>
           <p className="mililiters my-1">{mililiters}ml</p>
           <p className="price">

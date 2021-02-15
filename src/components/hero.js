@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from 'react';
+import { StoreContext } from '../context/StoreContext';
 
-import Anchor from "./anchor";
+import Anchor from './anchor';
 
-const Hero = () => {
+const Hero = ({ product }) => {
+  const { addProductToCart } = useContext(StoreContext);
+
   return (
     <section className="bg-hero">
       <div className="container md:pt-24 lg:pt-56 flex flex-col items-center sm:items-start md:flex-row">
@@ -10,7 +13,12 @@ const Hero = () => {
           <p className="header text-center sm:text-left">
             Línea de oro <br /> de calidad <br /> excepcional
           </p>
-          <button className="btn-red mt-8">Agregar a la bolsa</button>
+          <button
+            className="btn-red mt-8"
+            onClick={() => addProductToCart(product.variants[0].shopifyId)}
+          >
+            Agregar a la bolsa
+          </button>
         </div>
         <div className="main-card">
           <div className="absolute w-80 h-64 border-4 border-beige mt-3 ml-3 py-7 px-5">
@@ -24,7 +32,7 @@ const Hero = () => {
               </p>
               <p>Un vodka para degustar sólo.</p>
             </div>
-            <Anchor text="Descubrir" linkTo="/" />
+            <Anchor text="Descubrir" linkTo={`/${product.handle}`} />
           </div>
         </div>
       </div>
