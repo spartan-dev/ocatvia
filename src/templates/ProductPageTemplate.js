@@ -1,0 +1,127 @@
+import React, { useContext } from 'react';
+import Img from 'gatsby-image';
+import { graphql } from 'gatsby';
+
+import { StoreContext } from '../context/StoreContext';
+
+import CategoriesSection from '../components/categories-section';
+import Layout from '../components/layout';
+
+import { getRandomCategories } from '../utils';
+
+import ron5 from '../images/assets/ron5.jpg';
+
+const ProductPageTemplate = ({ data }) => {
+  const { addProductToCart } = useContext(StoreContext);
+
+  const {
+    shopifyProduct: product,
+    allShopifyCollection: { edges },
+  } = data;
+
+  return (
+    <Layout>
+      <div className="container">
+        <p className="small py-10">
+          Inicio &gt; Licores &gt; Ron &gt; Ron Barceló Imperial Premium Blend
+        </p>
+        <div className="flex items-center justify-around">
+          {product.variants[0].image === null ||
+          product.variants[0].image === undefined ? (
+            <img src={ron5} className="w-96" alt="name" />
+          ) : (
+            <Img
+              fluid={product.variants[0].image.localFile.childImageSharp.fluid}
+              alt={
+                product.variants[0].image.localFile.childImageSharp.fluid
+                  .originalName
+              }
+              className="w-96"
+            />
+          )}
+
+          <div className="w-1/3">
+            <p className="detail-title">{product.title}</p>
+            <p className="font-gotham-book opacity-50 my-6 leading-9">
+              {product.productType}
+              <br />
+              Tamaño: {product.variants[0].weight} oz
+              <br />
+              Descripción: {product.description}
+            </p>
+            <p className="font-gotham-medium text-2xl tracking-widest">
+              ${product.variants[0].price}{' '}
+              <span className="text-base tracking-widest">USD</span>
+            </p>
+            <div className="my-9 h-14 border-2 border-beige py-1 px-4 relative">
+              <p className="small opacity-50">Cantidad</p>
+              <p className="font-gotham-book">1 pieza</p>
+            </div>
+            <button
+              className="btn-red"
+              onClick={() => addProductToCart(product.variants[0].shopifyId)}
+            >
+              Agregar a bolsa
+            </button>
+          </div>
+        </div>
+        <CategoriesSection
+          title="PRODUCTOS RELACIONAD0S"
+          edges={getRandomCategories(edges)}
+          className="mt-8 lg:mt-20 mb-4 lg:mb-12"
+        />
+      </div>
+    </Layout>
+  );
+};
+
+export default ProductPageTemplate;
+
+export const query = graphql`
+  query ProductQuery($handle: String!) {
+    shopifyProduct(handle: { eq: $handle }) {
+      title
+      handle
+      id
+      description
+      productType
+      shopifyId
+      tags
+      variants {
+        shopifyId
+        price
+        title
+        weight
+        weightUnit
+        image {
+          localFile {
+            childImageSharp {
+              fluid {
+                ...GatsbyImageSharpFluid
+                originalName
+              }
+            }
+          }
+        }
+      }
+    }
+    allShopifyCollection {
+      edges {
+        node {
+          title
+          handle
+          image {
+            localFile {
+              childImageSharp {
+                fluid {
+                  ...GatsbyImageSharpFluid
+                  originalName
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;

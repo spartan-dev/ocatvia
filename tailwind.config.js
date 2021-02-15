@@ -7,7 +7,7 @@ module.exports = {
     extend: {
       colors: {
         white: "#FFFFFF",
-        ivory: "#FEFEFD",
+        ivory: "#EDE8DC4D",
         beige: "#EDE8DC",
         smoke: "rgba(0,0,0,0.5)",
         black: "#000000",
@@ -15,18 +15,24 @@ module.exports = {
         body: "#333433",
         red: "#E85633",
         yellow: "#ECAB2F",
-        "yellow-light": "#EDE8DC4D",
+        pink: "#F0A3B3",
         "pink-light": "#F0A3B31A"
       },
       backgroundColor: theme => ({
         ...theme('colors'),
       }),
+      backgroundImage: {
+        checkmark: "url('../images/assets/checkmark.png')"
+      },
       fontFamily: {
         "bon-voyage": ["MADE Bon Voyage Regular"],
         "gotham-book": ["Gotham Book"],
         "gotham-medium": ["Gotham Medium"],
         "gotham-bold": ["Gotham Bold"],
         "gotham-black": ["Gotham Black"]
+      },
+      boxShadow: {
+        yellow: "3px 0 16px 0 rgba(236,171,47,0.75)"
       }
     },
   },

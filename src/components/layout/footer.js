@@ -1,22 +1,46 @@
-import React from "react"
+import React from 'react';
+import { Link } from 'gatsby';
 
-import Facebook from "../../images/svg/facebook.svg"
-import Instagram from "../../images/svg/instagram.svg"
+import Facebook from '../../images/svg/facebook.svg';
+import Instagram from '../../images/svg/instagram.svg';
 
-const categories = ["vinos", "licor", "gourmet", "bebidas"]
-const subcategories = ["vinos", "ron", "tequila", "espumantes", "grappa", "cremas", "gin", "vodka", "whisky", "conservas", "galletas", "salsas", "chocolates", "agua natural", "agua carbonatada"]
+const categories = ['vinos', 'licor', 'gourmet', 'bebidas'];
+const subcategories = [
+  'vino-tinto',
+  'vino-blanco',
+  'espumantes',
+  'tequila',
+  'ron',
+  'grappa',
+  'cremas',
+  'gin',
+  'vodka',
+  'whisky',
+  'chocolates',
+  'salsas',
+  'galletas',
+  'conservas',
+  'agua-natural',
+  'agua-carbonatada',
+];
 
 const Footer = () => {
   return (
-    <section>
+    <footer>
       <div className="flex justify-center">
         <div className="h-24 w-20 flex justify-between items-center">
-          <a target="_blank" rel="noreferrer"
-            href="https://www.facebook.com/Octavia-Mundo-Gourmet-101731011808480">
+          <a
+            target="_blank"
+            rel="noreferrer"
+            href="https://www.facebook.com/Octavia-Mundo-Gourmet-101731011808480"
+          >
             <Facebook />
           </a>
-          <a target="_blank" rel="noreferrer"
-            href="https://www.instagram.com/octaviamundogourmet/">
+          <a
+            target="_blank"
+            rel="noreferrer"
+            href="https://www.instagram.com/octaviamundogourmet/"
+          >
             <Instagram />
           </a>
         </div>
@@ -29,7 +53,9 @@ const Footer = () => {
             </p>
             <ul className="grid grid-cols-1 gap-4 text-xs font-gotham-book">
               {categories.map((item, index) => (
-                <li key={index} className="tracking-widest">{item}</li>
+                <Link key={index} to={`/${item}`}>
+                  <li className="tracking-widest">{item.replace(/-/g, ' ')}</li>
+                </Link>
               ))}
             </ul>
           </div>
@@ -39,14 +65,16 @@ const Footer = () => {
             </p>
             <ul className="grid lg:grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-4 text-xs font-gotham-book">
               {subcategories.map((item, index) => (
-                <li key={index} className="tracking-widest">{item}</li>
+                <Link key={index} to={`/${item}`}>
+                  <li className="tracking-widest">{item.replace(/-/g, ' ')}</li>
+                </Link>
               ))}
             </ul>
           </div>
         </div>
       </div>
-    </section>
-  )
-}
+    </footer>
+  );
+};
 
-export default Footer
+export default Footer;

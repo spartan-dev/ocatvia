@@ -1,21 +1,20 @@
-import React from "react"
+import React from 'react';
+import { animated } from 'react-spring';
 
-import Close from "../images/svg/close.svg"
+import Close from '../images/svg/close.svg';
 
-const Modal = ({ children, onClick, className }) => {
+const Modal = ({ style, children, onClick, className, btnClass }) => {
   return (
-    <div className={`z-20 absolute w-screen h-screen ${className}`}>
-      <div className="w-4/5 h-full sm:w-2/5 bg-white p-6 flex flex-col items-end">
-        <button className="focus:outline-none"
-          onClick={() => onClick()}>
-          <Close />
-        </button>
-        <div className="w-full overflow-y-scroll">
-          {children}
-        </div>
-      </div>
-    </div>
-  )
-}
+    <animated.div
+      className={`z-20 w-72 sm:w-2/5 lg:w-96 h-full bg-white flex flex-col items-end ${className}`}
+      style={{ ...style }}
+    >
+      <button onClick={() => onClick()} className={btnClass && btnClass}>
+        <Close />
+      </button>
+      <div className="w-full h-full overflow-y-scroll">{children}</div>
+    </animated.div>
+  );
+};
 
-export default Modal
+export default Modal;

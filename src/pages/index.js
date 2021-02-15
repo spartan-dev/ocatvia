@@ -1,100 +1,91 @@
-import React from "react"
+import React from 'react';
+import { graphql } from 'gatsby';
 
-import CategoriesSection from "../components/categories-section"
-import Hero from "../components/hero"
-import Layout from '../components/layout'
-import SliderSection from "../components/slider-section"
+import CategoriesSection from '../components/categories-section';
+import Hero from '../components/hero';
+import Layout from '../components/layout';
+import SliderSection from '../components/slider-section';
 
-import prod1 from "../images/assets/product-1.jpg"
-import prod2 from "../images/assets/product-2.jpg"
-import prod3 from "../images/assets/product-3.jpg"
-import prod4 from "../images/assets/product-4.jpg"
+const Index = ({ data }) => {
+  const {
+    allShopifyCollection: { edges },
+    allShopifyProduct: { nodes },
+    shopifyProduct,
+  } = data;
 
-import img1 from "../images/assets/vinos.png"
-import img2 from "../images/assets/licores.png"
-import img3 from "../images/assets/gourmet.png"
-import img4 from "../images/assets/bebidas.png"
-
-const selection = [{
-  img: prod1,
-  alt: "alt_img",
-  name: "Chianti Fiasco Bottega",
-  mililiters: "500",
-  price: "$17.00"
-}, {
-  img: prod2,
-  alt: "alt_img",
-  name: "Beluga Transatlantic",
-  mililiters: "700",
-  price: "$60.00"
-}, {
-  img: prod3,
-  alt: "alt_img",
-  name: "Sandro Bottega Grappa",
-  mililiters: "700",
-  price: "$24.00"
-}, {
-  img: prod4,
-  alt: "alt_img",
-  name: "Peter Brum Vino Noire",
-  mililiters: "750",
-  price: "$15.68"
-}, {
-  img: prod1,
-  alt: "alt_img",
-  name: "Chianti Fiasco Bottega",
-  mililiters: "500",
-  price: "$17.00"
-}, {
-  img: prod2,
-  alt: "alt_img",
-  name: "Beluga Transatlantic",
-  mililiters: "700",
-  price: "$60.00"
-}, {
-  img: prod3,
-  alt: "alt_img",
-  name: "Sandro Bottega Grappa",
-  mililiters: "700",
-  price: "$24.00"
-}, {
-  img: prod4,
-  alt: "alt_img",
-  name: "Peter Brum Vino Noire",
-  mililiters: "750",
-  price: "$15.68"
-}]
-
-const categories = [{
-  img: img1,
-  name: "VINOS"
-}, {
-  img: img2,
-  name: "LICORES"
-}, {
-  img: img3,
-  name: "GOURMET"
-}, {
-  img: img4,
-  name: "BEBIDAS"
-}]
-
-const Index = () => {
   return (
-    <div>
-      <Layout>
-        <Hero />
-        <SliderSection
-          title="SELECCIÓN"
-          data={selection}
-          className="mt-72 mb-14 sm:my-14" />
-        <CategoriesSection
-          title="CATEGORÍAS"
-          data={categories}
-          className="mt-8 mb-4 lg:mb-12" />
-      </Layout>
-    </div>
-  )
-}
+    <Layout>
+      <Hero product={shopifyProduct} />
+      <SliderSection
+        title="SELECCIÓN"
+        data={nodes}
+        className="mt-72 mb-14 sm:my-14"
+      />
+      <CategoriesSection
+        title="CATEGORÍAS"
+        edges={edges}
+        className="mt-8 lg:mt-20 mb-4 lg:mb-12"
+      />
+    </Layout>
+  );
+};
 
-export default Index
+export default Index;
+
+export const collections = graphql`
+  query {
+    allShopifyCollection(
+      filter: { title: { regex: "/Vinos|Bebidas|Gourmet|Licores/" } }
+    ) {
+      edges {
+        node {
+          title
+          handle
+          image {
+            localFile {
+              childImageSharp {
+                fluid {
+                  ...GatsbyImageSharpFluid
+                  originalName
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    shopifyProduct(title: { regex: "/BELUGA GOLD LINE/" }) {
+      variants {
+        shopifyId
+      }
+      handle
+    }
+    allShopifyProduct(
+      limit: 10
+      sort: { fields: variants___price, order: DESC }
+    ) {
+      nodes {
+        title
+        handle
+        description
+        productType
+        variants {
+          shopifyId
+          price
+          weight
+          weightUnit
+          image {
+            localFile {
+              childImageSharp {
+                fluid {
+                  ...GatsbyImageSharpFluid
+                  originalName
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
