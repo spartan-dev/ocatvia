@@ -16,6 +16,7 @@
   },
   "license": "0BSD",
   "dependencies": {
+    "@apollo/client": "^3.3.11",
     "gatsby": "^2.31.0",
     "gatsby-image": "^2.9.0",
     "gatsby-plugin-manifest": "^2.9.1",
@@ -29,6 +30,7 @@
     "gatsby-source-filesystem": "^2.8.1",
     "gatsby-source-shopify": "^3.7.1",
     "gatsby-transformer-sharp": "^2.9.0",
+    "isomorphic-fetch": "^3.0.0",
     "postcss": "^8.2.2",
     "pure-react-carousel": "^1.27.6",
     "react": "^16.13.1",

@@ -126,7 +126,12 @@ const Navbar = () => {
           </Link>
           <div className="h-full flex justify-end w-1/3">
             <div className="flex items-center my-2 lg:border-r border-white">
-              <User />
+              <Link to="/user">
+                <button>
+                  <User />
+                </button>
+              </Link>
+
               <button
                 className="flex flex-row-reverse mr-6 relative"
                 onClick={toggleCartOpen}
