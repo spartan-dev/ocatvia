@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
 import Layout from '../components/layout';
 import { Login, Signup } from '../components/Auth';
+import Loading from '../components/Loading';
+import { UserInfo, UserAddress, UserOrders } from '../components/UserUtils';
 import { useMutation, useQuery, gql, useLazyQuery } from '@apollo/client';
 import { UserContext } from '../context/UserContext';
 const User = () => {
@@ -22,7 +24,6 @@ const User = () => {
     }
     console.log(isAuth, 'si no pasa lo del token');
   }, []);
-
   /*   const [
     updateAddress,
     { data: address, loading: addressLoading },
@@ -49,42 +50,23 @@ const User = () => {
     });
   }; */
 
-  //const { email, firstName, lastName, phone, orders } = data.customer;
-  //destructura del customer
-  // console.log(email, firstName, lastName, phone, orders);
-  //hace set del perfil del usuario
-  /*  setProfile({
-      email,
-      firstName,
-      lastName,
-      phone,
-      orders: orders.edges,
-    }); */
   console.log(data);
   return (
     <Layout>
       <div>hola user</div>
       {!token ? <Login /> : null}
-      <div>Fierro pariente</div>
+      <div>Ficha del Usuario</div>
       {loading ? (
-        <div>Loading...</div>
+        <Loading />
       ) : error ? (
         <div>Error{error.message}</div>
       ) : (
         data && (
-          <div>
-            <span>{data.customer.email}</span> <br />
-            <span>{data.customer.phone}</span> <br />
-            <span>{data.customer.firstName}</span> <br />
-            <span>{data.customer.lastName}</span> <br />
-            {data.customer.orders.edges.length > 0 ? (
-              data.customer.orders.edges.map((order) => {
-                return <div>{order}</div>;
-              })
-            ) : (
-              <div>No hay ordenes aun!!! compra algo</div>
-            )}
-          </div>
+          <section>
+            <UserInfo data={data} />
+            <UserOrders orders={data.customer.orders} />
+            <UserAddress address={data.customer.defaultAddress} />
+          </section>
         )
       )}
       {/*  <form action="">
@@ -148,6 +130,10 @@ const QUERY_USER = gql`
         city
         country
         zip
+        province
+        countryCodeV2
+        provinceCode
+        province
       }
       orders(first: 5) {
         edges {
