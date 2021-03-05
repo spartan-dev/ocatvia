@@ -3,36 +3,41 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: "MADE Bon Voyage Regular";
-  src: url("../fonts/made-bon-voyage-regular.otf") format("opentype");
+  font-family: 'MADE Bon Voyage Regular';
+  src: url('../fonts/made-bon-voyage-regular.otf') format('opentype');
   font-style: normal;
   font-weight: normal;
 }
 @font-face {
-  font-family: "Gotham Book";
-  src: url("../fonts/gotham-book.otf") format("opentype");
+  font-family: 'Gotham Book';
+  src: url('../fonts/gotham-book.otf') format('opentype');
   font-style: normal;
   font-weight: normal;
 }
 @font-face {
-  font-family: "Gotham Medium";
-  src: url("../fonts/gotham-medium.ttf") format("truetype");
+  font-family: 'Gotham Medium';
+  src: url('../fonts/gotham-medium.ttf') format('truetype');
   font-style: normal;
   font-weight: normal;
 }
 @font-face {
-  font-family: "Gotham Bold";
-  src: url("../fonts/gotham-bold.otf") format("opentype");
+  font-family: 'Gotham Bold';
+  src: url('../fonts/gotham-bold.otf') format('opentype');
   font-style: normal;
   font-weight: normal;
 }
 @font-face {
-  font-family: "Gotham Black";
-  src: url("../fonts/gotham-black.otf") format("opentype");
+  font-family: 'Gotham Black';
+  src: url('../fonts/gotham-black.otf') format('opentype');
   font-style: normal;
   font-weight: normal;
 }
 
-button:focus, input:focus {
+button:focus,
+input:focus {
   outline: none !important;
+}
+
+input::-webkit-input-placeholder {
+  padding-left: 4px !important;
 }

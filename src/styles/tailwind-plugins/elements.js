@@ -9,7 +9,7 @@ module.exports = ({ theme, addUtilities }) => {
       letterSpacing: '0',
       lineHeight: '24px',
       textAlign: 'center',
-      border: `2px solid ${theme('colors')['red']}`
+      border: `2px solid ${theme('colors')['red']}`,
     },
     '.btn-black': {
       fontFamily: theme('fontFamily')['gotham-book'],
@@ -20,51 +20,51 @@ module.exports = ({ theme, addUtilities }) => {
       letterSpacing: '0',
       lineHeight: '24px',
       textAlign: 'center',
-      border: `2px solid ${theme('colors')['body']}`
+      border: `2px solid ${theme('colors')['body']}`,
     },
     '.btn-shop-slider': {
       position: 'absolute',
       marginTop: '-8px',
       '@media (min-width: 1280px)': {
-        marginLeft: '174px'
+        marginLeft: '174px',
       },
       '@media (min-width: 1024px) and (max-width: 1279px)': {
-        marginLeft: '142px'
+        marginLeft: '142px',
       },
       '@media (min-width: 768px) and (max-width: 1023px)': {
-        marginLeft: '126px'
+        marginLeft: '126px',
       },
       '@media (min-width: 640px) and (max-width: 767px)': {
-        marginLeft: '94px'
+        marginLeft: '94px',
       },
       '@media (min-width: 426px) and (max-width: 639px)': {
-        marginLeft: 'calc(82.5% - 8px)'
+        marginLeft: 'calc(82.5% - 8px)',
       },
       '@media (max-width: 425px)': {
-        marginLeft: 'calc(77% - 8px)'
-      }
+        marginLeft: 'calc(77% - 8px)',
+      },
     },
     '.btn-shop': {
       position: 'absolute',
       marginTop: '-8px',
       '@media (min-width: 1280px)': {
-        marginLeft: '280px'
+        marginLeft: '280px',
       },
       '@media (min-width: 1024px) and (max-width: 1279px)': {
-        marginLeft: '224px'
+        marginLeft: '224px',
       },
       '@media (min-width: 768px) and (max-width: 1023px)': {
-        marginLeft: '240px'
+        marginLeft: '240px',
       },
       '@media (min-width: 640px) and (max-width: 767px)': {
-        marginLeft: '188px'
+        marginLeft: '188px',
       },
       '@media (min-width: 426px) and (max-width: 639px)': {
-        marginLeft: 'calc(82.5% - 8px)'
+        marginLeft: 'calc(82.5% - 8px)',
       },
       '@media (max-width: 425px)': {
-        marginLeft: 'calc(77% - 8px)'
-      }
+        marginLeft: 'calc(77% - 8px)',
+      },
     },
     '.checkbox': {
       appearance: 'none',
@@ -77,7 +77,7 @@ module.exports = ({ theme, addUtilities }) => {
         backgroundImage: theme('backgroundImage')['checkmark'],
         border: `1px solid ${theme('colors')['yellow']}`,
         backgroundSize: 'contain',
-      }
+      },
     },
     '.filter-badge': {
       fontFamily: theme('fontFamily')['gotham-book'],
@@ -91,7 +91,16 @@ module.exports = ({ theme, addUtilities }) => {
       borderRadius: '9999px',
       marginRight: '20px',
       padding: '0 10px 0 12px',
-      backgroundColor: theme('colors')['white']
-    }
+      backgroundColor: theme('colors')['white'],
+    },
+    '.input': {
+      fontFamily: theme('fontFamily')['gotham-book'],
+      color: theme('colors')['body'],
+      border: '2px',
+      height: '3.5rem',
+      paddingLeft: '7px',
+      paddingRight: '4px',
+      border: `2px solid ${theme('colors')['beige']}`,
+    },
   });
 };

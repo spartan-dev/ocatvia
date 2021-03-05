@@ -69,7 +69,7 @@ const ShopSidebar = () => {
                         value={`${item.quantity} ${
                           item.quantity > 1 ? 'productos' : 'producto'
                         }`}
-                        className="w-full md:w-48 h-14 border-2 border-beige px-2 pt-2 "
+                        className="w-full md:w-48 pt-2 input"
                       />
                       <p className="absolute top-1 left-2 small opacity-50">
                         Cantidad

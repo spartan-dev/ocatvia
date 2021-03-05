@@ -68,7 +68,7 @@ const Navbar = () => {
 
   return (
     <nav
-      className="font-gotham-medium text-navbar fixed w-full top-0 z-30"
+      className="shadow-yellow font-gotham-medium text-navbar fixed w-full top-0 z-30"
       aria-hidden="true"
       onMouseLeave={() => navActions([], null)}
     >
@@ -126,7 +126,7 @@ const Navbar = () => {
           </Link>
           <div className="h-full flex justify-end w-1/3">
             <div className="flex items-center my-2 lg:border-r border-white">
-              <Link to="/user">
+              <Link className="flex" to="/user">
                 <button>
                   <User />
                 </button>

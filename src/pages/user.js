@@ -2,7 +2,12 @@ import React, { useState, useEffect, useContext } from 'react';
 import Layout from '../components/layout';
 import { Login, Signup } from '../components/Auth';
 import Loading from '../components/Loading';
-import { UserInfo, UserAddress, UserOrders } from '../components/UserUtils';
+import {
+  UserInfo,
+  UserAddress,
+  UserOrders,
+  Directions,
+} from '../components/UserUtils';
 import { useMutation, useQuery, gql, useLazyQuery } from '@apollo/client';
 import { UserContext } from '../context/UserContext';
 const User = () => {
@@ -53,22 +58,21 @@ const User = () => {
   console.log(data);
   return (
     <Layout>
-      <div>hola user</div>
-      {!token ? <Login /> : null}
-      <div>Ficha del Usuario</div>
+      <Directions />
+      {/* {!token ? <Login /> : null}
       {loading ? (
         <Loading />
       ) : error ? (
         <div>Error{error.message}</div>
       ) : (
         data && (
-          <section>
+          <div>
             <UserInfo data={data} />
-            <UserOrders orders={data.customer.orders} />
             <UserAddress address={data.customer.defaultAddress} />
-          </section>
+            <UserOrders orders={data.customer.orders} />
+          </div>
         )
-      )}
+      )} */}
       {/*  <form action="">
         <label htmlFor="lastName">Apellido</label>
         <input onChange={handleAddressChange} type="text" name="lastName" />
