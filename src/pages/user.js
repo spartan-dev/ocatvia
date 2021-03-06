@@ -8,7 +8,8 @@ import {
   UserOrders,
   Directions,
 } from '../components/UserUtils';
-import { useMutation, useQuery, gql, useLazyQuery } from '@apollo/client';
+import { useLazyQuery } from '@apollo/client';
+import { QUERY_USER } from '../GRAPHQL/queries';
 import { UserContext } from '../context/UserContext';
 const User = () => {
   const { isAuth, token } = useContext(UserContext);
@@ -55,11 +56,10 @@ const User = () => {
     });
   }; */
 
-  console.log(data);
   return (
     <Layout>
-      <Directions />
-      {/* {!token ? <Login /> : null}
+      {/*   <Directions /> */}
+      {!token ? <Login /> : null}
       {loading ? (
         <Loading />
       ) : error ? (
@@ -72,7 +72,7 @@ const User = () => {
             <UserOrders orders={data.customer.orders} />
           </div>
         )
-      )} */}
+      )}
       {/*  <form action="">
         <label htmlFor="lastName">Apellido</label>
         <input onChange={handleAddressChange} type="text" name="lastName" />
@@ -98,54 +98,3 @@ const User = () => {
 };
 
 export default User;
-
-const UPDATE_ADDRESS = gql`
-  mutation customerAddressCreate(
-    $customerAccessToken: String!
-    $address: MailingAddressInput!
-  ) {
-    customerAddressCreate(
-      customerAccessToken: $customerAccessToken
-      address: $address
-    ) {
-      customerUserErrors {
-        code
-        field
-        message
-      }
-      customerAddress {
-        id
-      }
-    }
-  }
-`;
-
-const QUERY_USER = gql`
-  query customer($customerAccessToken: String!) {
-    customer(customerAccessToken: $customerAccessToken) {
-      createdAt
-      firstName
-      lastName
-      email
-      phone
-      defaultAddress {
-        address1
-        address2
-        city
-        country
-        zip
-        province
-        countryCodeV2
-        provinceCode
-        province
-      }
-      orders(first: 5) {
-        edges {
-          node {
-            id
-          }
-        }
-      }
-    }
-  }
-`;

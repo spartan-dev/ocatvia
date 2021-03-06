@@ -53,7 +53,7 @@ const UserAddress = ({ address }) => {
     countryCodeV2,
     provinceCode,
   } = address;
-  console.log(address, 'direcciones en addres user');
+
   //todo este compo debe tener la conexion a la mutacion de actualizar la direccion
 
   //OJO AQUÍ

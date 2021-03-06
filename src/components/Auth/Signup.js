@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { useMutation, useQuery, gql } from '@apollo/client';
-
+import { useMutation } from '@apollo/client';
+import { CREAR_USUARIO } from '../../GRAPHQL/mutations';
 const Signup = () => {
   const [form, setForm] = useState({});
 
@@ -120,18 +120,3 @@ const Signup = () => {
 };
 
 export default Signup;
-
-const CREAR_USUARIO = gql`
-  mutation customerCreate($input: CustomerCreateInput!) {
-    customerCreate(input: $input) {
-      customerUserErrors {
-        code
-        field
-        message
-      }
-      customer {
-        id
-      }
-    }
-  }
-`;
