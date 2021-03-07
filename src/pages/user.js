@@ -30,15 +30,6 @@ const User = () => {
     }
     console.log(isAuth, 'si no pasa lo del token');
   }, []);
-  /*   const [
-    updateAddress,
-    { data: address, loading: addressLoading },
-  ] = useMutation(UPDATE_ADDRESS); */
-  /*   const { client, loading, data } = useQuery(QUERY_USER, {
-    fetchPolicy: 'network-only',
-  });
-  if (loading) return 'Loading...'; */
-  //if (addressLoading) return 'cargando...';
 
   /*   const handleAddressChange = (e) => {
     const { target } = e;
@@ -68,7 +59,11 @@ const User = () => {
         data && (
           <div>
             <UserInfo data={data} />
-            <UserAddress address={data.customer.defaultAddress} />
+            <UserAddress
+              defaultAddress={data.customer.defaultAddress}
+              addresses={data.customer.addresses}
+              token={token}
+            />
             <UserOrders orders={data.customer.orders} />
           </div>
         )

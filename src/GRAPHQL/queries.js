@@ -14,13 +14,22 @@ export const QUERY_USER = gql`
       addresses(first: 5) {
         edges {
           node {
+            id
             address1
             address2
             city
+            country
+            zip
+            province
+            countryCodeV2
+            provinceCode
+            province
+            name
           }
         }
       }
       defaultAddress {
+        id
         address1
         address2
         city
@@ -30,6 +39,7 @@ export const QUERY_USER = gql`
         countryCodeV2
         provinceCode
         province
+        name
       }
       orders(first: 5) {
         edges {

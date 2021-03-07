@@ -32,10 +32,10 @@ export const EDITAR_USUARIO = gql`
     ) {
       customer {
         id
-      }
-      customerAccessToken {
-        accessToken
-        expiresAt
+        lastName
+        firstName
+        phone
+        email
       }
       customerUserErrors {
         code
@@ -71,23 +71,28 @@ export const CREATE_ADDRESS = gql`
 
 /**
  * @mutation  update de la direccion
+ * @params ID de la direcciones
+ * @params acces token del Usuario
+ * @params los input de la direccion
  */
 export const UPDATE_ADDRESS = gql`
-  mutation customerAddressCreate(
+  mutation customerAddressUpdate(
     $customerAccessToken: String!
+    $id: ID!
     $address: MailingAddressInput!
   ) {
-    customerAddressCreate(
+    customerAddressUpdate(
       customerAccessToken: $customerAccessToken
+      id: $id
       address: $address
     ) {
+      customerAddress {
+        id
+      }
       customerUserErrors {
         code
         field
         message
-      }
-      customerAddress {
-        id
       }
     }
   }
@@ -95,6 +100,8 @@ export const UPDATE_ADDRESS = gql`
 
 /**
  * @mutation Borra una direccion del usuario
+ * @params ID de la direcciones
+ * @params acces token del Usuario
  */
 
 export const DELETE_ADDRESS = gql`

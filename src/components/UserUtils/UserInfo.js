@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useMutation } from '@apollo/client';
-
+import { UserContext } from '../../context/UserContext';
+import { ToastContainer, toast } from 'react-toastify';
 import Edit from '../../images/svg/edit.svg';
 import Close from '../../images/svg/close.svg';
 
 import { EDITAR_USUARIO } from '../../GRAPHQL/mutations';
+import { QUERY_USER } from '../../GRAPHQL/queries';
 
 const UserInfo = ({ data }) => {
   const { email, phone, firstName, lastName } = data.customer;
@@ -22,7 +24,10 @@ const UserInfo = ({ data }) => {
       </div>
       {isEdit ? (
         <EditUser
-          fistName={firstName}
+          firstName={firstName}
+          email={email}
+          phone={phone}
+          lastName={lastName}
           isEdit={isEdit}
           setIsEdit={(isEdit) => setIsEdit(isEdit)}
         />
@@ -58,20 +63,51 @@ const UserInfo = ({ data }) => {
 
 export default UserInfo;
 
-const EditUser = ({ setIsEdit, isEdit, firstName }) => {
+const EditUser = ({ setIsEdit, isEdit, firstName, lastName, email, phone }) => {
+  const { token } = useContext(UserContext);
   const [form, setForm] = useState({});
-  const validForm = Object.keys(form).length === 5;
   const [editUser, { data, loading, error }] = useMutation(EDITAR_USUARIO);
+  useEffect(() => {
+    setForm({ firstName, lastName, email, phone });
+    return () => {
+      setForm({});
+      console.log('se limpia el estado');
+    };
+  }, []);
+  const validForm = Object.keys(form).length === 4;
+
   const handleChange = (e) => {
     const { target } = e;
     const { name, value } = target;
     setForm({ ...form, [name]: value });
   };
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    /*  editUser({ variables: { input: form } }).then((result) => {
-      console.log(result);
-    }); */
+    try {
+      const { data } = await editUser({
+        variables: { customerAccessToken: token, customer: form },
+        update: (cache, { data }) => {
+          const customerUpdated = data?.customerUpdate.customer;
+          const actualUser = cache.readQuery({
+            query: QUERY_USER,
+            variables: { customerAccessToken: token },
+          });
+        },
+      });
+      // console.log(data.customerUpdate, 'ha cambiado',"error",data.customerUpdate.customerUserErrors);
+      toast.dark('Usuario Actualizado 👌', {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      // if(updatedUser.customer)
+    } catch (error) {
+      console.error(error);
+    }
   };
   return (
     <div className="flex justify-between">
@@ -83,6 +119,7 @@ const EditUser = ({ setIsEdit, isEdit, firstName }) => {
           <div className="relative w-full mb-6">
             <input
               onChange={handleChange}
+              value={form.firstName}
               type="text"
               name="firstName"
               placeholder="Nombre"
@@ -97,6 +134,7 @@ const EditUser = ({ setIsEdit, isEdit, firstName }) => {
           <div className="relative w-full mb-6">
             <input
               onChange={handleChange}
+              value={form.lastName}
               type="text"
               name="lastName"
               placeholder="Apellido"
@@ -111,6 +149,7 @@ const EditUser = ({ setIsEdit, isEdit, firstName }) => {
           <div className="relative w-full mb-6">
             <input
               onChange={handleChange}
+              value={form.phone}
               type="text"
               name="phone"
               placeholder="Teléfono"
@@ -125,6 +164,7 @@ const EditUser = ({ setIsEdit, isEdit, firstName }) => {
           <div className="relative w-full mb-6">
             <input
               onChange={handleChange}
+              value={form.email}
               type="email"
               name="email"
               placeholder="Correo electrónico"
@@ -147,7 +187,17 @@ const EditUser = ({ setIsEdit, isEdit, firstName }) => {
           </button>
         </form>
       </div>
-
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover={false}
+      />
       <div
         onClick={() => setIsEdit(!isEdit)}
         className="mt-4 h-8 w-8 rounded-full border-2 border-yellow flex items-center justify-center"

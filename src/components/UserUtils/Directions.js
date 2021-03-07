@@ -1,21 +1,58 @@
 import React, { useState } from 'react';
 import { Link } from 'gatsby';
+import { useMutation } from '@apollo/client';
+import { CREATE_ADDRESS } from '../../GRAPHQL/mutations';
+import { QUERY_USER } from '../../GRAPHQL/queries';
 
 import Arrow from '../../images/svg/arrow.svg';
+import Close from '../../images/svg/close.svg';
 
-const Directions = () => {
+const Directions = ({ isNew, setIsNew, token }) => {
   const [form, setForm] = useState({});
   const validForm = Object.keys(form).length === 10;
-
+  const [createAddress, { data, loading, error }] = useMutation(CREATE_ADDRESS);
   const handleChange = (e) => {
     const { target } = e;
     const { name, value } = target;
     setForm({ ...form, [name]: value });
   };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const { data } = await createAddress({
+        variables: { customerAccessToken: token, address: form },
+        update: (cache, { data }) => {
+          const actualUser = cache.readQuery({
+            query: QUERY_USER,
+            variables: { customerAccessToken: token },
+          });
+          cache.writeQuery({ query: QUERY_USER }, actualUser);
+          //todo hay que hacer que reescriba la data cache
+          //todo hay que mandar en el select del country (pais o region)
+          //todo shopify lo lista con un selext y el valor es (MX) PARA MEXICO
+        },
+      });
+
+      const { customerAddressCreate } = data;
+      const { customerUserErrors } = customerAddressCreate;
+      //console.log(customerUserErrors[0].message);
+    } catch (error) {
+      console.error(error);
+      console.log(error, 'si tenemos error?');
+    }
+  };
 
   return (
     <section className="container min-h-full flex flex-col items-center">
-      <p className="title pt-6 md:pt-24">NUEVA DIRECCIÓN</p>
+      <div className="container min-h-full flex flex-row justify-around align-bottom">
+        <p className="title pt-6 md:pt-24">NUEVA DIRECCIÓN</p>
+        <div
+          onClick={() => setIsNew(!isNew)}
+          className="mt-4 h-8 w-8 rounded-full border-2 border-yellow flex items-center justify-center"
+        >
+          <Close />
+        </div>
+      </div>
       <form
         className="mt-12 mb-10 md:mb-24 flex flex-col items-center w-full sm:w-3/4 lg:w-1/2 xl:w-2/5"
         action=""
@@ -172,14 +209,15 @@ const Directions = () => {
             )}
           </div>
         </div>
-        <div className="flex items-center w-full">
+        {/* <div className="flex items-center w-full">
           <input type="checkbox" name="default" className="checkbox mr-5" />
           <p className="tracking-widest">Fijar como dirección por defecto</p>
-        </div>
+        </div> */}
         <button
           type="submit"
           disabled={!validForm}
           className={`mt-8 btn-red ${!validForm && 'cursor-not-allowed'}`}
+          onClick={handleSubmit}
         >
           Agregar dirección
         </button>
