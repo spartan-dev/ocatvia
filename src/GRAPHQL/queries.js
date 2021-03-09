@@ -25,6 +25,10 @@ export const QUERY_USER = gql`
             provinceCode
             province
             name
+            firstName
+            lastName
+            phone
+            company
           }
         }
       }
@@ -40,6 +44,10 @@ export const QUERY_USER = gql`
         provinceCode
         province
         name
+        firstName
+        lastName
+        phone
+        company
       }
       orders(first: 5) {
         edges {

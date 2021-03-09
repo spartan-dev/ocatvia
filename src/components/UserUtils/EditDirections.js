@@ -1,44 +1,76 @@
 import React, { useState, useMemo } from 'react';
 import { useMutation } from '@apollo/client';
-import { CREATE_ADDRESS } from '../../GRAPHQL/mutations';
 import { QUERY_USER } from '../../GRAPHQL/queries';
+import { UPDATE_ADDRESS } from '../../GRAPHQL/mutations';
 import { ToastContainer, toast } from 'react-toastify';
 //select for countrys
 import Select from 'react-select';
 import countryList from 'react-select-country-list';
-//images svg
-import Arrow from '../../images/svg/arrow.svg';
+//svg images for icons
 import Close from '../../images/svg/close.svg';
-// https://fkhadra.github.io/react-toastify/introduction/
-const Directions = ({ isNew, setIsNew, token }) => {
-  const [form, setForm] = useState({});
-  const [country, setCountry] = useState('');
+
+/**
+ * todo ===  revisar el valor default de el select de los paises para tenerlo en el form de
+ * todo ===  revisar el form por lo del estado sin controlar pasar en estado o como usarlo???
+ *
+ */
+const EditDirections = ({
+  setEdit,
+  edit,
+  idChange: {
+    city,
+    company,
+    country,
+    firstName,
+    lastName,
+    phone,
+    province,
+    zip,
+    address1,
+    address2,
+    id,
+    countryCodeV2,
+  },
+  token,
+}) => {
+  const [form, setForm] = useState({
+    city,
+    company,
+    country,
+    firstName,
+    lastName,
+    phone,
+    province,
+    zip,
+    address1,
+    address2,
+  });
+  const [countrySelect, setCountry] = useState('');
+  const [updateAddress, { data, loading, error }] = useMutation(UPDATE_ADDRESS);
   const options = useMemo(() => countryList().getData(), []);
   const validForm = Object.keys(form).length === 9;
-  const [createAddress, { data, loading, error }] = useMutation(CREATE_ADDRESS);
+  const preData = countryList().getLabel(countryCodeV2);
   const handleChange = (e) => {
     const { target } = e;
     const { name, value } = target;
-    setForm({ ...form, country: country.value, [name]: value });
+    setForm({ ...form, country, [name]: value });
+    console.log(form);
   };
   const changeHandler = (value) => {
     setCountry(value);
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await createAddress({
-        variables: { customerAccessToken: token, address: form },
+      const { data } = await updateAddress({
+        variables: { customerAccessToken: token, id: id, address: form },
         refetchQueries: [
           { query: QUERY_USER, variables: { customerAccessToken: token } },
         ],
       });
-      const { customerAddressCreate } = data;
-      const { customerUserErrors } = customerAddressCreate;
-
-      if (customerAddressCreate.customerAddress === null) {
-        toast.error('Ups hay un error al agregar dirección', {
+      const { customerAddressUpdate } = data;
+      if (customerAddressUpdate.customerAddress === null) {
+        toast.error('Ups hay un error al actulizar la  dirección ', {
           position: 'top-right',
           autoClose: 5000,
           hideProgressBar: true,
@@ -48,7 +80,7 @@ const Directions = ({ isNew, setIsNew, token }) => {
           progress: undefined,
         });
       } else {
-        toast.dark('Dirección Agregada 👌', {
+        toast.dark('Dirección Actualizada 👌', {
           position: 'top-right',
           autoClose: 5000,
           hideProgressBar: true,
@@ -57,12 +89,12 @@ const Directions = ({ isNew, setIsNew, token }) => {
           draggable: true,
           progress: undefined,
         });
-        setIsNew(!isNew);
+        setEdit(!edit);
       }
     } catch (error) {
       console.error(error);
       console.log(error, 'si tenemos error?');
-      toast.error('Ups hay un error al agregar direccion ', {
+      toast.error('Ups hay un error al actulizar la  dirección ', {
         position: 'top-right',
         autoClose: 5000,
         hideProgressBar: true,
@@ -77,9 +109,9 @@ const Directions = ({ isNew, setIsNew, token }) => {
   return (
     <section className="container min-h-full flex flex-col items-center">
       <div className="container min-h-full flex flex-row justify-around align-bottom">
-        <p className="title pt-6 md:pt-24">NUEVA DIRECCIÓN</p>
+        <p className="title pt-6 md:pt-24">EDITA TU DIRECCIÓN</p>
         <div
-          onClick={() => setIsNew(!isNew)}
+          onClick={() => setEdit(!edit)}
           className="mt-4 h-8 w-8 rounded-full border-2 border-yellow flex items-center justify-center"
         >
           <Close />
@@ -92,6 +124,7 @@ const Directions = ({ isNew, setIsNew, token }) => {
         <div className="flex w-full">
           <div className="relative w-full mb-6 mr-4">
             <input
+              value={form.firstName}
               onChange={handleChange}
               type="text"
               name="firstName"
@@ -106,6 +139,7 @@ const Directions = ({ isNew, setIsNew, token }) => {
           </div>
           <div className="relative w-full mb-6">
             <input
+              value={form.lastName}
               onChange={handleChange}
               type="text"
               name="lastName"
@@ -121,6 +155,7 @@ const Directions = ({ isNew, setIsNew, token }) => {
         </div>
         <div className="relative w-full mb-6">
           <input
+            value={form.company}
             onChange={handleChange}
             type="text"
             name="company"
@@ -135,6 +170,7 @@ const Directions = ({ isNew, setIsNew, token }) => {
         </div>
         <div className="relative w-full mb-6">
           <input
+            value={form.address1}
             onChange={handleChange}
             type="text"
             name="address1"
@@ -149,6 +185,7 @@ const Directions = ({ isNew, setIsNew, token }) => {
         </div>
         <div className="relative w-full mb-6">
           <input
+            value={form.address2}
             onChange={handleChange}
             type="text"
             name="address2"
@@ -166,6 +203,7 @@ const Directions = ({ isNew, setIsNew, token }) => {
         <div className="flex w-full">
           <div className="relative w-full mb-6 mr-4">
             <input
+              value={form.city}
               onChange={handleChange}
               type="text"
               name="city"
@@ -194,18 +232,14 @@ const Directions = ({ isNew, setIsNew, token }) => {
               </p>
             )} */}
             <Select
-              /*  styles={{
-                container: (base) => ({
-                  ...base,
-                  border: 'none',
-                }),
-              }} */
               name="country"
               className={`input w-full ${
                 Object.keys(form).includes('country') && 'pt-2'
               }`}
+              defaultInputValue={preData}
+              defaultValue={preData}
               options={options}
-              value={country}
+              value={countrySelect}
               onChange={changeHandler}
             />
             {Object.keys(form).includes('country') && (
@@ -217,6 +251,7 @@ const Directions = ({ isNew, setIsNew, token }) => {
         </div>
         <div className="relative w-full mb-6">
           <input
+            value={form.province}
             onChange={handleChange}
             type="text"
             name="province"
@@ -232,6 +267,7 @@ const Directions = ({ isNew, setIsNew, token }) => {
         <div className="flex w-full">
           <div className="relative w-full mb-6 mr-4">
             <input
+              value={form.zip}
               onChange={handleChange}
               type="text"
               name="zip"
@@ -248,6 +284,7 @@ const Directions = ({ isNew, setIsNew, token }) => {
           </div>
           <div className="relative w-full mb-6">
             <input
+              value={form.phone}
               onChange={handleChange}
               type="text"
               name="phone"
@@ -267,11 +304,11 @@ const Directions = ({ isNew, setIsNew, token }) => {
         </div> */}
         <button
           type="submit"
-          //disabled={!validForm}
+          // disabled={!validForm}
           className={`mt-8 btn-red ${!validForm && 'cursor-not-allowed'}`}
           onClick={handleSubmit}
         >
-          Agregar dirección
+          Actualizar dirección
         </button>
       </form>
       <ToastContainer
@@ -289,4 +326,4 @@ const Directions = ({ isNew, setIsNew, token }) => {
   );
 };
 
-export default Directions;
+export default EditDirections;
