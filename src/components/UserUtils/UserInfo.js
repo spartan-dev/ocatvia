@@ -50,7 +50,7 @@ const UserInfo = ({ data }) => {
             </div>
           </div>
           <div
-            onClick={() => setIsEdit(!isEdit)}
+            onClick={() => setIsEdit(true)}
             className="mt-4 h-8 w-8 rounded-full border-2 border-yellow flex items-center justify-center"
           >
             <Edit />
@@ -104,89 +104,97 @@ const EditUser = ({ setIsEdit, isEdit, firstName, lastName, email, phone }) => {
         draggable: true,
         progress: undefined,
       });
+      setIsEdit(false);
       // if(updatedUser.customer)
     } catch (error) {
       console.error(error);
     }
   };
   return (
-    <div className="flex justify-between">
-      <div className="w-2/5">
-        <form
-          className="mt-12 md:mb-9 flex flex-col items-center w-full sm:w-3/4 lg:w-1/2 xl:w-2/5"
-          action=""
+    <div className="container min-h-full flex flex-col items-center">
+      <div className="w-full sm:w-3/4 lg:w-1/2 xl:w-2/5">
+        <div
+          onClick={() => setIsEdit(false)}
+          className="mt-4 h-8 w-8 flex w-full justify-end"
         >
-          <div className="relative w-full mb-6">
-            <input
-              onChange={handleChange}
-              value={form.firstName}
-              type="text"
-              name="firstName"
-              placeholder="Nombre"
-              className={`input w-full ${
-                Object.keys(form).includes('firstName') && 'pt-2'
-              }`}
-            />
-            {Object.keys(form).includes('firstName') && (
-              <p className="absolute top-1 left-2 small opacity-50">Nombre</p>
-            )}
-          </div>
-          <div className="relative w-full mb-6">
-            <input
-              onChange={handleChange}
-              value={form.lastName}
-              type="text"
-              name="lastName"
-              placeholder="Apellido"
-              className={`input w-full ${
-                Object.keys(form).includes('lastName') && 'pt-2'
-              }`}
-            />
-            {Object.keys(form).includes('lastName') && (
-              <p className="absolute top-1 left-2 small opacity-50">Apellido</p>
-            )}
-          </div>
-          <div className="relative w-full mb-6">
-            <input
-              onChange={handleChange}
-              value={form.phone}
-              type="text"
-              name="phone"
-              placeholder="Teléfono"
-              className={`input w-full ${
-                Object.keys(form).includes('phone') && 'pt-2'
-              }`}
-            />
-            {Object.keys(form).includes('phone') && (
-              <p className="absolute top-1 left-2 small opacity-50">Teléfono</p>
-            )}
-          </div>
-          <div className="relative w-full mb-6">
-            <input
-              onChange={handleChange}
-              value={form.email}
-              type="email"
-              name="email"
-              placeholder="Correo electrónico"
-              className={`input w-full ${
-                Object.keys(form).includes('email') && 'pt-2'
-              }`}
-            />
-            {Object.keys(form).includes('email') && (
-              <p className="absolute top-1 left-2 small opacity-50">
-                Correo electrónico
-              </p>
-            )}
-          </div>
-          <button
-            className={`btn-red ${!validForm && 'cursor-not-allowed'}`}
-            onClick={handleSubmit}
-            disabled={!validForm}
-          >
-            Editar Usuario
-          </button>
-        </form>
+          <Close />
+        </div>
+        <p className="title text-center pt-6 md:pt-12">EDITA TU USUARIO</p>
       </div>
+      <form
+        className="mt-12 flex flex-col items-center w-full sm:w-3/4 lg:w-1/2 xl:w-2/5"
+        action=""
+      >
+        <div className="relative w-full mb-6">
+          <input
+            onChange={handleChange}
+            value={form.firstName}
+            type="text"
+            name="firstName"
+            placeholder="Nombre"
+            className={`input w-full ${
+              Object.keys(form).includes('firstName') && 'pt-2'
+            }`}
+          />
+          {Object.keys(form).includes('firstName') && (
+            <p className="absolute top-1 left-2 small opacity-50">Nombre</p>
+          )}
+        </div>
+        <div className="relative w-full mb-6">
+          <input
+            onChange={handleChange}
+            value={form.lastName}
+            type="text"
+            name="lastName"
+            placeholder="Apellido"
+            className={`input w-full ${
+              Object.keys(form).includes('lastName') && 'pt-2'
+            }`}
+          />
+          {Object.keys(form).includes('lastName') && (
+            <p className="absolute top-1 left-2 small opacity-50">Apellido</p>
+          )}
+        </div>
+        <div className="relative w-full mb-6">
+          <input
+            onChange={handleChange}
+            value={form.phone}
+            type="text"
+            name="phone"
+            placeholder="Teléfono"
+            className={`input w-full ${
+              Object.keys(form).includes('phone') && 'pt-2'
+            }`}
+          />
+          {Object.keys(form).includes('phone') && (
+            <p className="absolute top-1 left-2 small opacity-50">Teléfono</p>
+          )}
+        </div>
+        <div className="relative w-full mb-6">
+          <input
+            onChange={handleChange}
+            value={form.email}
+            type="email"
+            name="email"
+            placeholder="Correo electrónico"
+            className={`input w-full ${
+              Object.keys(form).includes('email') && 'pt-2'
+            }`}
+          />
+          {Object.keys(form).includes('email') && (
+            <p className="absolute top-1 left-2 small opacity-50">
+              Correo electrónico
+            </p>
+          )}
+        </div>
+        <button
+          className={`mt-8 btn-red ${!validForm && 'cursor-not-allowed'}`}
+          onClick={handleSubmit}
+          disabled={!validForm}
+        >
+          Actualizar usuario
+        </button>
+      </form>
       <ToastContainer
         position="top-right"
         autoClose={5000}
@@ -198,12 +206,6 @@ const EditUser = ({ setIsEdit, isEdit, firstName, lastName, email, phone }) => {
         draggable
         pauseOnHover={false}
       />
-      <div
-        onClick={() => setIsEdit(!isEdit)}
-        className="mt-4 h-8 w-8 rounded-full border-2 border-yellow flex items-center justify-center"
-      >
-        <Close />
-      </div>
     </div>
   );
 };

@@ -89,7 +89,7 @@ const EditDirections = ({
           draggable: true,
           progress: undefined,
         });
-        setEdit(!edit);
+        setEdit(false);
       }
     } catch (error) {
       console.error(error);
@@ -108,17 +108,17 @@ const EditDirections = ({
 
   return (
     <section className="container min-h-full flex flex-col items-center">
-      <div className="container min-h-full flex flex-row justify-around align-bottom">
-        <p className="title pt-6 md:pt-24">EDITA TU DIRECCIÓN</p>
+      <div className="w-full sm:w-3/4 lg:w-1/2 xl:w-2/5">
         <div
           onClick={() => setEdit(!edit)}
-          className="mt-4 h-8 w-8 rounded-full border-2 border-yellow flex items-center justify-center"
+          className="mt-4 h-8 w-8 flex w-full justify-end"
         >
           <Close />
         </div>
+        <p className="title text-center pt-6 md:pt-12">EDITA TU DIRECCIÓN</p>
       </div>
       <form
-        className="mt-12 mb-10 md:mb-24 flex flex-col items-center w-full sm:w-3/4 lg:w-1/2 xl:w-2/5"
+        className="mt-12 flex flex-col items-center w-full sm:w-3/4 lg:w-1/2 xl:w-2/5"
         action=""
       >
         <div className="flex w-full">
@@ -234,7 +234,7 @@ const EditDirections = ({
             <Select
               name="country"
               className={`input w-full ${
-                Object.keys(form).includes('country') && 'pt-2'
+                Object.keys(form).includes('country') && 'pt-3'
               }`}
               defaultInputValue={preData}
               defaultValue={preData}

@@ -91,7 +91,7 @@ const Address = ({
         <div className="mt-4 h-8 w-8 rounded-full border-2 border-yellow flex items-center justify-center">
           <button
             onClick={() => {
-              setEdit(!edit);
+              setEdit(true);
               setIdChange({
                 address1,
                 address2,
