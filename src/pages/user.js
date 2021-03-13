@@ -12,7 +12,7 @@ import { useLazyQuery } from '@apollo/client';
 import { QUERY_USER } from '../GRAPHQL/queries';
 import { UserContext } from '../context/UserContext';
 const User = () => {
-  const { isAuth, token } = useContext(UserContext);
+  const { token } = useContext(UserContext);
   const [addressForm, setAddressForm] = useState({
     lastName: '',
     firstName: '',
@@ -28,8 +28,8 @@ const User = () => {
     if (token) {
       getUser({ variables: { customerAccessToken: token } });
     }
-    console.log(isAuth, 'si no pasa lo del token');
-  }, []);
+    console.log(token, 'si se guardo?');
+  }, [token]);
 
   /*   const handleAddressChange = (e) => {
     const { target } = e;
@@ -46,28 +46,27 @@ const User = () => {
       },
     });
   }; */
-
+  console.log(data);
   return (
     <Layout>
-      {/*   <Directions /> */}
-      {!token ? <Login /> : null}
       {loading ? (
         <Loading />
       ) : error ? (
         <div>Error{error.message}</div>
+      ) : data === undefined || data.customer === null ? (
+        <Login />
       ) : (
-        data && (
-          <div>
-            <UserInfo data={data} />
-            <UserAddress
-              defaultAddress={data.customer.defaultAddress}
-              addresses={data.customer.addresses}
-              token={token}
-            />
-            <UserOrders orders={data.customer.orders} />
-          </div>
-        )
+        <div>
+          <UserInfo data={data} token={token} />
+          <UserAddress
+            defaultAddress={data.customer.defaultAddress}
+            addresses={data.customer.addresses}
+            token={token}
+          />
+          <UserOrders orders={data.customer.orders} />
+        </div>
       )}
+      {/*  {!token ? <Login /> : null} */}
       {/*  <form action="">
         <label htmlFor="lastName">Apellido</label>
         <input onChange={handleAddressChange} type="text" name="lastName" />

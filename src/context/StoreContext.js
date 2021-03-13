@@ -1,5 +1,9 @@
-import React, { createContext, useState, useEffect } from 'react';
+import React, { createContext, useState, useEffect, useContext } from 'react';
 import Client from 'shopify-buy';
+import { useMutation, useLazyQuery } from '@apollo/client';
+import { ASSOCIATE_CUSTOMER_TO_CHECKOUT } from '../GRAPHQL/mutations';
+import { QUERY_USER } from '../GRAPHQL/mutations';
+import { UserContext } from './UserContext';
 
 const client = Client.buildClient({
   domain: 'octavia-gourmet.myshopify.com',
@@ -24,12 +28,20 @@ export const StoreContext = createContext(defaultValues);
 const isBrowser = typeof window !== 'undefined';
 
 export const StoreProvider = ({ children }) => {
+  // const temp = () => window.localStorage.getItem('customertoken') || '';
   const [checkout, setCheckout] = useState(defaultValues.checkout);
   const [isCartOpen, setCartOpen] = useState(false);
+  // const [customertoken, setCustomerToken] = useState(temp);
+  const [associateCustomer, { data }] = useMutation(
+    ASSOCIATE_CUSTOMER_TO_CHECKOUT
+  );
+  const [getUser] = useLazyQuery(QUERY_USER);
+
   const toggleCartOpen = () => setCartOpen(!isCartOpen);
 
   useEffect(() => {
     initializeCheckout();
+    //console.log(customertoken, 'en el set');
   }, []);
 
   const getNewId = async () => {
@@ -54,6 +66,19 @@ export const StoreProvider = ({ children }) => {
       if (currentCheckoutId) {
         // If id exists, fetch checkout from Shopify
         newCheckout = await client.checkout.fetch(currentCheckoutId);
+        //!experiment
+        /* const { data } = getUser({
+          variables: { customerAccessToken: customertoken },
+        });
+        console.log(data, 'si lo pasa con la token??'); */
+        /*   const asociado = await associateCustomer({
+          variables: {
+            checkoutId: currentCheckoutId,
+            customerAccessToken: customertoken,
+          },
+        });
+        console.log(asociado, 'maldita suerte!! 💀'); */
+        //!experiment
         if (newCheckout.completedAt) {
           newCheckout = await getNewId();
         }

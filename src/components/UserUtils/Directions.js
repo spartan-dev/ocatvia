@@ -14,7 +14,7 @@ const Directions = ({ isNew, setIsNew, token }) => {
   const [form, setForm] = useState({});
   const [country, setCountry] = useState('');
   const options = useMemo(() => countryList().getData(), []);
-  const validForm = Object.keys(form).length === 9;
+  const validForm = Object.keys(form).length === 10;
   const [createAddress, { data, loading, error }] = useMutation(CREATE_ADDRESS);
   const handleChange = (e) => {
     const { target } = e;
@@ -27,6 +27,7 @@ const Directions = ({ isNew, setIsNew, token }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
       const { data } = await createAddress({
         variables: { customerAccessToken: token, address: form },
@@ -194,12 +195,6 @@ const Directions = ({ isNew, setIsNew, token }) => {
               </p>
             )} */}
             <Select
-              /*  styles={{
-                container: (base) => ({
-                  ...base,
-                  border: 'none',
-                }),
-              }} */
               name="country"
               className={`input w-full ${
                 Object.keys(form).includes('country') && 'pt-2'
@@ -267,7 +262,7 @@ const Directions = ({ isNew, setIsNew, token }) => {
         </div> */}
         <button
           type="submit"
-          //disabled={!validForm}
+          disabled={!validForm}
           className={`mt-8 btn-red ${!validForm && 'cursor-not-allowed'}`}
           onClick={handleSubmit}
         >

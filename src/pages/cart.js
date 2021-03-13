@@ -21,7 +21,6 @@ const ShopSidebar = () => {
   } = useContext(StoreContext);
 
   const handleChange = (params) => {};
-
   return (
     <Layout>
       <section className="container min-h-full font-gotham-medium">

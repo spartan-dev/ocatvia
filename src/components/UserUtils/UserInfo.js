@@ -1,23 +1,56 @@
 import React, { useState, useEffect, useContext } from 'react';
+import { navigate } from 'gatsby';
 import { useMutation } from '@apollo/client';
 import { UserContext } from '../../context/UserContext';
 import { ToastContainer, toast } from 'react-toastify';
 import Edit from '../../images/svg/edit.svg';
 import Close from '../../images/svg/close.svg';
 
-import { EDITAR_USUARIO } from '../../GRAPHQL/mutations';
+import { EDITAR_USUARIO, BORRAR_ACCESS_TOKEN } from '../../GRAPHQL/mutations';
 import { QUERY_USER } from '../../GRAPHQL/queries';
 
-const UserInfo = ({ data }) => {
+const UserInfo = ({ data, token }) => {
   const { email, phone, firstName, lastName } = data.customer;
   const [isEdit, setIsEdit] = useState(false);
+  const [borrarToken] = useMutation(BORRAR_ACCESS_TOKEN);
+
+  const closeSession = async (e) => {
+    e.preventDefault();
+    const { data } = await borrarToken({
+      variables: { customerAccessToken: token },
+      update: (store, { data }) => {
+        store.reset();
+      },
+    });
+    const { customerAccessTokenDelete } = data;
+    const {
+      deletedAccessToken,
+      deletedCustomerAccessTokenId,
+      userErrors,
+    } = customerAccessTokenDelete;
+    window.localStorage.removeItem('customertoken', token);
+    toast.dark('Cerrando sesión', {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+    setTimeout(() => {
+      navigate('/', { replace: true });
+      //o recargar la ventana
+    }, 2000);
+  };
+
   return (
     <section className="container min-h-full">
       <div className="flex justify-between pb-4 border-b border-beige">
         <p className="title pt-6 md:pt-24">MI CUENTA</p>
         <div className="flex items-center">
           <p className="text-red mr-2">Cerrar sesión</p>
-          <button>
+          <button onClick={closeSession}>
             <Close />
           </button>
         </div>
@@ -57,6 +90,17 @@ const UserInfo = ({ data }) => {
           </div>
         </div>
       )}
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover={false}
+      />
     </section>
   );
 };
@@ -80,21 +124,46 @@ const EditUser = ({ setIsEdit, isEdit, firstName, lastName, email, phone }) => {
     const { target } = e;
     const { name, value } = target;
     setForm({ ...form, [name]: value });
+    console.log(form);
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await editUser({
+      const {
+        data: {
+          customerUpdate: { customerUserErrors },
+        },
+      } = await editUser({
         variables: { customerAccessToken: token, customer: form },
-        update: (cache, { data }) => {
+        refetchQueries: [
+          { query: QUERY_USER, variables: { customerAccessToken: token } },
+        ],
+        /* update: (cache, { data }) => {
           const customerUpdated = data?.customerUpdate.customer;
           const actualUser = cache.readQuery({
             query: QUERY_USER,
             variables: { customerAccessToken: token },
           });
-        },
+        }, */
       });
-      // console.log(data.customerUpdate, 'ha cambiado',"error",data.customerUpdate.customerUserErrors);
+      if (customerUserErrors.length > 0) {
+        toast.error(`${customerUserErrors[0].message}`, {
+          position: 'top-right',
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        return;
+      }
+      console.log(
+        data.customerUpdate,
+        'ha cambiado',
+        'error',
+        data.customerUpdate.customerUserErrors
+      );
       toast.dark('Usuario Actualizado 👌', {
         position: 'top-right',
         autoClose: 5000,
@@ -105,6 +174,7 @@ const EditUser = ({ setIsEdit, isEdit, firstName, lastName, email, phone }) => {
         progress: undefined,
       });
       // if(updatedUser.customer)
+      setIsEdit(!isEdit);
     } catch (error) {
       console.error(error);
     }
