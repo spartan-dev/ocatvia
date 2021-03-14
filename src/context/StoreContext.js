@@ -28,10 +28,10 @@ export const StoreContext = createContext(defaultValues);
 const isBrowser = typeof window !== 'undefined';
 
 export const StoreProvider = ({ children }) => {
-  // const temp = () => window.localStorage.getItem('customertoken') || '';
+  const temp = () => localStorage.getItem('customertoken') || '';
   const [checkout, setCheckout] = useState(defaultValues.checkout);
   const [isCartOpen, setCartOpen] = useState(false);
-  // const [customertoken, setCustomerToken] = useState(temp);
+  const [customertoken, setCustomerToken] = useState(temp);
   const [associateCustomer, { data }] = useMutation(
     ASSOCIATE_CUSTOMER_TO_CHECKOUT
   );
@@ -67,17 +67,17 @@ export const StoreProvider = ({ children }) => {
         // If id exists, fetch checkout from Shopify
         newCheckout = await client.checkout.fetch(currentCheckoutId);
         //!experiment
-        /* const { data } = getUser({
+        /*   const { data } = getUser({
           variables: { customerAccessToken: customertoken },
-        });
-        console.log(data, 'si lo pasa con la token??'); */
-        /*   const asociado = await associateCustomer({
+        }); */
+
+        const asociado = await associateCustomer({
           variables: {
             checkoutId: currentCheckoutId,
             customerAccessToken: customertoken,
           },
         });
-        console.log(asociado, 'maldita suerte!! 💀'); */
+        console.log(asociado, 'maldita suerte!! 💀');
         //!experiment
         if (newCheckout.completedAt) {
           newCheckout = await getNewId();

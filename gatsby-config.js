@@ -1,26 +1,26 @@
-const dotenv = require("dotenv").config({
+const dotenv = require('dotenv').config({
   path: `.env`,
 });
 module.exports = {
   siteMetadata: {
-    title: "octavia",
+    title: 'octavia',
   },
-  /*  flags: {
+  flags: {
     DEV_SSR: true,
-  }, */
+  },
   plugins: [
     {
-      resolve: "gatsby-source-shopify",
+      resolve: 'gatsby-source-shopify',
       options: {
         shopName: process.env.SHOP_NAME,
         accessToken: process.env.ACCESS_TOKEN,
         paginationSize: 70,
       },
     },
-    "gatsby-transformer-sharp",
-    "gatsby-plugin-sharp",
-    "gatsby-plugin-react-helmet",
-    "gatsby-plugin-offline",
+    'gatsby-transformer-sharp',
+    'gatsby-plugin-sharp',
+    'gatsby-plugin-react-helmet',
+    'gatsby-plugin-offline',
 
     {
       resolve: `gatsby-plugin-react-svg`,
@@ -33,7 +33,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-postcss`,
       options: {
-        postCssPlugins: [require("tailwindcss"), require("autoprefixer")],
+        postCssPlugins: [require('tailwindcss'), require('autoprefixer')],
       },
     },
     {
@@ -43,22 +43,22 @@ module.exports = {
         develop: false,
         tailwind: true,
         whitelist: [
-          "buttonNext___2mOCa",
-          "horizontalSlider___281Ls",
-          "horizontalSliderTray___1L-0W",
-          "slide___3-Nqo",
-          "slide___3-Nqo:focus",
-          "slideHorizontal___1NzNV",
-          "slideInner___2mfX9",
-          "sliderAnimation___300FY",
-          "sliderTray___-vHFQ",
+          'buttonNext___2mOCa',
+          'horizontalSlider___281Ls',
+          'horizontalSliderTray___1L-0W',
+          'slide___3-Nqo',
+          'slide___3-Nqo:focus',
+          'slideHorizontal___1NzNV',
+          'slideInner___2mfX9',
+          'sliderAnimation___300FY',
+          'sliderTray___-vHFQ',
         ],
       },
     },
     {
-      resolve: "gatsby-plugin-manifest",
+      resolve: 'gatsby-plugin-manifest',
       options: {
-        icon: "src/images/assets/favicon.png",
+        icon: 'src/images/assets/favicon.png',
       },
     },
     {

@@ -13,8 +13,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import Arrow from '../../images/svg/arrow.svg';
 
 const Login = () => {
-  const customerToken = () =>
-    window.localStorage.getItem('customertoken') || '';
+  const customerToken = () => localStorage.getItem('customertoken') || '';
   const [form, setForm] = useState({});
 
   const validForm = Object.keys(form).length === 2;
@@ -49,7 +48,6 @@ const Login = () => {
       //*Si es usuario salio de la sesion o borro sus cookies iniciar una nueva token
       const { data } = await createToken({
         variables: { input: form },
-
         update: (store, { data: { customerAccessTokenCreate } }) => {
           console.log(customerAccessTokenCreate, 'si pasa los params');
           store.writeQuery({
@@ -60,6 +58,14 @@ const Login = () => {
             },
           });
         },
+        refetchQueries: [
+          {
+            query: QUERY_USER,
+            variables: {
+              customerAccessToken: usertoken,
+            },
+          },
+        ],
       });
       //todo revisar el cache para que no tengamos que refrescar pagina
       const { customerAccessTokenCreate } = data;
@@ -80,6 +86,7 @@ const Login = () => {
       });
       setTimeout(() => {
         navigate('/', { replace: true });
+        window.location.reload();
       }, 2000);
     } else {
       const { data } = await renovarToken({

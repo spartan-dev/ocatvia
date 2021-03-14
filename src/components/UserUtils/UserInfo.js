@@ -28,7 +28,6 @@ const UserInfo = ({ data, token }) => {
       deletedCustomerAccessTokenId,
       userErrors,
     } = customerAccessTokenDelete;
-    window.localStorage.removeItem('customertoken', token);
     toast.dark('Cerrando sesión', {
       position: 'top-right',
       autoClose: 5000,
@@ -38,10 +37,12 @@ const UserInfo = ({ data, token }) => {
       draggable: true,
       progress: undefined,
     });
+    localStorage.removeItem('customertoken', token);
+    localStorage.clear();
     setTimeout(() => {
-      navigate('/', { replace: true });
+      window.location.reaload('/', { replace: true });
       //o recargar la ventana
-    }, 2000);
+    }, 800);
   };
 
   return (

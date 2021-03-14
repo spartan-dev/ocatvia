@@ -1,4 +1,4 @@
-import React from 'react';
+/* import React from 'react';
 import './src/styles/global.css';
 import 'react-toastify/dist/ReactToastify.css';
 import { StoreProvider } from './src/context/StoreContext';
@@ -11,4 +11,4 @@ export const wrapRootElement = ({ element }) => (
       <StoreProvider>{element}</StoreProvider>
     </UserProvider>
   </ApolloProvider>
-);
+); */
