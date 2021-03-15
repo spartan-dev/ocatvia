@@ -1,38 +1,113 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'gatsby';
+import { Link, navigate } from 'gatsby';
+import Loading from '../../components/Loading';
 import { useMutation, useQuery, useLazyQuery, gql } from '@apollo/client';
+import {
+  CREAR_ACCESS_TOKEN,
+  RENOVAR_ACCESS_TOKEN,
+  BORRAR_ACCESS_TOKEN,
+} from '../../GRAPHQL/mutations';
+import { QUERY_USER } from '../../GRAPHQL/queries';
+import { ToastContainer, toast } from 'react-toastify';
 
 import Arrow from '../../images/svg/arrow.svg';
 
 const Login = () => {
+  const customerToken = () => localStorage.getItem('customertoken') || '';
   const [form, setForm] = useState({});
 
-  const validForm = Object.keys(form).length === 5;
-  //const [loginUser, { data, loading, error }] = useMutation(LOGIN_USUARIO);
-  const { loading, error, data } = useQuery(QUERY_USER, {
-    variables: { customerAccessToken: '8ea4df0720e378d0c7d56f0752536780' },
-  });
+  const validForm = Object.keys(form).length === 2;
+  const [createToken, { data, loading, error }] = useMutation(
+    CREAR_ACCESS_TOKEN
+  );
+  const [renovarToken] = useMutation(RENOVAR_ACCESS_TOKEN);
+  const [getUser] = useQuery(QUERY_USER);
   const [usertoken, setUserToken] = useState('');
+
+  /*   const { loading, error, data } = useQuery(QUERY_USER, {
+    variables: { customerAccessToken: usertoken },
+  }); */
   useEffect(() => {
-    localStorage.setItem('customertoken', '8ea4df0720e378d0c7d56f0752536780');
+    setUserToken(customerToken);
   }, []);
-  if (loading) return 'Cargando...';
+  if (loading) return <Loading />;
   if (error) return console.log(error);
-  /*   if (data) {
-    const { customerAccessToken } = data.customerAccessTokenCreate;
-    const { accessToken, expiresAt } = customerAccessToken;
-    setUserToken(accessToken);
-  } */
-  console.log(data, 'user data');
+
   const handleChange = (e) => {
     const { target } = e;
     const { name, value } = target;
     setForm({ ...form, [name]: value });
   };
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    // loginUser({ variables: { input: form } });
+    //primero revisar si ya hay token si ya hay token usar la mutacion de renovar token
+    //si no hay token usar la de crear token
+    // si ya esta o es creada psarla al localStorage
+    if (usertoken == '') {
+      console.log(usertoken);
+      //*Si es usuario salio de la sesion o borro sus cookies iniciar una nueva token
+      const { data } = await createToken({
+        variables: { input: form },
+        update: (store, { data: { customerAccessTokenCreate } }) => {
+          console.log(customerAccessTokenCreate, 'si pasa los params');
+          store.writeQuery({
+            query: QUERY_USER,
+            variables: {
+              customerAccessToken:
+                customerAccessTokenCreate.customerAccessToken.accessToken,
+            },
+          });
+        },
+        refetchQueries: [
+          {
+            query: QUERY_USER,
+            variables: {
+              customerAccessToken: usertoken,
+            },
+          },
+        ],
+      });
+      //todo revisar el cache para que no tengamos que refrescar pagina
+      const { customerAccessTokenCreate } = data;
+      const { customerAccessToken } = customerAccessTokenCreate;
+      localStorage.setItem('customertoken', customerAccessToken.accessToken);
+      /*  const user = await getUser({
+        variables: { customerAccessToken: customerAccessToken.accessToken },
+      });
+      console.log(user); */
+      toast.dark('Usuario identificado', {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      setTimeout(() => {
+        navigate('/', { replace: true });
+        window.location.reload();
+      }, 2000);
+    } else {
+      const { data } = await renovarToken({
+        variables: { customerAccessToken: 'a15a7c111701b3562dbf30ffa1568fda' },
+      });
+      console.log(data, 'token renovado');
+      //todo sacar valores de la data de renovacion
+      /*   window.localStorage.setItem(
+        'customertoken',
+        customerAccessToken.accessToken
+      ); */
+    }
   };
+  /**
+   * para hacer un fake del login podemos dar con este aproach
+   * en el cerrar sesion => usar https://shopify.dev/docs/admin-api/graphql/reference/access/storefrontaccesstokendelete
+   * al cerrar la sesion debemos borrar del local storage el customer token y de shopify para crear el nuevo
+   * borrar el token del usuario y cuando no este hacer el proceso del login
+   * recrear el usar del login con el acces token y crear uno nuevo y guardarlo de nuevo en el localstorage https://shopify.dev/docs/storefront-api/reference/customers/customeraccesstokencreate
+   *
+   */
   return (
     <section className="container min-h-full flex flex-col items-center">
       <p className="title pt-6 md:pt-24">INGRESAR</p>
@@ -106,12 +181,23 @@ const Login = () => {
           Continuar
         </Link>
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover={false}
+      />
     </section>
   );
 };
 
 export default Login;
-const LOGIN_USUARIO = gql`
+/* const LOGIN_USUARIO = gql`
   mutation customerAccessTokenCreate($input: CustomerAccessTokenCreateInput!) {
     customerAccessTokenCreate(input: $input) {
       customerUserErrors {
@@ -125,8 +211,8 @@ const LOGIN_USUARIO = gql`
       }
     }
   }
-`;
-const QUERY_USER = gql`
+`; */
+/* const QUERY_USER = gql`
   query customer($customerAccessToken: String!) {
     customer(customerAccessToken: $customerAccessToken) {
       createdAt
@@ -143,4 +229,4 @@ const QUERY_USER = gql`
       }
     }
   }
-`;
+`; */

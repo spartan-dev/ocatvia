@@ -10,7 +10,7 @@ import countryList from 'react-select-country-list';
 import Close from '../../images/svg/close.svg';
 
 /**
- * todo ===  revisar el valor default de el select de los paises para tenerlo en el form de
+ *
  * todo ===  revisar el form por lo del estado sin controlar pasar en estado o como usarlo???
  *
  */
@@ -48,13 +48,12 @@ const EditDirections = ({
   const [countrySelect, setCountry] = useState('');
   const [updateAddress, { data, loading, error }] = useMutation(UPDATE_ADDRESS);
   const options = useMemo(() => countryList().getData(), []);
-  const validForm = Object.keys(form).length === 9;
+  const validForm = Object.keys(form).length === 10;
   const preData = countryList().getLabel(countryCodeV2);
   const handleChange = (e) => {
     const { target } = e;
     const { name, value } = target;
     setForm({ ...form, country, [name]: value });
-    console.log(form);
   };
   const changeHandler = (value) => {
     setCountry(value);
@@ -304,7 +303,7 @@ const EditDirections = ({
         </div> */}
         <button
           type="submit"
-          // disabled={!validForm}
+          disabled={!validForm}
           className={`mt-8 btn-red ${!validForm && 'cursor-not-allowed'}`}
           onClick={handleSubmit}
         >
