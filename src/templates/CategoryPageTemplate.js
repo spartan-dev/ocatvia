@@ -24,6 +24,7 @@ const CategoryPageTemplate = ({ data }) => {
   const [showModal, setShowModal] = useState(false);
   const [filters, setFilters] = useState([]);
   const [toggle, setToggle] = useState(false);
+  const [prods, setProds] = useState(products);
 
   const transitions = useTransition(showModal, null, transitionsLeft);
 
@@ -38,11 +39,26 @@ const CategoryPageTemplate = ({ data }) => {
       );
   }, []);
 
+  const weights = [
+    ...new Set(products.map(({ variants }) => `${variants[0].weight} oz`)),
+  ];
+
   const onFilterChange = ({ name, checked }) => {
     if (checked) {
       setFilters((prevstate) => [name, ...prevstate]);
+      const filtered = products.filter(
+        ({ variants }) => variants[0].weight === Number(name.replace(/ oz/, ''))
+      );
+      if (filters.length > 0)
+        setProds((prevstate) => [...filtered, ...prevstate]);
+      else setProds(filtered);
     } else {
       setFilters(filters.filter((item) => item !== name));
+      const notFiltered = prods.filter(
+        ({ variants }) => variants[0].weight !== Number(name.replace(/ oz/, ''))
+      );
+      if (filters.length - 1 > 0) setProds(notFiltered);
+      else setProds(products);
     }
   };
 
@@ -50,7 +66,7 @@ const CategoryPageTemplate = ({ data }) => {
     {
       name: 'Menor a mayor precio',
       click: () => {
-        products.sort((a, b) => {
+        prods.sort((a, b) => {
           return a.variants[0].price - b.variants[0].price;
         });
       },
@@ -58,7 +74,7 @@ const CategoryPageTemplate = ({ data }) => {
     {
       name: 'Mayor a menor precio',
       click: () => {
-        products.sort((a, b) => {
+        prods.sort((a, b) => {
           return b.variants[0].price - a.variants[0].price;
         });
       },
@@ -66,7 +82,7 @@ const CategoryPageTemplate = ({ data }) => {
     {
       name: 'Alfabéticamente',
       click: () => {
-        products.sort((a, b) => {
+        prods.sort((a, b) => {
           if (a.title < b.title) return -1;
           if (a.title > b.title) return 1;
           return 0;
@@ -86,7 +102,11 @@ const CategoryPageTemplate = ({ data }) => {
               style={props}
               onClick={() => setShowModal(!showModal)}
             >
-              <Filters onChange={onFilterChange} arr={filters} />
+              <Filters
+                onChange={onFilterChange}
+                arr={filters}
+                weights={weights}
+              />
             </Modal>
           )
       )}
@@ -95,7 +115,7 @@ const CategoryPageTemplate = ({ data }) => {
         <p className="title">{title}</p>
         <div className="sm:flex justify-between items-center mt-8 sm:mt-2 mb-14">
           <p className="price">
-            {products.length}
+            {prods.length}
             <span className="inline-block ml-1 currency">productos</span>
           </p>
           <div className="font-gotham-medium flex md:w-96">
@@ -144,7 +164,7 @@ const CategoryPageTemplate = ({ data }) => {
                   <button
                     className="ml-1"
                     onClick={() =>
-                      setFilters(filters.filter((element) => item !== element))
+                      onFilterChange({ name: item, checked: false })
                     }
                   >
                     <Close className="w-4 h-4" />
@@ -154,14 +174,17 @@ const CategoryPageTemplate = ({ data }) => {
             </ul>
             <button
               className="font-gotham-book text-red w-auto mb-5"
-              onClick={() => setFilters([])}
+              onClick={() => {
+                setFilters([]);
+                setProds(products);
+              }}
             >
               Limpiar filtros
             </button>
           </div>
         )}
         <div className="flex flex-wrap sm:-mr-7">
-          {products.map((item, index) => {
+          {prods.map((item, index) => {
             return (
               <ProductCard
                 key={index}
@@ -177,11 +200,10 @@ const CategoryPageTemplate = ({ data }) => {
             );
           })}
         </div>
-        <button className="btn-red block mx-auto">Ver más</button>
         <CategoriesSection
           title="CATEGORÍAS RELACIONADAS"
           edges={getRandomCategories(edges)}
-          className="mt-8 lg:mt-20 mb-4 lg:mb-12"
+          className="lg:mt-4 mb-4 lg:mb-12"
         />
       </div>
     </Layout>
