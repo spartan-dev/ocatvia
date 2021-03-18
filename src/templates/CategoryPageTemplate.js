@@ -20,24 +20,12 @@ const CategoryPageTemplate = ({ data }) => {
     allShopifyCollection: { edges },
   } = data;
 
-  const [route, setRoute] = useState('');
   const [showModal, setShowModal] = useState(false);
   const [filters, setFilters] = useState([]);
   const [toggle, setToggle] = useState(false);
   const [prods, setProds] = useState(products);
 
   const transitions = useTransition(showModal, null, transitionsLeft);
-
-  useEffect(() => {
-    if (typeof window !== 'undefined')
-      setRoute(
-        `Inicio${window.location.pathname
-          .replace(/\//g, ' > ')
-          .replace(/\s(.)/g, ($1) => {
-            return $1.toUpperCase();
-          })}`
-      );
-  }, []);
 
   const weights = [
     ...new Set(products.map(({ variants }) => `${variants[0].weight} oz`)),
@@ -111,8 +99,7 @@ const CategoryPageTemplate = ({ data }) => {
           )
       )}
       <div className="container">
-        <p className="small py-10">{route}</p>
-        <p className="title">{title}</p>
+        <p className="title pt-6 md:pt-24">{title}</p>
         <div className="sm:flex justify-between items-center mt-8 sm:mt-2 mb-14">
           <p className="price">
             {prods.length}

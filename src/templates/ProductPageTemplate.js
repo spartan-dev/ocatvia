@@ -22,10 +22,7 @@ const ProductPageTemplate = ({ data }) => {
   return (
     <Layout>
       <div className="container">
-        <p className="small py-10">
-          Inicio &gt; Licores &gt; Ron &gt; Ron Barceló Imperial Premium Blend
-        </p>
-        <div className="flex items-center justify-around">
+        <div className="flex items-center justify-around pt-6 md:pt-24">
           {product.variants[0].image === null ||
           product.variants[0].image === undefined ? (
             <img src={ron5} className="w-96" alt="name" />
