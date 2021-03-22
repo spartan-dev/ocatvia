@@ -21,7 +21,7 @@ const Sidebar = ({ data }) => {
               ${toggle && toggleIndex === item.name ? 'pt-6 pb-2' : 'py-6'}`}
           >
             <div className="flex justify-between items-center">
-              <Link to={item.name} className="uppercase">
+              <Link to={`/${item.name}`} className="uppercase">
                 {item.name.replace(/-/g, ' ')}
               </Link>
               <button
@@ -43,8 +43,9 @@ const Sidebar = ({ data }) => {
               <ul className="mt-4">
                 {item.categories.map((item, index) => (
                   <li className="py-4 text-base" key={index}>
+                    {console.log(toggleIndex, item)}
                     <Link
-                      to={`/${toggleIndex}/${item}`}
+                      to={`/${item}`}
                       className="focus:text-yellow uppercase"
                     >
                       {item.replace(/-/g, ' ')}
