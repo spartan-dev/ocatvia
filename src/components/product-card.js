@@ -41,21 +41,19 @@ const ProductCard = ({
 
   return (
     <article className={className}>
-      <div className="bg-white mb-16">
-        <div className="p-9 border border-beige">
+      <div className="bg-white mb-12">
+        <div className="p-9 border border-beige relative">
           {img === null || img === undefined ? (
             <Img
               fluid={data.allFile.edges[0].node.childImageSharp.fluid}
               alt={name}
               title={name}
-              className="relative"
             />
           ) : (
             <Img
               fluid={img.localFile.childImageSharp.fluid}
               alt={name}
               title={name}
-              className="relative"
             />
           )}
           <button
@@ -72,7 +70,7 @@ const ProductCard = ({
           >
             {name}
           </Link>
-          <p className="mililiters my-1">{mililiters}ml</p>
+          <p className="mililiters my-1">{mililiters} oz</p>
           <p className="price">
             {price}
             <span className="inline-block ml-1 currency">USD</span>

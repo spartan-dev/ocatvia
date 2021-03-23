@@ -31,7 +31,7 @@ const Selection = ({ title, data, className }) => {
       <p className="title mb-8">{title}</p>
       <CarouselProvider
         naturalSlideWidth={256}
-        naturalSlideHeight={400}
+        naturalSlideHeight={405}
         totalSlides={data.length}
         touchEnabled={true}
         dragEnabled={true}
