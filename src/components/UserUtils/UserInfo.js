@@ -40,7 +40,7 @@ const UserInfo = ({ data, token }) => {
     localStorage.removeItem('customertoken', token);
     localStorage.clear();
     setTimeout(() => {
-      window.location.reaload('/', { replace: true });
+      navigate('/', { replace: true });
       //o recargar la ventana
     }, 800);
   };

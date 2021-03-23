@@ -1,5 +1,5 @@
 import React from 'react';
-
+import Dayjs from 'dayjs'
 import ron1 from '../../images/assets/ron1.jpg';
 import ron2 from '../../images/assets/ron2.jpg';
 import ron3 from '../../images/assets/ron3.jpg';
@@ -39,26 +39,24 @@ const UserOrders = ({ orders }) => {
         <p className="w-1/3 lg:w-3/12 xl:w-1/6">PRECIO TOTAL</p>
         <p className="w-2/12 lg:w-2/12 xl:w-1/6">ESTATUS</p>
       </div>
-      {mock.length > 0 ? (
-        // orders.edges.length > 0 ? (
-        //   orders.edges.map((order) => {
-        //     return <div>{order}</div>;
-        //   })
-        // )
-        mock.map((order, index) => (
+      {orders.edges.length > 0 ? ( 
+        orders.edges.map((order, index) => (
           <div
             key={index}
             className="flex items-center py-4 border-b border-beige"
           >
-            <p className="w-1/3 lg:w-1/6">{order.id}</p>
+            <p className="w-1/3 lg:w-1/6">{order.node.orderNumber}</p>
             <p className="w-1/3 lg:w-2/6 flex overflow-x-scroll">
-              {order.productos.map((item, index) => (
-                <img key={index} src={item} className="w-16 h-auto mr-2" />
+              {order.node.lineItems.edges.map((item, index) => (
+                <img key={index} 
+                src={item.node.variant.image === null ? ron1 : item.node.variant.image.originalSrc} 
+                alt={item.node.variant.image === null ? "Imagen sin cargar":item.node.variant.image.altText}
+                 className="w-16 h-auto mr-2" />
               ))}
             </p>
-            <p className="w-2/12 xl:w-1/6">{order.date}</p>
-            <p className="w-1/3 lg:w-3/12 xl:w-1/6">${order.total} USD</p>
-            <p className="w-2/12 lg:w-2/12 xl:w-1/6">{order.status}</p>
+            <p className="w-2/12 xl:w-1/6">{order.node.processedAt}</p>
+            <p className="w-1/3 lg:w-3/12 xl:w-1/6">${order.node.originalTotalPrice.amount} {order.node.originalTotalPrice.currencyCode}</p>
+            <p className="w-2/12 lg:w-2/12 xl:w-1/6">{order.node.fulfillmentStatus === "UNFULFILLED" ? "Sin Preparar" : order.node.fulfillmentStatus === "FULFILLED" ? "Preparada" : "Sin datos"}</p>
           </div>
         ))
       ) : (

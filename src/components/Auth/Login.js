@@ -29,7 +29,7 @@ const Login = () => {
   }); */
   useEffect(() => {
     setUserToken(customerToken);
-  }, []);
+  }, [customerToken]);
   if (loading) return <Loading />;
   if (error) return console.log(error);
 
@@ -87,7 +87,8 @@ const Login = () => {
       setTimeout(() => {
         navigate('/', { replace: true });
         window.location.reload();
-      }, 2000);
+       
+      }, 800);
     } else {
       const { data } = await renovarToken({
         variables: { customerAccessToken: 'a15a7c111701b3562dbf30ffa1568fda' },

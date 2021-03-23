@@ -53,9 +53,54 @@ export const QUERY_USER = gql`
         edges {
           node {
             id
+            currentTotalPrice{
+              amount
+              currencyCode
+            } 
+            customerUrl
+            name
+            orderNumber
+            originalTotalPrice{
+              amount
+              currencyCode
+            }
+            processedAt
+            statusUrl
+            financialStatus
+            fulfillmentStatus
+            shippingAddress{
+              address1
+            }
+            totalPriceV2{
+              amount
+              currencyCode
+            }
+            lineItems(first:3){
+              edges{
+                node{
+                  title
+                  quantity
+                  variant{
+                    image{
+                      altText 
+                      originalSrc
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
     }
   }
 `;
+
+
+/* export const QUERY_ORDER_LINE_ITEMS = gql`
+  query orderLineItems($orderid: ID!){
+    orderLineItems(orderid:$$orderid){
+      currentQuantity
+    }
+  }
+` */
