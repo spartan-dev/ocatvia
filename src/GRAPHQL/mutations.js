@@ -17,6 +17,9 @@ export const CREAR_USUARIO = gql`
     }
   }
 `;
+/**
+ * @mutation Crear un token de acceso (signup)
+ */
 export const CREAR_ACCESS_TOKEN = gql`
   mutation customerAccessTokenCreate($input: CustomerAccessTokenCreateInput!) {
     customerAccessTokenCreate(input: $input) {
@@ -32,6 +35,9 @@ export const CREAR_ACCESS_TOKEN = gql`
     }
   }
 `;
+/**
+ * @mutation renovar el token
+ */
 export const RENOVAR_ACCESS_TOKEN = gql`
   mutation customerAccessTokenRenew($customerAccessToken: String!) {
     customerAccessTokenRenew(customerAccessToken: $customerAccessToken) {
@@ -46,6 +52,9 @@ export const RENOVAR_ACCESS_TOKEN = gql`
     }
   }
 `;
+/**
+ * @mutation borrar access token (logout)
+ */
 export const BORRAR_ACCESS_TOKEN = gql`
   mutation customerAccessTokenDelete($customerAccessToken: String!) {
     customerAccessTokenDelete(customerAccessToken: $customerAccessToken) {
@@ -58,6 +67,9 @@ export const BORRAR_ACCESS_TOKEN = gql`
     }
   }
 `;
+/**
+ * @muation Logear usuario pero se usa mejro la query por que ya tenemos el token en el localstorage
+ */
 export const LOGIN_USUARIO = gql`
   mutation customerAccessTokenCreate($input: CustomerAccessTokenCreateInput!) {
     customerAccessTokenCreate(input: $input) {
@@ -215,6 +227,23 @@ export const DELETE_ADDRESS = gql`
         message
       }
       deletedCustomerAddressId
+    }
+  }
+`;
+
+/**
+ * @mutation recover password change
+ * @params email del usuario
+ */
+
+export const RECOVER_PASSWORD = gql`
+  mutation customerRecover($email: String!) {
+    customerRecover(email: $email) {
+      customerUserErrors {
+        code
+        field
+        message
+      }
     }
   }
 `;

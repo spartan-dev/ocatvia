@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link, navigate } from 'gatsby';
 import Loading from '../../components/Loading';
-import { useMutation, useQuery, useLazyQuery, gql } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import {
   CREAR_ACCESS_TOKEN,
   RENOVAR_ACCESS_TOKEN,
-  BORRAR_ACCESS_TOKEN,
 } from '../../GRAPHQL/mutations';
 import { QUERY_USER } from '../../GRAPHQL/queries';
 import { ToastContainer, toast } from 'react-toastify';
@@ -15,7 +14,6 @@ import Arrow from '../../images/svg/arrow.svg';
 const Login = () => {
   const customerToken = () => localStorage.getItem('customertoken') || '';
   const [form, setForm] = useState({});
-
   const validForm = Object.keys(form).length === 2;
   const [createToken, { data, loading, error }] = useMutation(
     CREAR_ACCESS_TOKEN
@@ -40,10 +38,7 @@ const Login = () => {
   };
   const handleLogin = async (e) => {
     e.preventDefault();
-    //primero revisar si ya hay token si ya hay token usar la mutacion de renovar token
-    //si no hay token usar la de crear token
-    // si ya esta o es creada psarla al localStorage
-    if (usertoken == '') {
+    if (usertoken === '') {
       console.log(usertoken);
       //*Si es usuario salio de la sesion o borro sus cookies iniciar una nueva token
       const { data } = await createToken({
@@ -87,7 +82,6 @@ const Login = () => {
       setTimeout(() => {
         navigate('/', { replace: true });
         window.location.reload();
-       
       }, 800);
     } else {
       const { data } = await renovarToken({
@@ -109,6 +103,7 @@ const Login = () => {
    * recrear el usar del login con el acces token y crear uno nuevo y guardarlo de nuevo en el localstorage https://shopify.dev/docs/storefront-api/reference/customers/customeraccesstokencreate
    *
    */
+
   return (
     <section className="container min-h-full flex flex-col items-center">
       <p className="title pt-6 md:pt-24">INGRESAR</p>
@@ -148,10 +143,11 @@ const Login = () => {
         </div>
         <div className="w-full mb-8 flex small">
           <p>¿Olvidaste tu contraseña?</p>
-          <a href="#" className="text-red ml-2">
+          <Link to="/recover" className="text-red ml-2">
             Click aquí
-          </a>
+          </Link>
         </div>
+
         <div className="sm:flex">
           <button
             onClick={handleLogin}
@@ -198,36 +194,3 @@ const Login = () => {
 };
 
 export default Login;
-/* const LOGIN_USUARIO = gql`
-  mutation customerAccessTokenCreate($input: CustomerAccessTokenCreateInput!) {
-    customerAccessTokenCreate(input: $input) {
-      customerUserErrors {
-        code
-        field
-        message
-      }
-      customerAccessToken {
-        accessToken
-        expiresAt
-      }
-    }
-  }
-`; */
-/* const QUERY_USER = gql`
-  query customer($customerAccessToken: String!) {
-    customer(customerAccessToken: $customerAccessToken) {
-      createdAt
-      firstName
-      lastName
-      email
-      phone
-      orders(first: 5) {
-        edges {
-          node {
-            id
-          }
-        }
-      }
-    }
-  }
-`; */

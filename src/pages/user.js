@@ -28,7 +28,6 @@ const User = () => {
     if (token) {
       getUser({ variables: { customerAccessToken: token } });
     }
-    console.log(token, 'si se guardo?');
   }, [token]);
 
   /*   const handleAddressChange = (e) => {
@@ -46,7 +45,6 @@ const User = () => {
       },
     });
   }; */
-  console.log(data);
   return (
     <Layout>
       {loading ? (

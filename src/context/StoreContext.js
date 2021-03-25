@@ -2,7 +2,7 @@ import React, { createContext, useState, useEffect, useContext } from 'react';
 import Client from 'shopify-buy';
 import { useMutation, useLazyQuery } from '@apollo/client';
 import { ASSOCIATE_CUSTOMER_TO_CHECKOUT } from '../GRAPHQL/mutations';
-import { QUERY_USER } from '../GRAPHQL/mutations';
+import { QUERY_USER } from '../GRAPHQL/queries';
 import { UserContext } from './UserContext';
 
 const client = Client.buildClient({
