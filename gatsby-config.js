@@ -5,9 +5,7 @@ module.exports = {
   siteMetadata: {
     title: 'octavia',
   },
-  flags: {
-    DEV_SSR: true,
-  },
+
   plugins: [
     {
       resolve: 'gatsby-source-shopify',

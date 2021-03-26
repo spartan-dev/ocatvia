@@ -9,7 +9,7 @@ import { ToastContainer, toast } from 'react-toastify';
 const Recover = () => {
   const [email, setEmail] = useState({});
   const validForm = Object.keys(email).length === 1;
-  const [recover_password, { data, loading, error }] = useMutation(
+  const [recoverPassword, { data, loading, error }] = useMutation(
     RECOVER_PASSWORD
   );
   const handleChange = (e) => {
@@ -18,12 +18,12 @@ const Recover = () => {
   };
 
   const handleRecoverPassword = async (e) => {
-    e.preventDefault();
+    /*   e.preventDefault();
     await recover_password({
       variables: { email: email.email },
     });
     // https://octavia-gourmet.myshopify.com/account/reset/5081035899058/26a7e9d4728d43f4f4da88bb4fea4859-1616654823
-    navigate('/', { replace: true });
+    navigate('/', { replace: true }); */
   };
   return (
     <Layout>
@@ -52,7 +52,6 @@ const Recover = () => {
             </div>
             <button
               onClick={handleRecoverPassword}
-              type="submit"
               disabled={!validForm}
               className={`btn-red ${!validForm && 'cursor-not-allowed'}`}
             >
