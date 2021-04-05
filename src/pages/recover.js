@@ -18,12 +18,12 @@ const Recover = () => {
   };
 
   const handleRecoverPassword = async (e) => {
-    /*   e.preventDefault();
-    await recover_password({
+    e.preventDefault();
+    await recoverPassword({
       variables: { email: email.email },
     });
     // https://octavia-gourmet.myshopify.com/account/reset/5081035899058/26a7e9d4728d43f4f4da88bb4fea4859-1616654823
-    navigate('/', { replace: true }); */
+    navigate('/', { replace: true });
   };
   return (
     <Layout>

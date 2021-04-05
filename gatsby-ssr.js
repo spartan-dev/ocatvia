@@ -12,3 +12,4 @@ export const wrapRootElement = ({ element }) => (
     </UserProvider>
   </ApolloProvider>
 ); */
+export { wrapRootElement } from './gatsby-browser';

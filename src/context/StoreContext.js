@@ -24,11 +24,11 @@ const defaultValues = {
 };
 
 export const StoreContext = createContext(defaultValues);
-// Check if it's a browser
+// Check if it's a browser y ademas poner el local storage !!!
 const isBrowser = typeof window !== 'undefined';
-
+const isTorage = typeof window !== 'undefined';
 export const StoreProvider = ({ children }) => {
-  const temp = () => localStorage.getItem('customertoken') || '';
+  const temp = () => (isBrowser ? localStorage.getItem('customertoken') : '');
   const [checkout, setCheckout] = useState(defaultValues.checkout);
   const [isCartOpen, setCartOpen] = useState(false);
   const [customertoken, setCustomerToken] = useState(temp);

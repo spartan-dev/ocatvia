@@ -19,7 +19,7 @@ const Login = () => {
     CREAR_ACCESS_TOKEN
   );
   const [renovarToken] = useMutation(RENOVAR_ACCESS_TOKEN);
-  const [getUser] = useQuery(QUERY_USER);
+  //const [getUser] = useQuery(QUERY_USER);
   const [usertoken, setUserToken] = useState('');
 
   /*   const { loading, error, data } = useQuery(QUERY_USER, {
