@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, navigate } from 'gatsby';
 import Loading from '../../components/Loading';
-import { useMutation, useQuery } from '@apollo/client';
+import { useMutation } from '@apollo/client';
 import {
   CREAR_ACCESS_TOKEN,
   RENOVAR_ACCESS_TOKEN,

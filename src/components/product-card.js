@@ -5,6 +5,7 @@ import Img from 'gatsby-image';
 import { StoreContext } from '../context/StoreContext';
 
 import Shop from '../images/svg/btn-shop.svg';
+import { ToastContainer, toast } from 'react-toastify';
 
 const ProductCard = ({
   img,
@@ -58,7 +59,19 @@ const ProductCard = ({
           )}
           <button
             className={btnClassName}
-            onClick={() => addProductToCart(variantId)}
+            onClick={() => {
+              addProductToCart(variantId).then((res) => {
+                toast.dark('Iteam Agregado', {
+                  position: 'top-right',
+                  autoClose: 5000,
+                  hideProgressBar: true,
+                  closeOnClick: true,
+                  pauseOnHover: true,
+                  draggable: true,
+                  progress: undefined,
+                });
+              });
+            }}
           >
             <Shop />
           </button>
@@ -77,6 +90,17 @@ const ProductCard = ({
           </p>
         </div>
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover={false}
+      />
     </article>
   );
 };

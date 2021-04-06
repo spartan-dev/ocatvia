@@ -1,9 +1,8 @@
-import React, { createContext, useState, useEffect, useContext } from 'react';
+import React, { createContext, useState, useEffect } from 'react';
 import Client from 'shopify-buy';
 import { useMutation, useLazyQuery } from '@apollo/client';
 import { ASSOCIATE_CUSTOMER_TO_CHECKOUT } from '../GRAPHQL/mutations';
 import { QUERY_USER } from '../GRAPHQL/queries';
-import { UserContext } from './UserContext';
 
 const client = Client.buildClient({
   domain: 'octavia-gourmet.myshopify.com',
@@ -35,8 +34,6 @@ export const StoreProvider = ({ children }) => {
   const [associateCustomer, { data }] = useMutation(
     ASSOCIATE_CUSTOMER_TO_CHECKOUT
   );
-  const [getUser] = useLazyQuery(QUERY_USER);
-
   const toggleCartOpen = () => setCartOpen(!isCartOpen);
 
   useEffect(() => {
@@ -66,18 +63,15 @@ export const StoreProvider = ({ children }) => {
       if (currentCheckoutId) {
         // If id exists, fetch checkout from Shopify
         newCheckout = await client.checkout.fetch(currentCheckoutId);
-        //!experiment
-        /*   const { data } = getUser({
-          variables: { customerAccessToken: customertoken },
-        }); */
+        if (customertoken) {
+          const asociado = await associateCustomer({
+            variables: {
+              checkoutId: currentCheckoutId,
+              customerAccessToken: customertoken,
+            },
+          });
+        }
 
-        const asociado = await associateCustomer({
-          variables: {
-            checkoutId: currentCheckoutId,
-            customerAccessToken: customertoken,
-          },
-        });
-        console.log(asociado, 'maldita suerte!! 💀');
         //!experiment
         if (newCheckout.completedAt) {
           newCheckout = await getNewId();
@@ -110,7 +104,7 @@ export const StoreProvider = ({ children }) => {
       //buy now button code
       // window.open(addItems.webUrl,"_blank")
     } catch (error) {
-      console.error(error);
+      console.error(error, 'este es el que busco');
     }
   };
 

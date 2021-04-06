@@ -37,7 +37,8 @@ const UserInfo = ({ data, token }) => {
       draggable: true,
       progress: undefined,
     });
-    localStorage.removeItem('customertoken', token);
+    localStorage.removeItem('customertoken');
+    localStorage.removeItem('checkout_id');
     localStorage.clear();
     setTimeout(() => {
       navigate('/', { replace: true });

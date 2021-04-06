@@ -1,15 +1,12 @@
 import React, { useContext } from 'react';
 import Img from 'gatsby-image';
 import { graphql } from 'gatsby';
-
 import { StoreContext } from '../context/StoreContext';
-
 import CategoriesSection from '../components/categories-section';
 import Layout from '../components/layout';
-
 import { getRandomCategories } from '../utils';
-
 import ron5 from '../images/assets/ron5.jpg';
+import { ToastContainer, toast } from 'react-toastify';
 
 const ProductPageTemplate = ({ data }) => {
   const { addProductToCart } = useContext(StoreContext);
@@ -56,7 +53,19 @@ const ProductPageTemplate = ({ data }) => {
             </div>
             <button
               className="btn-red"
-              onClick={() => addProductToCart(product.variants[0].shopifyId)}
+              onClick={() => {
+                addProductToCart(product.variants[0].shopifyId).then((res) => {
+                  toast.dark('Iteam Agregado', {
+                    position: 'top-right',
+                    autoClose: 5000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                  });
+                });
+              }}
             >
               Agregar a bolsa
             </button>
@@ -68,6 +77,17 @@ const ProductPageTemplate = ({ data }) => {
           className="mt-8 lg:mt-20 mb-4 lg:mb-12"
         />
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover={false}
+      />
     </Layout>
   );
 };
