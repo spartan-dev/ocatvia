@@ -1,0 +1,1 @@
+//! importante el user ya se activa con la url del correo queda revisar el correo para cambiar la url a nuestro shop
