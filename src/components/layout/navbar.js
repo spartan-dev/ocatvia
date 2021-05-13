@@ -106,7 +106,7 @@ const Navbar = () => {
                         navActions(item.categories, item.name, true)
                       }
                     >
-                      {item.name}
+                      <h2>{item.name}</h2>
                     </button>
                   </li>
                 </Link>

@@ -6,6 +6,8 @@ import Hero from '../components/hero';
 import Layout from '../components/layout';
 import SliderSection from '../components/slider-section';
 
+import SEO from '../components/layout/seo';
+
 const Index = ({ data }) => {
   const {
     allShopifyCollection: { edges },
@@ -15,6 +17,7 @@ const Index = ({ data }) => {
 
   return (
     <Layout>
+      <SEO />
       <Hero product={shopifyProduct} />
       <SliderSection
         title="SELECCIÓN"
