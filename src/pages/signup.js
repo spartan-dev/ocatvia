@@ -9,7 +9,7 @@ import { ToastContainer, toast } from 'react-toastify';
 const Signup = () => {
   const [form, setForm] = useState({});
 
-  const validForm = Object.keys(form).length === 4;
+  const validForm = Object.keys(form).length === 5;
 
   const [signUser, { data, loading, error }] = useMutation(CREAR_USUARIO);
 
