@@ -61,7 +61,7 @@ const ProductCard = ({
             className={btnClassName}
             onClick={() => {
               addProductToCart(variantId).then((res) => {
-                toast.dark('Iteam Agregado', {
+                /*  toast.dark('Iteam Agregado', {
                   position: 'top-right',
                   autoClose: 5000,
                   hideProgressBar: true,
@@ -69,7 +69,7 @@ const ProductCard = ({
                   pauseOnHover: true,
                   draggable: true,
                   progress: undefined,
-                });
+                }); */
               });
             }}
           >

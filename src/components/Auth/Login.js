@@ -85,7 +85,7 @@ const Login = () => {
       }, 800);
     } else {
       const { data } = await renovarToken({
-        variables: { customerAccessToken: 'a15a7c111701b3562dbf30ffa1568fda' },
+        variables: { customerAccessToken: usertoken }, //'a15a7c111701b3562dbf30ffa1568fda'
       });
       console.log(data, 'token renovado');
       //todo sacar valores de la data de renovacion
