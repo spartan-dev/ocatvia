@@ -9,7 +9,7 @@ import { ToastContainer, toast } from 'react-toastify';
 const Signup = () => {
   const [form, setForm] = useState({});
 
-  const validForm = Object.keys(form).length === 4;
+  const validForm = Object.keys(form).length === 5;
 
   const [signUser, { data, loading, error }] = useMutation(CREAR_USUARIO);
 
@@ -22,7 +22,6 @@ const Signup = () => {
     e.preventDefault(); // este id se debe de usar para activar el usuario
 
     const { data } = await signUser({ variables: { input: form } });
-    console.log(data.customerCreate.customer.id);
     //extraer el id del customer
     // usarlo para el activate
     //! importante el user ya se activa con la url del correo queda revisar el correo para cambiar la url a nuestro shop
