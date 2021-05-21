@@ -4,6 +4,7 @@ import { StoreContext } from '../context/StoreContext';
 
 import Layout from '../components/layout';
 
+import Camion from '../images/svg/camion.svg';
 import Minus from '../images/svg/minus.svg';
 import Plus from '../images/svg/plus.svg';
 import Trash from '../images/svg/trash.svg';
@@ -12,7 +13,7 @@ import empty from '../images/assets/empty.png';
 
 const imageUrl = '/static/5df342808b1d5e1d503c0789a39cc00d/14b42/IMG_8624.jpg';
 
-const ShopSidebar = () => {
+const Cart = () => {
   const {
     checkout,
     removeProductFromToCart,
@@ -20,11 +21,17 @@ const ShopSidebar = () => {
     updateProductsFromCart,
   } = useContext(StoreContext);
 
-  const handleChange = (params) => {};
+  const handleChange = () => {};
   return (
     <Layout>
       <section className="container min-h-full font-gotham-medium">
         <p className="title pt-6 md:pt-24">BOLSA DE COMPRAS</p>
+        <div className="bg-pink-light font-gotham-book text-red py-5 px-6 flex items-center mt-8">
+          <span className="text-xs md:text-base">
+            Envío gratis en pedidos mayores a $25.00 USD
+          </span>
+          <Camion className="md:ml-2" />
+        </div>
         {checkout.lineItems.length > 0 ? (
           <>
             <div className="mt-6 md:mb-9">
@@ -83,14 +90,16 @@ const ShopSidebar = () => {
                         onClick={() =>
                           updateProductsFromCart(item.id, item.quantity)
                         }
-                        className="absolute right-9 md:right-20 top-7 mr-2"
+                        className="mt-px absolute right-9 md:right-20 top-5 mr-2 h-4"
                       >
                         <Minus />
                       </button>
                     </div>
                   </div>
                   <div className="w-full md:w-2/12 lg:w-2/12 xl:w-1/5 flex md:flex-col lg:flex-row justify-between">
-                    <p>${item.variant.price * item.quantity} USD</p>
+                    <p>
+                      ${(item.variant.price * item.quantity).toFixed(2)} USD
+                    </p>
                     <button
                       className="md:mr-10 md:mt-4 lg:mt-0"
                       onClick={() => removeProductFromToCart(item.id)}
@@ -126,4 +135,4 @@ const ShopSidebar = () => {
   );
 };
 
-export default ShopSidebar;
+export default Cart;

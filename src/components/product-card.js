@@ -61,7 +61,7 @@ const ProductCard = ({
             className={btnClassName}
             onClick={() => {
               addProductToCart(variantId).then((res) => {
-                toast.dark('Iteam Agregado', {
+                toast.dark('Item agregado', {
                   position: 'top-right',
                   autoClose: 5000,
                   hideProgressBar: true,

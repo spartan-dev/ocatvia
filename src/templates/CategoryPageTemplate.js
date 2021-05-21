@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useTransition } from 'react-spring';
 import { graphql } from 'gatsby';
 
@@ -200,7 +200,7 @@ const CategoryPageTemplate = ({ data }) => {
 export default CategoryPageTemplate;
 
 export const query = graphql`
-  query($handle: String!) {
+  query ($handle: String!) {
     shopifyCollection(handle: { eq: $handle }) {
       id
       shopifyId
