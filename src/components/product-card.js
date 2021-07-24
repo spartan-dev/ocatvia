@@ -61,11 +61,7 @@ const ProductCard = ({
             className={btnClassName}
             onClick={() => {
               addProductToCart(variantId).then((res) => {
-<<<<<<< HEAD
-                /*  toast.dark('Iteam Agregado', {
-=======
                 toast.dark('Item agregado', {
->>>>>>> 30a9076b676b113e74b8df6029e84b2d171968ac
                   position: 'top-right',
                   autoClose: 5000,
                   hideProgressBar: true,
@@ -73,7 +69,7 @@ const ProductCard = ({
                   pauseOnHover: true,
                   draggable: true,
                   progress: undefined,
-                }); */
+                });
               });
             }}
           >

@@ -3,6 +3,7 @@ import { Link } from 'gatsby';
 
 import Facebook from '../../images/svg/facebook.svg';
 import Instagram from '../../images/svg/instagram.svg';
+import WhatsApp from '../../images/svg/whatsapp.svg';
 
 const categories = ['vinos', 'licor', 'gourmet', 'bebidas'];
 const subcategories = [
@@ -28,7 +29,7 @@ const Footer = () => {
   return (
     <footer>
       <div className="flex justify-center">
-        <div className="h-24 w-20 flex justify-between items-center">
+        <div className="h-24 w-36 flex justify-between items-center">
           <a
             target="_blank"
             rel="noreferrer"
@@ -42,6 +43,13 @@ const Footer = () => {
             href="https://www.instagram.com/octaviamundogourmet/"
           >
             <Instagram />
+          </a>
+          <a
+            target="_blank"
+            rel="noreferrer"
+            href="https://api.whatsapp.com/message/ZWWAEROYAYAJK1"
+          >
+            <WhatsApp />
           </a>
         </div>
       </div>
