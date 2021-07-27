@@ -1,6 +1,6 @@
 --- 
 deployment: 
      tasks: 
-          - export DEPLOYPATH=/home/octaviacom/public_html/
+          - export DEPLOYPATH=/home/octaviacom/repositories/octavia 
           - /bin/cp -R public/* $DEPLOYPATH
 
