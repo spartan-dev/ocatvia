@@ -63,7 +63,7 @@ const ProductCard = ({
               addProductToCart(variantId).then((res) => {
                 toast.dark('Item agregado', {
                   position: 'top-right',
-                  autoClose: 5000,
+                  autoClose: 1000,
                   hideProgressBar: true,
                   closeOnClick: true,
                   pauseOnHover: true,
@@ -92,7 +92,7 @@ const ProductCard = ({
       </div>
       <ToastContainer
         position="top-right"
-        autoClose={5000}
+        autoClose={1000}
         hideProgressBar
         newestOnTop={false}
         closeOnClick

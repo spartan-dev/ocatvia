@@ -10,7 +10,8 @@ import { QUERY_USER } from '../../GRAPHQL/queries';
 import { ToastContainer, toast } from 'react-toastify';
 
 import Arrow from '../../images/svg/arrow.svg';
-
+//todo subir a el server hacer pruebas
+//todo revisar la info y el flujo de creacion una ves despúes de la compra
 const Login = () => {
   const customerToken = () => localStorage.getItem('customertoken') || '';
   const [form, setForm] = useState({});
@@ -141,12 +142,12 @@ const Login = () => {
             <p className="absolute top-1 left-2 small opacity-50">Contraseña</p>
           )}
         </div>
-        <div className="w-full mb-8 flex small">
+        {/*   <div className="w-full mb-8 flex small">
           <p>¿Olvidaste tu contraseña?</p>
           <Link to="/recover" className="text-red ml-2">
             Click aquí
           </Link>
-        </div>
+        </div> */}
 
         <div className="sm:flex">
           <button
@@ -157,12 +158,12 @@ const Login = () => {
           >
             Iniciar sesión
           </button>
-          <div className="sm:ml-10 flex items-center text-red mt-6 sm:mt-0">
+          {/*  <div className="sm:ml-10 flex items-center text-red mt-6 sm:mt-0">
             <div> Crear cuenta</div>
             <Link to="/signup" className="ml-4">
               <Arrow />
             </Link>
-          </div>
+          </div> */}
         </div>
       </form>
       <div className="w-full sm:w-3/4 lg:w-1/2 xl:w-5/12">
