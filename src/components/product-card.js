@@ -6,9 +6,9 @@ import { StoreContext } from '../context/StoreContext';
 
 import Shop from '../images/svg/btn-shop.svg';
 import { ToastContainer, toast } from 'react-toastify';
-
+import notavailable from '../images/assets/not-available.png';
 const ProductCard = ({
-  img,
+  image,
   name,
   handle,
   mililiters,
@@ -43,16 +43,20 @@ const ProductCard = ({
   return (
     <article className={className}>
       <div className="bg-white mb-12">
-        <div className="p-9 border border-beige relative">
-          {img === null || img === undefined ? (
-            <Img
-              fluid={data.allFile.edges[0].node.childImageSharp.fluid}
-              alt={name}
-              title={name}
+        <div
+          className="p-9 border border-beige relative"
+          style={{ minHeight: '503px' }}
+        >
+          {image === null || image === undefined ? (
+            <img
+              src={notavailable}
+              className="w-96  h-full"
+              alt="name"
+              style={{ paddingTop: '115.5px', paddingBottom: '104.5px' }}
             />
           ) : (
             <Img
-              fluid={img.localFile.childImageSharp.fluid}
+              fluid={image.localFile.childImageSharp.fluid}
               alt={name}
               title={name}
             />

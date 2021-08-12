@@ -2,16 +2,16 @@ import React from 'react';
 
 import Trash from '../images/svg/trash.svg';
 
-const imageUrl = '/static/5df342808b1d5e1d503c0789a39cc00d/14b42/IMG_8624.jpg';
-
+import noImage from '../images/assets/not-available.png';
+///static/5df342808b1d5e1d503c0789a39cc00d/14b42/IMG_8624.jpg
 const ProductSidebar = ({ item, removeProductFromToCart }) => {
   return (
     <>
       <div className="flex py-6">
         <img
-          className="w-20 h-28"
+          className="w-20 h-auto"
           src={`${
-            item.variant.image === null ? imageUrl : item.variant.image.src
+            item.variant.image === null ? noImage : item.variant.image.src
           }`}
           alt={item.title}
         />

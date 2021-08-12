@@ -175,7 +175,7 @@ const CategoryPageTemplate = ({ data }) => {
             return (
               <ProductCard
                 key={index}
-                img={item.variants[0].image}
+                image={item.variants[0].image}
                 name={item.title}
                 handle={item.handle}
                 mililiters={item.variants[0].weight}
@@ -200,7 +200,7 @@ const CategoryPageTemplate = ({ data }) => {
 export default CategoryPageTemplate;
 
 export const query = graphql`
-  query ($handle: String!) {
+  query($handle: String!) {
     shopifyCollection(handle: { eq: $handle }) {
       id
       shopifyId

@@ -5,7 +5,7 @@ import { StoreContext } from '../context/StoreContext';
 import CategoriesSection from '../components/categories-section';
 import Layout from '../components/layout';
 import { getRandomCategories } from '../utils';
-import ron5 from '../images/assets/ron5.jpg';
+import notavailable from '../images/assets/not-available.png';
 import { ToastContainer, toast } from 'react-toastify';
 
 const ProductPageTemplate = ({ data }) => {
@@ -22,7 +22,7 @@ const ProductPageTemplate = ({ data }) => {
         <div className="flex items-center justify-around pt-6 md:pt-24">
           {product.variants[0].image === null ||
           product.variants[0].image === undefined ? (
-            <img src={ron5} className="w-96" alt="name" />
+            <img src={notavailable} className="w-96" alt="name" />
           ) : (
             <Img
               fluid={product.variants[0].image.localFile.childImageSharp.fluid}

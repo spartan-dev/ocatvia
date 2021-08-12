@@ -11,7 +11,7 @@ import Trash from '../images/svg/trash.svg';
 
 import empty from '../images/assets/empty.png';
 
-const imageUrl = '/static/5df342808b1d5e1d503c0789a39cc00d/14b42/IMG_8624.jpg';
+import imageUrl from '../images/assets/not-available.png';
 
 const Cart = () => {
   const {
@@ -55,7 +55,7 @@ const Cart = () => {
                 >
                   <div className="w-full md:w-1/3 lg:w-2/5 flex flex-col lg:flex-row items-center">
                     <img
-                      className="w-40 md:w-20 md:h-28"
+                      className="w-40 h-auto  md:w-20 "
                       src={`${
                         item.variant.image === null
                           ? imageUrl
