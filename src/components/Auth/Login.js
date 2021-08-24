@@ -179,7 +179,7 @@ const Login = () => {
           Continuar
         </Link>
       </div>
-      <ToastContainer
+      {/*    <ToastContainer
         position="top-right"
         autoClose={5000}
         hideProgressBar
@@ -189,7 +189,7 @@ const Login = () => {
         pauseOnFocusLoss
         draggable
         pauseOnHover={false}
-      />
+      /> */}
     </section>
   );
 };

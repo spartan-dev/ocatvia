@@ -269,7 +269,7 @@ const Directions = ({ isNew, setIsNew, token }) => {
           Agregar dirección
         </button>
       </form>
-      <ToastContainer
+      {/*    <ToastContainer
         position="top-right"
         autoClose={5000}
         hideProgressBar
@@ -279,7 +279,7 @@ const Directions = ({ isNew, setIsNew, token }) => {
         pauseOnFocusLoss
         draggable
         pauseOnHover={false}
-      />
+      /> */}
     </section>
   );
 };

@@ -94,7 +94,7 @@ const ProductCard = ({
           </p>
         </div>
       </div>
-      <ToastContainer
+      {/*  <ToastContainer
         position="top-right"
         autoClose={1000}
         hideProgressBar
@@ -104,7 +104,7 @@ const ProductCard = ({
         pauseOnFocusLoss
         draggable
         pauseOnHover={false}
-      />
+      /> */}
     </article>
   );
 };

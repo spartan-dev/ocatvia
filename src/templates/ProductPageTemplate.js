@@ -55,7 +55,8 @@ const ProductPageTemplate = ({ data }) => {
               className="btn-red"
               onClick={() => {
                 addProductToCart(product.variants[0].shopifyId).then((res) => {
-                  toast.dark('Item agregado', {
+                  //todo agregar un toast para avisar del producto al carro
+                  /*  toast.dark('Item agregado', {
                     position: 'top-right',
                     autoClose: 5000,
                     hideProgressBar: true,
@@ -63,7 +64,7 @@ const ProductPageTemplate = ({ data }) => {
                     pauseOnHover: true,
                     draggable: true,
                     progress: undefined,
-                  });
+                  }); */
                 });
               }}
             >
@@ -77,7 +78,7 @@ const ProductPageTemplate = ({ data }) => {
           className="mt-8 lg:mt-20 mb-4 lg:mb-12"
         />
       </div>
-      <ToastContainer
+      {/*   <ToastContainer
         position="top-right"
         autoClose={5000}
         hideProgressBar
@@ -87,7 +88,7 @@ const ProductPageTemplate = ({ data }) => {
         pauseOnFocusLoss
         draggable
         pauseOnHover={false}
-      />
+      /> */}
     </Layout>
   );
 };

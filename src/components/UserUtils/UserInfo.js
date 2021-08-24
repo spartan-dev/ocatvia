@@ -92,7 +92,7 @@ const UserInfo = ({ data, token }) => {
           </div>
         </div>
       )}
-      <ToastContainer
+      {/*    <ToastContainer
         position="top-right"
         autoClose={5000}
         hideProgressBar
@@ -102,7 +102,7 @@ const UserInfo = ({ data, token }) => {
         pauseOnFocusLoss
         draggable
         pauseOnHover={false}
-      />
+      /> */}
     </section>
   );
 };
@@ -267,7 +267,7 @@ const EditUser = ({ setIsEdit, isEdit, firstName, lastName, email, phone }) => {
           Actualizar usuario
         </button>
       </form>
-      <ToastContainer
+      {/*  <ToastContainer
         position="top-right"
         autoClose={5000}
         hideProgressBar
@@ -277,7 +277,7 @@ const EditUser = ({ setIsEdit, isEdit, firstName, lastName, email, phone }) => {
         pauseOnFocusLoss
         draggable
         pauseOnHover={false}
-      />
+      /> */}
     </div>
   );
 };

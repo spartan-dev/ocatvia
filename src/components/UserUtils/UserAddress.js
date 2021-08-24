@@ -168,7 +168,7 @@ const UserAddress = ({ addresses, defaultAddress, token }) => {
           </button>
         </div>
       )}
-      <ToastContainer
+      {/*   <ToastContainer
         position="top-right"
         autoClose={5000}
         hideProgressBar
@@ -178,7 +178,7 @@ const UserAddress = ({ addresses, defaultAddress, token }) => {
         pauseOnFocusLoss
         draggable
         pauseOnHover={false}
-      />
+      /> */}
     </section>
   );
 };

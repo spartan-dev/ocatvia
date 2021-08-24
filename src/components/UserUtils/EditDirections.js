@@ -310,7 +310,7 @@ const EditDirections = ({
           Actualizar dirección
         </button>
       </form>
-      <ToastContainer
+      {/*   <ToastContainer
         position="top-right"
         autoClose={5000}
         hideProgressBar
@@ -320,7 +320,7 @@ const EditDirections = ({
         pauseOnFocusLoss
         draggable
         pauseOnHover={false}
-      />
+      /> */}
     </section>
   );
 };

@@ -172,7 +172,7 @@ const Signup = () => {
             Registrarse
           </button>
         </form>
-        <ToastContainer
+        {/*   <ToastContainer
           position="top-right"
           autoClose={1000}
           hideProgressBar
@@ -182,7 +182,7 @@ const Signup = () => {
           pauseOnFocusLoss
           draggable
           pauseOnHover={false}
-        />
+        /> */}
       </section>
     </Layout>
   );
