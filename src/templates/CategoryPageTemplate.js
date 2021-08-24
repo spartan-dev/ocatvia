@@ -115,7 +115,7 @@ const CategoryPageTemplate = ({ data }) => {
             <div className="flex items-center relative">
               <span className="inline-block ml-4 mr-2">ORDENAR POR</span>
               <button onClick={() => setToggle(!toggle)}>
-                <Chevron className={toggle && 'transform rotate-180'} />
+                <Chevron className={toggle ? 'transform rotate-180' : ''} />
               </button>
               {toggle && (
                 <div

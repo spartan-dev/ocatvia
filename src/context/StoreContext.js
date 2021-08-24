@@ -100,11 +100,12 @@ export const StoreProvider = ({ children }) => {
         lineItems
       );
       setCheckout(newCheckout);
-      //ir a productos individuales y agrear a carro para ir con el video
-      //buy now button code
       // window.open(addItems.webUrl,"_blank")
     } catch (error) {
-      console.error(error, 'este es el que busco');
+      console.error(
+        error,
+        'error generado por el id en el storage y las cookies'
+      );
     }
   };
 
