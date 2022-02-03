@@ -23,11 +23,8 @@ const UserInfo = ({ data, token }) => {
       },
     });
     const { customerAccessTokenDelete } = data;
-    const {
-      deletedAccessToken,
-      deletedCustomerAccessTokenId,
-      userErrors,
-    } = customerAccessTokenDelete;
+    const { deletedAccessToken, deletedCustomerAccessTokenId, userErrors } =
+      customerAccessTokenDelete;
     toast.dark('Cerrando sesión', {
       position: 'top-right',
       autoClose: 5000,
@@ -117,7 +114,6 @@ const EditUser = ({ setIsEdit, isEdit, firstName, lastName, email, phone }) => {
     setForm({ firstName, lastName, email, phone });
     return () => {
       setForm({});
-      console.log('se limpia el estado');
     };
   }, []);
   const validForm = Object.keys(form).length === 4;
@@ -126,7 +122,6 @@ const EditUser = ({ setIsEdit, isEdit, firstName, lastName, email, phone }) => {
     const { target } = e;
     const { name, value } = target;
     setForm({ ...form, [name]: value });
-    console.log(form);
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -160,12 +155,6 @@ const EditUser = ({ setIsEdit, isEdit, firstName, lastName, email, phone }) => {
         });
         return;
       }
-      console.log(
-        data.customerUpdate,
-        'ha cambiado',
-        'error',
-        data.customerUpdate.customerUserErrors
-      );
       toast.dark('Usuario Actualizado 👌', {
         position: 'top-right',
         autoClose: 5000,

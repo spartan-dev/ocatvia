@@ -43,7 +43,6 @@ const Sidebar = ({ data }) => {
               <ul className="mt-4">
                 {item.categories.map((item, index) => (
                   <li className="py-4 text-base" key={index}>
-                    {console.log(toggleIndex, item)}
                     <Link
                       to={`/${item}`}
                       className="focus:text-yellow uppercase"

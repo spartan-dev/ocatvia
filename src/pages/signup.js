@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Layout from '../components/layout';
 import Loading from '../components/Loading';
 import { navigate } from 'gatsby';
@@ -11,9 +11,7 @@ const Signup = () => {
 
   const validForm = Object.keys(form).length === 5;
   const [signUser, { data, loading, error }] = useMutation(CREAR_USUARIO);
-  useEffect(() => {
-    console.log(form);
-  }, [form]);
+
   const handleChange = (e) => {
     const { target } = e;
     const { name, value } = target;
@@ -68,10 +66,6 @@ const Signup = () => {
       progress: undefined,
     });
   }
-
-  //manejar errores con  algun display
-
-  console.log(error, data);
 
   return (
     <Layout>

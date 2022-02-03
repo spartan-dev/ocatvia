@@ -175,14 +175,14 @@ const CategoryPageTemplate = ({ data }) => {
             return (
               <ProductCard
                 key={index}
-                img={item.variants[0].image}
+                image={item.variants[0].image}
                 name={item.title}
                 handle={item.handle}
                 mililiters={item.variants[0].weight}
                 price={item.variants[0].price}
                 variantId={item.variants[0].shopifyId}
-                btnClassName="btn-shop"
                 className="product-card sm:mr-7"
+                style={{ height: 503 }}
               />
             );
           })}
@@ -218,6 +218,7 @@ export const query = graphql`
           id
           image {
             localFile {
+              publicURL
               childImageSharp {
                 fluid {
                   ...GatsbyImageSharpFluid
@@ -237,6 +238,7 @@ export const query = graphql`
           handle
           image {
             localFile {
+              publicURL
               childImageSharp {
                 fluid {
                   ...GatsbyImageSharpFluid

@@ -44,14 +44,14 @@ const Selection = ({ title, data, className }) => {
               <Slide key={index}>
                 <ProductCard
                   key={index}
-                  img={item.variants[0].image}
+                  image={item.variants[0].image}
                   name={item.title}
                   handle={item.handle}
                   mililiters={item.variants[0].weight}
                   price={item.variants[0].price}
                   variantId={item.variants[0].shopifyId}
-                  btnClassName="btn-shop-slider"
                   className="w-full sm:w-44 md:w-52 lg:w-56 xl:w-64 sm:mx-2"
+                  style={{ height: 347 }}
                 />
               </Slide>
             );
