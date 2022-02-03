@@ -50,8 +50,8 @@ const Selection = ({ title, data, className }) => {
                   mililiters={item.variants[0].weight}
                   price={item.variants[0].price}
                   variantId={item.variants[0].shopifyId}
-                  btnClassName="btn-shop-slider"
                   className="w-full sm:w-44 md:w-52 lg:w-56 xl:w-64 sm:mx-2"
+                  style={{ height: 347 }}
                 />
               </Slide>
             );

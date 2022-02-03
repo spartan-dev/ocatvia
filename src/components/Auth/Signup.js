@@ -15,16 +15,13 @@ const Signup = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    signUser({ variables: { input: form } }).then((result) => {
-      console.log(result);
-    });
+    signUser({ variables: { input: form } });
   };
 
   if (loading) return 'Loading....';
   if (error) return <span>{error.message}</span>;
   /*  if (data.customerCreate.customerUserErrors[0])
     return <span>{data.customerCreate.customerUserErrors[0].message}</span>; */
-  console.log(data);
 
   return (
     <section className="container min-h-full font-gotham-book flex flex-col items-center">

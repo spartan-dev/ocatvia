@@ -62,7 +62,6 @@ const Directions = ({ isNew, setIsNew, token }) => {
       }
     } catch (error) {
       console.error(error);
-      console.log(error, 'si tenemos error?');
       toast.error('Ups hay un error al agregar direccion ', {
         position: 'top-right',
         autoClose: 5000,

@@ -31,8 +31,6 @@ const clientUser = Client.buildClient({
 }); */
 //setProfile({ name: 'kain', action: () => {} });
 /*   clientUser.graphQLClient.send(loginUserQuery).then(({ model, data }) => {
-        console.log(model);
-        console.log(data);
       }); */
 
 export const UserContext = createContext(defaultUserContext);

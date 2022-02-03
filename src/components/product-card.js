@@ -14,8 +14,8 @@ const ProductCard = ({
   mililiters,
   price,
   className,
-  btnClassName,
   variantId,
+  style,
 }) => {
   const { addProductToCart } = useContext(StoreContext);
 
@@ -27,7 +27,7 @@ const ProductCard = ({
       ) {
         edges {
           node {
-            relativePath
+            publicURL
             childImageSharp {
               fluid {
                 ...GatsbyImageSharpFluid
@@ -43,22 +43,24 @@ const ProductCard = ({
   return (
     <article className={className}>
       <div className="bg-white mb-12">
-        <div className="p-9 border border-beige relative">
+        <div className="p-9 border border-beige relative" style={style}>
           {img === null || img === undefined ? (
-            <Img
-              fluid={data.allFile.edges[0].node.childImageSharp.fluid}
+            <img
               alt={name}
+              className="object-contain h-full m-auto"
+              src={data.allFile.edges[0].node.publicURL}
               title={name}
             />
           ) : (
-            <Img
-              fluid={img.localFile.childImageSharp.fluid}
+            <img
               alt={name}
+              className="object-contain h-full m-auto"
+              src={img.localFile.publicURL}
               title={name}
             />
           )}
           <button
-            className={btnClassName}
+            className="btn-shop"
             onClick={() => {
               addProductToCart(variantId).then((res) => {
                 toast.dark('Item agregado', {

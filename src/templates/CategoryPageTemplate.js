@@ -181,8 +181,8 @@ const CategoryPageTemplate = ({ data }) => {
                 mililiters={item.variants[0].weight}
                 price={item.variants[0].price}
                 variantId={item.variants[0].shopifyId}
-                btnClassName="btn-shop"
                 className="product-card sm:mr-7"
+                style={{ height: 503 }}
               />
             );
           })}
@@ -218,6 +218,7 @@ export const query = graphql`
           id
           image {
             localFile {
+              publicURL
               childImageSharp {
                 fluid {
                   ...GatsbyImageSharpFluid
@@ -237,6 +238,7 @@ export const query = graphql`
           handle
           image {
             localFile {
+              publicURL
               childImageSharp {
                 fluid {
                   ...GatsbyImageSharpFluid
