@@ -6,6 +6,7 @@ import { StoreContext } from '../context/StoreContext';
 import Shop from '../images/svg/btn-shop.svg';
 import { toast } from 'react-toastify';
 import notavailable from '../images/assets/not-available.png';
+
 const ProductCard = ({
   image,
   name,

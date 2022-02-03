@@ -89516,7 +89516,7 @@ const Selection = ({
       key: index
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_product_card__WEBPACK_IMPORTED_MODULE_3__["default"], {
       key: index,
-      img: item.variants[0].image,
+      image: item.variants[0].image,
       name: item.title,
       handle: item.handle,
       mililiters: item.variants[0].weight,

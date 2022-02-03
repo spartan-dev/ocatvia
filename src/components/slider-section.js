@@ -44,7 +44,7 @@ const Selection = ({ title, data, className }) => {
               <Slide key={index}>
                 <ProductCard
                   key={index}
-                  img={item.variants[0].image}
+                  image={item.variants[0].image}
                   name={item.title}
                   handle={item.handle}
                   mililiters={item.variants[0].weight}
