@@ -92,7 +92,6 @@ const EditDirections = ({
       }
     } catch (error) {
       console.error(error);
-      console.log(error, 'si tenemos error?');
       toast.error('Ups hay un error al actulizar la  dirección ', {
         position: 'top-right',
         autoClose: 5000,

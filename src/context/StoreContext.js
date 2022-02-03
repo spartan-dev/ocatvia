@@ -38,7 +38,6 @@ export const StoreProvider = ({ children }) => {
 
   useEffect(() => {
     initializeCheckout();
-    //console.log(customertoken, 'en el set');
   }, []);
 
   const getNewId = async () => {
@@ -128,14 +127,11 @@ export const StoreProvider = ({ children }) => {
         lineItemsToUpdate
       );
       setCheckout(newCheckout);
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 
   /*   const getCollection = async () => {
     const collections = await client.collection.fetchAllWithProducts();
-    console.log(collections);
   }; */
 
   return (

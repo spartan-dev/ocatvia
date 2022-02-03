@@ -1,17 +1,14 @@
 import React, { useState } from 'react';
 import Layout from '../components/layout';
-import Loading from '../components/Loading';
 import { navigate } from 'gatsby';
 import { useMutation } from '@apollo/client';
 import { RECOVER_PASSWORD } from '../GRAPHQL/mutations';
-import { ToastContainer, toast } from 'react-toastify';
 
 const Recover = () => {
   const [email, setEmail] = useState({});
   const validForm = Object.keys(email).length === 1;
-  const [recoverPassword, { data, loading, error }] = useMutation(
-    RECOVER_PASSWORD
-  );
+  const [recoverPassword, { data, loading, error }] =
+    useMutation(RECOVER_PASSWORD);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setEmail({ [name]: value });

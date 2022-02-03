@@ -22,49 +22,10 @@ module.exports = ({ theme, addUtilities }) => {
       textAlign: 'center',
       border: `2px solid ${theme('colors')['body']}`,
     },
-    '.btn-shop-slider': {
-      position: 'absolute',
-      marginTop: '-8px',
-      '@media (min-width: 1280px)': {
-        marginLeft: '174px',
-      },
-      '@media (min-width: 1024px) and (max-width: 1279px)': {
-        marginLeft: '142px',
-      },
-      '@media (min-width: 768px) and (max-width: 1023px)': {
-        marginLeft: '126px',
-      },
-      '@media (min-width: 640px) and (max-width: 767px)': {
-        marginLeft: '94px',
-      },
-      '@media (min-width: 426px) and (max-width: 639px)': {
-        marginLeft: 'calc(82.5% - 8px)',
-      },
-      '@media (max-width: 425px)': {
-        marginLeft: 'calc(77% - 8px)',
-      },
-    },
     '.btn-shop': {
       position: 'absolute',
-      marginTop: '-8px',
-      '@media (min-width: 1280px)': {
-        marginLeft: '280px',
-      },
-      '@media (min-width: 1024px) and (max-width: 1279px)': {
-        marginLeft: '224px',
-      },
-      '@media (min-width: 768px) and (max-width: 1023px)': {
-        marginLeft: '240px',
-      },
-      '@media (min-width: 640px) and (max-width: 767px)': {
-        marginLeft: '188px',
-      },
-      '@media (min-width: 426px) and (max-width: 639px)': {
-        marginLeft: 'calc(82.5% - 8px)',
-      },
-      '@media (max-width: 425px)': {
-        marginLeft: 'calc(77% - 8px)',
-      },
+      bottom: '8px',
+      right: '8px',
     },
     '.checkbox': {
       appearance: 'none',

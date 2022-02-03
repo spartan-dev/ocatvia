@@ -1,11 +1,10 @@
 import React, { useContext } from 'react';
-import { Link, useStaticQuery, graphql } from 'gatsby';
-import Img from 'gatsby-image';
+import { Link } from 'gatsby';
 
 import { StoreContext } from '../context/StoreContext';
 
 import Shop from '../images/svg/btn-shop.svg';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import notavailable from '../images/assets/not-available.png';
 const ProductCard = ({
   image,
@@ -14,55 +13,32 @@ const ProductCard = ({
   mililiters,
   price,
   className,
-  btnClassName,
   variantId,
+  style,
 }) => {
   const { addProductToCart } = useContext(StoreContext);
-
-  //cambia imagenes a undefined mienmtras carga
-  const data = useStaticQuery(graphql`
-    {
-      allFile(
-        filter: { absolutePath: { regex: "/images/assets/product-3.jpg/" } }
-      ) {
-        edges {
-          node {
-            relativePath
-            childImageSharp {
-              fluid {
-                ...GatsbyImageSharpFluid
-                originalImg
-              }
-            }
-          }
-        }
-      }
-    }
-  `);
 
   return (
     <article className={className}>
       <div className="bg-white mb-12">
-        <div
-          className="p-9 border border-beige relative"
-          style={{ minHeight: '503px' }}
-        >
+        <div className="p-9 border border-beige relative" style={style}>
           {image === null || image === undefined ? (
             <img
+              alt={name}
+              className="object-contain h-full m-auto"
               src={notavailable}
-              className="w-96  h-full"
-              alt="name"
-              style={{ paddingTop: '115.5px', paddingBottom: '104.5px' }}
+              title={name}
             />
           ) : (
-            <Img
-              fluid={image.localFile.childImageSharp.fluid}
+            <img
               alt={name}
+              className="object-contain h-full m-auto"
+              src={image.localFile.publicURL}
               title={name}
             />
           )}
           <button
-            className={btnClassName}
+            className="btn-shop"
             onClick={() => {
               addProductToCart(variantId).then((res) => {
                 toast.dark('Item agregado', {
@@ -94,17 +70,6 @@ const ProductCard = ({
           </p>
         </div>
       </div>
-      {/*  <ToastContainer
-        position="top-right"
-        autoClose={1000}
-        hideProgressBar
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover={false}
-      /> */}
     </article>
   );
 };

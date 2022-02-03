@@ -9,16 +9,14 @@ import {
 import { QUERY_USER } from '../../GRAPHQL/queries';
 import { ToastContainer, toast } from 'react-toastify';
 
-import Arrow from '../../images/svg/arrow.svg';
 //todo subir a el server hacer pruebas
 //todo revisar la info y el flujo de creacion una ves despúes de la compra
 const Login = () => {
   const customerToken = () => localStorage.getItem('customertoken') || '';
   const [form, setForm] = useState({});
   const validForm = Object.keys(form).length === 2;
-  const [createToken, { data, loading, error }] = useMutation(
-    CREAR_ACCESS_TOKEN
-  );
+  const [createToken, { data, loading, error }] =
+    useMutation(CREAR_ACCESS_TOKEN);
   const [renovarToken] = useMutation(RENOVAR_ACCESS_TOKEN);
   //const [getUser] = useQuery(QUERY_USER);
   const [usertoken, setUserToken] = useState('');
@@ -30,7 +28,7 @@ const Login = () => {
     setUserToken(customerToken);
   }, [customerToken]);
   if (loading) return <Loading />;
-  if (error) return console.log(error);
+  if (error) return console.error(error);
 
   const handleChange = (e) => {
     const { target } = e;
@@ -40,12 +38,10 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     if (usertoken === '') {
-      console.log(usertoken);
       //*Si es usuario salio de la sesion o borro sus cookies iniciar una nueva token
       const { data } = await createToken({
         variables: { input: form },
         update: (store, { data: { customerAccessTokenCreate } }) => {
-          console.log(customerAccessTokenCreate, 'si pasa los params');
           store.writeQuery({
             query: QUERY_USER,
             variables: {
@@ -69,8 +65,7 @@ const Login = () => {
       localStorage.setItem('customertoken', customerAccessToken.accessToken);
       /*  const user = await getUser({
         variables: { customerAccessToken: customerAccessToken.accessToken },
-      });
-      console.log(user); */
+      });*/
       toast.dark('Usuario identificado', {
         position: 'top-right',
         autoClose: 5000,
@@ -88,7 +83,6 @@ const Login = () => {
       const { data } = await renovarToken({
         variables: { customerAccessToken: usertoken }, //'a15a7c111701b3562dbf30ffa1568fda'
       });
-      console.log(data, 'token renovado');
       //todo sacar valores de la data de renovacion
       /*   window.localStorage.setItem(
         'customertoken',

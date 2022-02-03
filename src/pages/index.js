@@ -46,6 +46,7 @@ export const collections = graphql`
           handle
           image {
             localFile {
+              publicURL
               childImageSharp {
                 fluid {
                   ...GatsbyImageSharpFluid
@@ -79,6 +80,7 @@ export const collections = graphql`
           weightUnit
           image {
             localFile {
+              publicURL
               childImageSharp {
                 fluid {
                   ...GatsbyImageSharpFluid

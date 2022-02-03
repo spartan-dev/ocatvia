@@ -1,28 +1,35 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, {
+  // useState,
+  useEffect,
+  useContext,
+} from 'react';
 import Layout from '../components/layout';
-import { Login, Signup } from '../components/Auth';
+import {
+  Login,
+  // Signup
+} from '../components/Auth';
 import Loading from '../components/Loading';
 import {
   UserInfo,
   UserAddress,
   UserOrders,
-  Directions,
+  // Directions,
 } from '../components/UserUtils';
 import { useLazyQuery } from '@apollo/client';
 import { QUERY_USER } from '../GRAPHQL/queries';
 import { UserContext } from '../context/UserContext';
 const User = () => {
   const { token } = useContext(UserContext);
-  const [addressForm, setAddressForm] = useState({
-    lastName: '',
-    firstName: '',
-    address1: '',
-    address2: '',
-    province: '',
-    country: '',
-    zip: '',
-    city: '',
-  });
+  // const [addressForm, setAddressForm] = useState({
+  //   lastName: '',
+  //   firstName: '',
+  //   address1: '',
+  //   address2: '',
+  //   province: '',
+  //   country: '',
+  //   zip: '',
+  //   city: '',
+  // });
   const [getUser, { loading, error, data }] = useLazyQuery(QUERY_USER);
   useEffect(() => {
     if (token) {
@@ -37,7 +44,6 @@ const User = () => {
   };
   const handleAddressSubmit = (e) => {
     e.preventDefault();
-    console.log(addressForm);
     updateAddress({
       variables: {
         address: addressForm,
